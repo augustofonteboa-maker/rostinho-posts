@@ -27,5 +27,5 @@ for p in d['posts']:
             for s in slides: zf.write(s['full'],os.path.basename(s['full']))
         p2['zip']=z
     out.append(p2)
-json.dump({'sections':d['sections'],'posts':out},open('src/data.json','w'),ensure_ascii=False,indent=1)
+json.dump({'sections':d['sections'],'phases':d.get('phases',[]),'posts':out},open('src/data.json','w'),ensure_ascii=False,indent=1)
 print('ok',len(out))

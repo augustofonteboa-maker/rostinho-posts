@@ -52,7 +52,14 @@
      "bg": "#150e11",
      "bytes": 676990
     }
-   ]
+   ],
+   "plan": {
+    "n": 1,
+    "day": "Seg, 19/10",
+    "time": "20h",
+    "phase": "f1"
+   },
+   "pin": false
   },
   {
    "id": "02-lancamento",
@@ -79,7 +86,14 @@
      "bg": "#ecd6cd",
      "bytes": 1410152
     }
-   ]
+   ],
+   "plan": {
+    "n": 3,
+    "day": "Seg, 26/10",
+    "time": "12h",
+    "phase": "f2"
+   },
+   "pin": true
   },
   {
    "id": "story-lancamento",
@@ -101,7 +115,14 @@
      "bg": "#2b1922",
      "bytes": 862669
     }
-   ]
+   ],
+   "plan": {
+    "n": 3.5,
+    "day": "Seg, 26/10",
+    "time": "12h05",
+    "phase": "f2"
+   },
+   "pin": false
   },
   {
    "id": "03-prazer-zinho",
@@ -128,7 +149,14 @@
      "bg": "#cfddeb",
      "bytes": 1461837
     }
-   ]
+   ],
+   "plan": {
+    "n": 4,
+    "day": "Ter, 27/10",
+    "time": "20h",
+    "phase": "f2"
+   },
+   "pin": false
   },
   {
    "id": "04-como-funciona",
@@ -188,7 +216,14 @@
      "bytes": 1420270
     }
    ],
-   "zip": "zip/rostinho-04-como-funciona.zip"
+   "zip": "zip/rostinho-04-como-funciona.zip",
+   "plan": {
+    "n": 5,
+    "day": "Qui, 29/10",
+    "time": "18h",
+    "phase": "f2"
+   },
+   "pin": true
   },
   {
    "id": "05-notas",
@@ -215,7 +250,14 @@
      "bg": "#fbfaf7",
      "bytes": 124393
     }
-   ]
+   ],
+   "plan": {
+    "n": 2,
+    "day": "Qua, 21/10",
+    "time": "20h",
+    "phase": "f1"
+   },
+   "pin": false
   },
   {
    "id": "06-vida-inteira",
@@ -283,7 +325,14 @@
      "bytes": 1563981
     }
    ],
-   "zip": "zip/rostinho-06-vida-inteira.zip"
+   "zip": "zip/rostinho-06-vida-inteira.zip",
+   "plan": {
+    "n": 6,
+    "day": "Ter, 03/11",
+    "time": "20h",
+    "phase": "f3"
+   },
+   "pin": true
   },
   {
    "id": "07-vinculo",
@@ -310,7 +359,14 @@
      "bg": "#ded9ec",
      "bytes": 1407026
     }
-   ]
+   ],
+   "plan": {
+    "n": 7,
+    "day": "Qui, 05/11",
+    "time": "18h",
+    "phase": "f3"
+   },
+   "pin": false
   },
   {
    "id": "08-toda-familia",
@@ -337,7 +393,14 @@
      "bg": "#ede1c7",
      "bytes": 1473390
     }
-   ]
+   ],
+   "plan": {
+    "n": 9,
+    "day": "Ter, 10/11",
+    "time": "20h",
+    "phase": "f4"
+   },
+   "pin": false
   },
   {
    "id": "09-marque",
@@ -364,7 +427,14 @@
      "bg": "#d56d5b",
      "bytes": 756938
     }
-   ]
+   ],
+   "plan": {
+    "n": 8,
+    "day": "Sáb, 07/11",
+    "time": "11h",
+    "phase": "f3"
+   },
+   "pin": false
   },
   {
    "id": "f01-toda-familia",
@@ -391,7 +461,14 @@
      "bg": "#f5f1ee",
      "bytes": 1838400
     }
-   ]
+   ],
+   "plan": {
+    "n": 16,
+    "day": "Qui, 26/11",
+    "time": "18h",
+    "phase": "f5"
+   },
+   "pin": false
   },
   {
    "id": "f02-o-laco",
@@ -418,7 +495,14 @@
      "bg": "#fbfaf7",
      "bytes": 427457
     }
-   ]
+   ],
+   "plan": {
+    "n": 15,
+    "day": "Ter, 24/11",
+    "time": "20h",
+    "phase": "f5"
+   },
+   "pin": false
   },
   {
    "id": "f03-dobrinhas",
@@ -445,7 +529,14 @@
      "bg": "#eeece9",
      "bytes": 1871372
     }
-   ]
+   ],
+   "plan": {
+    "n": 13,
+    "day": "Qui, 19/11",
+    "time": "18h",
+    "phase": "f5"
+   },
+   "pin": false
   },
   {
    "id": "f04-teaser",
@@ -462,7 +553,7 @@
     "#gravidez",
     "#maternidade"
    ],
-   "note": "A arte diz \"Em breve\": publique antes do lançamento.",
+   "note": "Fora do feed: a arte diz \"Em breve\". Publique como story na sexta 23/10 (com o sticker de contagem regressiva para 26/10) e use como anúncio. A legenda abaixo serve para o anúncio.",
    "alt": "Foto de uma gestante em ambiente escuro segurando a imagem impressa de um ultrassom junto à barriga iluminada, com o texto: Em breve. Toda mãe já conhece o rostinho do filho. Só ainda não viu.",
    "slides": [
     {
@@ -473,7 +564,14 @@
      "bg": "#071718",
      "bytes": 1857703
     }
-   ]
+   ],
+   "plan": {
+    "n": 2.5,
+    "day": "Sex, 23/10",
+    "time": "19h",
+    "phase": "f1"
+   },
+   "pin": false
   },
   {
    "id": "f05-primeiro-colo",
@@ -500,7 +598,14 @@
      "bg": "#ece6fb",
      "bytes": 597764
     }
-   ]
+   ],
+   "plan": {
+    "n": 14,
+    "day": "Sáb, 21/11",
+    "time": "11h",
+    "phase": "f5"
+   },
+   "pin": false
   },
   {
    "id": "f06-sonhando",
@@ -527,7 +632,14 @@
      "bg": "#dcebfa",
      "bytes": 597183
     }
-   ]
+   ],
+   "plan": {
+    "n": 12,
+    "day": "Ter, 17/11",
+    "time": "20h",
+    "phase": "f5"
+   },
+   "pin": false
   },
   {
    "id": "f07-ja-ama",
@@ -554,7 +666,14 @@
      "bg": "#fbe3da",
      "bytes": 510548
     }
-   ]
+   ],
+   "plan": {
+    "n": 10,
+    "day": "Qui, 12/11",
+    "time": "18h",
+    "phase": "f4"
+   },
+   "pin": false
   },
   {
    "id": "f08-o-dedo",
@@ -581,7 +700,14 @@
      "bg": "#eaeded",
      "bytes": 1409068
     }
-   ]
+   ],
+   "plan": {
+    "n": 11,
+    "day": "Sáb, 14/11",
+    "time": "11h",
+    "phase": "f4"
+   },
+   "pin": false
   },
   {
    "id": "f09-mil-vezes",
@@ -608,7 +734,46 @@
      "bg": "#d5c9da",
      "bytes": 1663034
     }
-   ]
+   ],
+   "plan": {
+    "n": 17,
+    "day": "Sáb, 28/11",
+    "time": "20h",
+    "phase": "f5"
+   },
+   "pin": false
+  }
+ ],
+ "phases": [
+  {
+   "id": "f1",
+   "title": "Pré-lançamento",
+   "range": "19 a 25/10",
+   "goal": "Criar a pergunta"
+  },
+  {
+   "id": "f2",
+   "title": "Lançamento",
+   "range": "26/10 a 01/11",
+   "goal": "Responder e ensinar"
+  },
+  {
+   "id": "f3",
+   "title": "Desejo",
+   "range": "02 a 08/11",
+   "goal": "Mostrar o ganho"
+  },
+  {
+   "id": "f4",
+   "title": "Conexão",
+   "range": "09 a 15/11",
+   "goal": "Chamar a família"
+  },
+  {
+   "id": "f5",
+   "title": "Sustentação",
+   "range": "16 a 28/11",
+   "goal": "Manter o ritmo"
   }
  ]
 }
