@@ -1,0 +1,171 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- R5 · Toda família cabe num rostinho (30 s) -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="motion.js"></script><script src="brand.js"></script>
+</head><body><div id="stage"></div>
+<script>
+const { W, H, S } = M, E = M.ease, cx = W / 2;
+const st = M.$('#stage');
+const DUR = 30, X0 = u(80);
+const TS = 5.0, TF = 15.5, TO = 21.0, TC = 25.5;
+const FAM = [['Mãe solo.', 5.3, 'f05-colo', -6], ['Duas mães.', 7.0, 'f02-laco', 5], ['Dois pais.', 8.7, 'f08-dedo', -3], ['Avó que cria.', 10.4, 'f06-sonhando', 7], ['Tia que virou mãe.', 12.1, 'f07-ja-ama', -2]];
+
+/* ---------- som ---------- */
+M.cue(0.1, 'start'); M.cue(0.6, 'pop', { s: 0.7 });
+M.cue(2.5, 'click'); M.cue(2.55, 'fall'); M.cue(2.9, 'pop'); M.cue(3.45, 'pop', { s: 0.8 });
+M.cue(TS, 'whoosh', { len: 0.4 });
+FAM.forEach(([, t]) => { M.cue(t, 'pluck'); M.cue(t + 0.2, 'card'); });
+M.cue(TF, 'whoosh', { len: 0.5 }); M.cue(TF + 0.4, 'hit', { s: 0.6 });
+M.cue(TO, 'whoosh', { len: 0.4 }); [21.6, 21.85, 22.1].forEach(t => M.cue(t, 'pop', { s: 0.8 })); M.cue(23.3, 'hit', { s: 0.7 }); M.cue(23.3, 'sparkle');
+M.cue(TC, 'whoosh', { len: 0.35 }); M.cue(27.25, 'big', { s: 0.8 }); M.cue(27.5, 'pop'); M.cue(28.6, 'end');
+M.blur(2.5, 3.2, 6); M.blur(TF - 0.2, TF + 1.2, 8); M.blur(TO - 0.2, TO + 0.5, 8); M.blur(TC - 0.1, TC + 0.5, 6);
+
+/* ---------- elementos ---------- */
+const bg = G.bgLayer(st, C.paper, { glow: '#FFFFFF', glow2: C.blush, alpha: 0.7 });
+G.life(st, { n: 18, size: [38, 100], seed: 51, colors: ['#D86F5D', '#C9B9EE', '#F0C77A', '#F6B9A8'], alpha: 0.7 });
+const BGK = [[0, C.paper], [TS, C.paper], [TS + 0.5, C.blush], [7.0, C.blush], [7.4, C.peach], [8.7, C.peach], [9.1, C.lav], [10.4, C.lav], [10.8, C.sky], [12.1, C.sky], [12.5, C.butter], [TF, C.butter], [TF + 0.5, C.cream], [TO, C.cream], [TO + 0.5, C.blush], [TC, C.blush], [TC + 0.5, C.butter]];
+
+// 0 · formulário
+const A = M.el('div', { class: 'layer' }, st);
+const tA = G.lines(A, X0, u(280), [['Aqui não tem campo', 'disp', u(96), C.ink], ['obrigatório escrito', 'disp', u(96), C.ink, u(6)], ['“nome do pai”.', 'ser', u(132), C.coral]]);
+const FC = { x: u(80), y: u(720), w: W - u(160), h: u(720) };
+const form = M.el('div', { class: 'abs', style: { left: FC.x + 'px', top: FC.y + 'px', width: FC.w + 'px', height: FC.h + 'px', background: '#FFFFFF', borderRadius: u(44) + 'px', boxShadow: `0 ${u(30)}px ${u(70)}px rgba(43,25,34,.12)` } }, A);
+const field = (y, label) => {
+  const lab = G.txt(form, 'disp2', label, { left: u(48) + 'px', top: y + 'px', fontSize: u(42) + 'px', color: C.ink });
+  const box = M.el('div', { class: 'abs', style: { left: u(48) + 'px', top: (y + u(64)) + 'px', width: (FC.w - u(96)) + 'px', height: u(120) + 'px', borderRadius: u(26) + 'px', background: C.paper, border: `${u(3)}px solid ${C.line}`, boxSizing: 'border-box' } }, form);
+  return { lab, box };
+};
+const f1 = field(u(46), 'Ultrassom');
+const th = M.el('div', { class: 'abs', style: { left: u(18) + 'px', top: u(16) + 'px', width: u(78) + 'px', height: u(78) + 'px', borderRadius: u(16) + 'px', overflow: 'hidden', background: '#150F11' } }, f1.box);
+M.el('img', { src: 'assets/img/ultrassom.jpg', style: { width: u(150) + 'px', transform: `translate(-${u(36)}px,-${u(22)}px)` } }, th);
+G.txt(f1.box, 'body', 'exame-20-semanas.jpg', { left: u(120) + 'px', top: u(34) + 'px', fontSize: u(38) + 'px', color: C.inkSoft });
+M.el('div', { class: 'abs', style: { right: u(22) + 'px', top: u(26) + 'px', width: u(60) + 'px', height: u(60) + 'px', borderRadius: '50%', background: '#3F7A5A' } }, f1.box, `<svg viewBox="0 0 64 64" width="${u(60)}" height="${u(60)}"><path d="M18 33 L28 43 L47 22" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>`);
+const f2 = field(u(272), '');
+const f2a = M.el('span', {}, f2.lab, 'Nome do pai'), f2b = M.el('span', {}, f2.lab, 'Foto do pai');
+const ast = G.txt(form, 'disp', '*', { fontSize: u(70) + 'px', color: C.coralDeep, lineHeight: 1 });
+const opt2 = G.pill(form, 'opcional', { bg: C.blush, color: C.coralDeep, size: u(32), pad: [0.38, 0.8], weight: 700 });
+const f2ph = G.txt(f2.box, 'body', '+ adicionar foto', { left: u(30) + 'px', top: u(34) + 'px', fontSize: u(38) + 'px', color: C.inkSoft });
+const f2car = M.el('div', { class: 'abs', style: { left: u(30) + 'px', top: u(32) + 'px', width: u(4) + 'px', height: u(50) + 'px', background: C.coral } }, f2.box);
+const f3 = field(u(498), 'Foto da mãe');
+G.txt(f3.box, 'body', '+ adicionar foto', { left: u(30) + 'px', top: u(34) + 'px', fontSize: u(38) + 'px', color: C.inkSoft });
+const opt3 = G.pill(form, 'opcional', { bg: C.blush, color: C.coralDeep, size: u(32), pad: [0.38, 0.8], weight: 700 });
+const curA = M.cursor(A, { size: u(64) });
+
+// 1 · empilhado + cartões
+const B = M.el('div', { class: 'layer' }, st);
+const stack = FAM.map(([s], i) => G.lines(B, X0, u(285) + i * u(110), [[s, 'disp', u(104), C.ink]]));
+const CW = u(560), CHH = u(440), CB = u(22);
+const cards = FAM.map(([, , img]) => {
+  const c = M.el('div', { class: 'abs', style: { width: (CW + 2 * CB) + 'px', height: (CHH + 2 * CB) + 'px', background: '#FFFFFF', borderRadius: u(30) + 'px', boxShadow: `0 ${u(24)}px ${u(50)}px rgba(43,25,34,.18)`, left: (cx - CW / 2 - CB) + 'px', top: (u(1190) - CHH / 2 - CB) + 'px' } }, B);
+  const ph = M.el('div', { class: 'abs', style: { left: CB + 'px', top: CB + 'px', width: CW + 'px', height: CHH + 'px', borderRadius: u(16) + 'px', overflow: 'hidden' } }, c);
+  M.el('img', { src: `assets/img/${img}.jpg`, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }, ph);
+  return c;
+});
+// cartão grande (família)
+const big = M.el('div', { class: 'abs', style: { overflow: 'hidden', borderRadius: u(36) + 'px', boxShadow: `0 ${u(30)}px ${u(70)}px rgba(43,25,34,.18)`, background: '#fff' } }, B);
+const bigImg = M.el('img', { src: 'assets/img/f01-familia.jpg', class: 'abs', style: { width: '100%', height: '100%', objectFit: 'cover', left: 0, top: 0 } }, big);
+const tF = G.lines(B, X0, u(285), [['Família é quem', 'disp', u(104), C.ink, u(4)], ['chega junto.', 'ser', u(136), C.coral]]);
+
+// 2 · slots opcionais
+const Cc = M.el('div', { class: 'layer' }, st);
+const tO = G.lines(Cc, X0, u(285), [['As fotos são', 'disp', u(104), C.ink], ['opcionais.', 'disp', u(104), C.ink, u(10)], ['O amor, não.', 'ser', u(140), C.coral]]);
+const SX = [u(250), u(540), u(830)], SY = u(930), SD = u(230);
+const slots = [['ultrassom', true], ['mãe', false], ['pai', false]].map(([n, fill], i) => {
+  const d = M.el('div', { class: 'abs', style: { left: (SX[i] - SD / 2) + 'px', top: (SY - SD / 2) + 'px', width: SD + 'px', height: SD + 'px', borderRadius: '50%', boxSizing: 'border-box', border: fill ? 'none' : `${u(5)}px dashed ${M.rgba(C.ink, 0.35)}`, background: fill ? '#150F11' : M.rgba('#FFFFFF', 0.5), overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' } }, Cc);
+  if (fill) M.el('img', { src: 'assets/img/ultrassom.jpg', style: { width: u(420) + 'px', transform: `translate(0,${u(30)}px)` } }, d);
+  else M.el('div', { class: 'disp', style: { fontSize: u(110) + 'px', color: M.rgba(C.ink, 0.35), fontWeight: 500, lineHeight: 1 } }, d, '+');
+  const lb = G.txt(Cc, 'disp2', n, { width: u(280) + 'px', textAlign: 'center', fontSize: u(36) + 'px', color: C.ink, left: (SX[i] - u(140)) + 'px', top: (SY + SD / 2 + u(24)) + 'px' });
+  const sub = G.txt(Cc, 'body', fill ? 'enviado' : 'opcional', { width: u(280) + 'px', textAlign: 'center', fontSize: u(30) + 'px', color: fill ? '#3F7A5A' : C.coralDeep, left: (SX[i] - u(140)) + 'px', top: (SY + SD / 2 + u(72)) + 'px' });
+  return { d, lb, sub };
+});
+const heart = G.heart(Cc, u(170), C.coral);
+const spk = G.sparks(Cc, 10, C.coral, 9);
+
+// 3 · CTA
+const D = M.el('div', { class: 'layer' }, st);
+const tC = G.lines(D, 0, u(320), [['Toda família cabe', 'disp', u(104), C.ink, u(4)], ['num rostinho.', 'ser', u(140), C.coral]], { align: 'center' });
+const logo = G.logo(D, u(620), 'dark'); G.box(logo, cx - u(310), u(690));
+const zg = G.img(D, 'assets/cut/zinho-green.png', u(330));
+const btn = G.pill(D, 'link na bio', { bg: C.ink, color: C.paper, size: u(40), pad: [0.55, 1.3], weight: 700 });
+const grain = M.grain(st, { opacity: 0.02 });
+let BW, F2W;
+async function init() { BW = btn.offsetWidth; }
+
+function render(t) {
+  grain.update(t);
+  bg.style.background = M.keys(t, BGK); bg.upd(t);
+
+  // 0
+  M.show(A, t < TS + 0.6);
+  if (t < TS + 0.6) {
+    G.riseL(tA, t, 0.05, { each: 0.12, out: TS - 0.2, outDur: 0.35 });
+    const fs = M.springAt(t, 0.6, 'snappy'), fo = E.inCubic(M.seg(t, TS - 0.15, TS + 0.35));
+    M.css(form, { transform: { y: (1 - Math.min(1, fs)) * u(500) + fo * u(1300), r: fo * -6 }, opacity: fs > 0 ? 1 : 0 });
+    const sw = t >= 2.55;
+    f2a.style.display = sw ? 'none' : 'inline'; f2b.style.display = sw ? 'inline' : 'none';
+    const aw = f2.lab.offsetWidth;
+    const fall = M.seg(t, 2.55, 3.2);
+    M.css(ast, { left: (u(48) + aw + u(8)) + 'px', top: (u(262) + fall * fall * u(900)) + 'px', transform: { r: fall * 160, s: 1 + 0.4 * M.pulse(t, 2.52, 0.08) }, opacity: fall < 1 ? 1 : 0 });
+    const o2 = M.springAt(t, 2.9, 'bouncy'); M.css(opt2, { left: (u(48) + aw + u(22)) + 'px', top: u(276) + 'px', transform: { s: Math.max(0, o2) } });
+    f2.box.style.borderStyle = sw ? 'dashed' : 'solid'; f2ph.style.opacity = sw ? E.outExpo(M.seg(t, 2.7, 3.1)) : 0;
+    f2car.style.opacity = !sw && t > 0.9 ? (Math.floor(t / 0.5) % 2 ? 0 : 1) : 0;
+    const s3 = E.outExpo(M.seg(t, 3.4, 4.0)); [f3.lab, f3.box].forEach(e => M.css(e, { opacity: s3, transform: { y: (1 - s3) * u(40) } }));
+    const o3 = M.springAt(t, 3.6, 'bouncy'); M.css(opt3, { left: (u(48) + f3.lab.offsetWidth + u(22)) + 'px', top: u(502) + 'px', transform: { s: Math.max(0, o3) } });
+    const target = [FC.x + u(48) + aw + u(30), FC.y + u(300)];
+    const cp = M.cursorPath(t, [[1.6, [W + u(60), H * 0.95]], [2.4, target], [2.62, target], [3.4, [W * 0.85, H * 1.1]]]);
+    M.css(curA, { transform: { x: cp[0], y: cp[1], s: 1 - 0.18 * M.pulse(t, 2.5, 0.07) } });
+  }
+
+  // 1 + família
+  M.show(B, t >= TS && t < TO + 0.6);
+  if (t >= TS && t < TO + 0.6) {
+    let cur = -1; FAM.forEach(([, ft], i) => { if (t >= ft) cur = i; });
+    stack.forEach((L, i) => {
+      G.riseL(L, t, FAM[i][1], { out: TF - 0.35 + i * 0.04, outDur: 0.35 });
+      L[0].in.style.opacity = i === cur ? 1 : (i < cur ? 0.32 : 1);
+    });
+    cards.forEach((c, i) => {
+      const t0 = FAM[i][1] + 0.15, s = M.springAt(t, t0, 'snappy'), r = FAM[i][3];
+      const out = E.inCubic(M.seg(t, TF + 0.05 + (4 - i) * 0.04, TF + 0.5 + (4 - i) * 0.04));
+      M.css(c, { opacity: t >= t0 ? 1 : 0, transform: { y: (1 - Math.min(1, s)) * -u(900) + out * u(1200), r: r + (1 - Math.min(1, s)) * 18, s: 1 + 0.06 * (1 - Math.min(1, s)) } });
+    });
+    // cartão grande cresce a partir do topo do baralho
+    const gi = M.springAt(t, TF + 0.15, 'gentle'), gp = Math.min(1, gi);
+    const bw = M.lerp(CW, u(960), gp), bh = M.lerp(CHH, u(756), gp), by = M.lerp(u(1190), u(1100), gp);
+    const bo = E.inCubic(M.seg(t, TO - 0.15, TO + 0.35));
+    M.css(big, { left: (cx - bw / 2) + 'px', top: (by - bh / 2) + 'px', width: bw + 'px', height: bh + 'px', opacity: t >= TF + 0.15 ? 1 - bo : 0, transform: { s: 1 - 0.15 * bo, r: (1 - gp) * -4 } });
+    M.css(bigImg, { transform: { s: 1.0 + 0.07 * E.inOutSine(M.seg(t, TF, TO)) } });
+    G.riseL(tF, t, TF + 0.45, { each: 0.15, out: TO - 0.25, outDur: 0.35 });
+  }
+
+  // 2
+  M.show(Cc, t >= TO && t < TC + 0.6);
+  if (t >= TO && t < TC + 0.6) {
+    G.riseL(tO, t, TO + 0.25, { each: 0.12 }); tO[2].in.style.transform = M.tf({ y: (1 - E.outExpo(M.seg(t, 23.2, 24.0))) * tO[2].h });
+    const out = E.inCubic(M.seg(t, TC - 0.2, TC + 0.25));
+    [tO].forEach(L => L.forEach(l => l.wrap.style.opacity = 1 - out));
+    slots.forEach((s, i) => {
+      const sp = M.springAt(t, 21.6 + i * 0.25, 'bouncy');
+      M.css(s.d, { transform: { s: Math.max(0, sp) * (1 - out) } });
+      const lq = E.outExpo(M.seg(t, 21.9 + i * 0.25, 22.5 + i * 0.25)) * (1 - out);
+      [s.lb, s.sub].forEach(e => M.css(e, { opacity: lq, transform: { y: (1 - lq) * u(20) } }));
+    });
+    const hs = M.springAt(t, 23.3, 'bouncy'), hb = 1 + 0.1 * Math.max(0, Math.sin((t - 23.3) * 6.5)) ** 8;
+    M.css(heart, { left: (cx - u(85)) + 'px', top: u(1270) + 'px', transform: { s: Math.max(0, hs) * hb * (1 - out) } });
+    spk.upd(t, 23.35, cx, u(1345), u(260));
+  }
+
+  // 3
+  M.show(D, t >= TC);
+  if (t >= TC) {
+    G.riseL(tC, t, TC + 0.2, { each: 0.14 });
+    G.logoIn(logo, t, 26.2);
+    const zs = M.springAt(t, 27.0, 'bouncy'), wav = Math.sin((t - 27) * 5) * 4;
+    G.place(zg, cx, u(1330), { s: Math.max(0, zs), r: wav });
+    const bs = M.springAt(t, 27.5, 'bouncy');
+    M.css(btn, { left: (cx - BW / 2) + 'px', top: u(1372) + 'px', transform: { s: Math.max(0, Math.min(1.1, bs)) * (t > 28.2 ? 1 + 0.04 * Math.sin((t - 28.2) * 5) : 1) } });
+  }
+}
+M.boot(render, { dur: DUR, init, poster: 13.0 });
+</script></body></html>

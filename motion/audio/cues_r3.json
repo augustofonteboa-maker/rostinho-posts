@@ -1,0 +1,92 @@
+{
+ "dur": 30,
+ "bpm": 0,
+ "cues": [
+  {
+   "t": 0.1,
+   "type": "start"
+  },
+  {
+   "t": 6.65,
+   "type": "whoosh",
+   "len": 0.35,
+   "s": 0.6
+  },
+  {
+   "t": 7,
+   "type": "sparkle"
+  },
+  {
+   "t": 10.65,
+   "type": "whoosh",
+   "len": 0.35,
+   "s": 0.6
+  },
+  {
+   "t": 11,
+   "type": "sparkle"
+  },
+  {
+   "t": 14.65,
+   "type": "whoosh",
+   "len": 0.35,
+   "s": 0.6
+  },
+  {
+   "t": 15,
+   "type": "sparkle"
+  },
+  {
+   "t": 18.65,
+   "type": "whoosh",
+   "len": 0.35,
+   "s": 0.6
+  },
+  {
+   "t": 19,
+   "type": "sparkle"
+  },
+  {
+   "t": 23,
+   "type": "swell",
+   "len": 1.2
+  },
+  {
+   "t": 23.3,
+   "type": "sparkle"
+  },
+  {
+   "t": 23.35,
+   "type": "tick",
+   "s": 0.6
+  },
+  {
+   "t": 23.47,
+   "type": "tick",
+   "s": 0.6
+  },
+  {
+   "t": 23.59,
+   "type": "tick",
+   "s": 0.6
+  },
+  {
+   "t": 23.71,
+   "type": "tick",
+   "s": 0.6
+  },
+  {
+   "t": 23.83,
+   "type": "tick",
+   "s": 0.6
+  },
+  {
+   "t": 27.4,
+   "type": "pop"
+  },
+  {
+   "t": 28.5,
+   "type": "end"
+  }
+ ]
+}

@@ -1,0 +1,169 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- R6 · Mito ou verdade? — quiz de 3 rodadas (15 s) -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="motion.js"></script><script src="brand.js"></script>
+</head><body><div id="stage"></div>
+<script>
+const { W, H, S } = M, E = M.ease, cx = W / 2;
+const st = M.$('#stage');
+const DUR = 15, X0 = u(80);
+const GREEN = '#4E9B6F';
+const R = [
+  { T: 2.2, mito: true, lines: ['O ultrassom já', 'mostra o rostinho', 'inteiro.'], ex: ['Mostra os contornos.', 'O resto, a gente imagina.'], bg: C.peach },
+  { T: 5.5, mito: false, lines: ['Bebê pode ter o', 'sorriso do pai e o', 'cabelo da mãe.'], ex: ['É sempre uma mistura.', 'Um pouco de cada.'], bg: C.mint },
+  { T: 8.8, mito: true, lines: ['Dá pra saber', 'hoje a quem ele', 'vai puxar.'], ex: ['Só o tempo conta.', 'Imaginar já dá pra começar.'], bg: C.peach },
+];
+const TCTA = 12.2;
+
+/* ---------- som ---------- */
+M.cue(0.1, 'start'); M.cue(0.55, 'boing', { s: 0.8 });
+R.forEach((r, i) => {
+  M.cue(r.T - 0.15, 'whoosh', { len: 0.3, s: 0.7 }); M.cue(r.T + 0.2, 'card');
+  [1.1, 1.45, 1.8].forEach(d => M.cue(r.T + d, 'tick', { s: 0.9 }));
+  M.cue(r.T + 2.0, 'stamp'); M.cue(r.T + 2.05, r.mito ? 'buzz' : 'ding');
+  M.cue(r.T + 2.45, 'pop', { s: 0.6 });
+  M.blur(r.T - 0.1, r.T + 0.5, 8); M.blur(r.T + 1.95, r.T + 2.2, 8); M.blur(r.T + 3.1, r.T + 3.5, 8);
+});
+M.cue(TCTA - 0.2, 'whoosh', { len: 0.4 }); M.cue(TCTA + 0.15, 'big'); M.cue(TCTA + 1.1, 'sparkle'); M.cue(TCTA + 1.4, 'pop'); M.cue(14.4, 'end');
+M.blur(TCTA - 0.2, TCTA + 0.5, 8);
+
+/* ---------- fundo ---------- */
+const BG0 = G.bgLayer(st, C.sky, { glow: '#FFFFFF', glow2: C.lav, alpha: 0.7 });
+const BGP = G.bgLayer(st, C.peach, { glow: '#FFFFFF', glow2: C.blush, alpha: 0.7 });
+const BGM = G.bgLayer(st, C.mint, { glow: '#FFFFFF', glow2: C.sky, alpha: 0.7 });
+const BGC = G.bgLayer(st, C.butter, { glow: '#FFFFFF', glow2: C.peach, alpha: 0.7 });
+G.life(st, { n: 18, size: [38, 100], seed: 61, colors: ['#D86F5D', '#C9B9EE', '#F0C77A', '#F6B9A8'], alpha: 0.7 });
+const irisSvg = M.el('svg', { width: W, height: H }, st);
+const iris = M.el('circle', { r: 0 }, irisSvg);
+
+/* ---------- intro ---------- */
+const LI = M.el('div', { class: 'layer' }, st);
+const iLab = G.txt(LI, 'lab', 'um jogo rápido', { left: 0, width: W + 'px', textAlign: 'center', top: u(290) + 'px', fontSize: u(28) + 'px', color: C.coral });
+const iH = G.lines(LI, 0, u(350), [['Mito', 'disp', u(250), C.ink, u(2)], ['ou verdade?', 'ser', u(170), C.coral]], { align: 'center' });
+const zS = G.img(LI, 'assets/cut/zinho-surpreso.png', u(500));
+
+/* ---------- rodadas ---------- */
+const CARD = { x: X0, y: u(330), w: W - 2 * X0, h: u(440) };
+const rounds = R.map((r, i) => {
+  const L = M.el('div', { class: 'layer' }, st);
+  const card = M.el('div', { class: 'abs', style: { left: CARD.x + 'px', top: CARD.y + 'px', width: CARD.w + 'px', height: CARD.h + 'px', background: C.paper, borderRadius: u(52) + 'px', boxShadow: `0 ${u(30)}px ${u(70)}px rgba(43,25,34,.18)`, overflow: 'hidden', transformOrigin: '50% 100%' } }, L);
+  G.txt(card, 'lab', `rodada ${i + 1} de 3`, { left: u(56) + 'px', top: u(50) + 'px', fontSize: u(26) + 'px', color: C.coral });
+  const dots = [0, 1, 2].map(k => M.el('div', { class: 'abs', style: { right: (u(56) + k * u(34)) + 'px', top: u(52) + 'px', width: u(20) + 'px', height: u(20) + 'px', borderRadius: '50%', background: (2 - k) <= i ? C.coral : C.line } }, card));
+  const spec = r.lines.map((s, k) => [s, k === 2 ? 'ser' : 'disp', k === 2 ? u(116) : u(76), k === 2 ? C.coral : C.ink]);
+  const tx = G.lines(card, u(56), u(130), spec);
+  const ex = G.lines(L, 0, u(985), r.ex.map(s => [s, 'ser', u(64), C.ink]), { align: 'center' });
+  // contagem
+  const rg = M.el('svg', { width: W, height: H }, L);
+  const RC = { x: u(775), y: u(1290), r: u(120) };
+  M.el('circle', { cx: RC.x, cy: RC.y, r: RC.r, fill: 'none', stroke: C.line, 'stroke-width': u(16) }, rg);
+  const arc = M.el('circle', { cx: RC.x, cy: RC.y, r: RC.r, fill: 'none', stroke: C.coral, 'stroke-width': u(16), 'stroke-linecap': 'round', transform: `rotate(-90 ${RC.x} ${RC.y})` }, rg);
+  const num = G.txt(L, 'disp', '3', { left: (RC.x - u(100)) + 'px', width: u(200) + 'px', textAlign: 'center', top: (RC.y - u(78)) + 'px', fontSize: u(150) + 'px', color: C.ink });
+  // carimbo
+  const col = r.mito ? C.coralDeep : GREEN;
+  const stamp = M.el('div', { class: 'abs disp', style: { left: (cx - u(250)) + 'px', width: u(500) + 'px', top: (CARD.y + CARD.h - u(30)) + 'px', textAlign: 'center', color: col, border: `${u(14)}px solid ${col}`, borderRadius: u(36) + 'px', background: M.rgba('#FFFFFF', 0.96), fontSize: u(120) + 'px', padding: `${u(18)}px 0 ${u(30)}px`, letterSpacing: '0.01em' } }, L, r.mito ? 'MITO' : 'VERDADE');
+  const ring = M.el('svg', { width: W, height: H }, L); const rr = M.el('circle', { cx, cy: CARD.y + CARD.h + u(80), r: 0, fill: 'none', stroke: col, 'stroke-width': u(10) }, ring);
+  const spk = G.sparks(L, 9, col, 70 + i);
+  return { L, card, dots, tx, ex, rg, arc, num, RC, stamp, ring: rr, spk, col, r };
+});
+// Zinho: 3 poses
+const zPose = ['zinho-stand', 'zinho-surpreso', 'zinho-happy'].map(k => G.img(st, `assets/cut/${k}.png`, u(290)));
+const ZX = u(270), ZY = u(1520);
+
+/* ---------- CTA ---------- */
+const LC = M.el('div', { class: 'layer' }, st);
+const cH = G.lines(LC, 0, u(300), [['Que tal imaginar', 'disp', u(104), C.ink, u(6)], ['o rostinho do seu?', 'ser', u(120), C.coral]], { align: 'center' });
+const logo = G.logo(LC, u(760), 'dark'); G.box(logo, cx - u(380), u(700));
+const zH = G.img(LC, 'assets/cut/zinho-heart.png', u(340));
+const btn = G.pill(LC, 'link na bio', { bg: C.ink, color: C.paper, size: u(36), pad: [0.55, 1.3], weight: 700 });
+const cSp = G.sparks(LC, 10, C.coral, 74);
+const grain = M.grain(st, { opacity: 0.02 });
+let BW = 0; async function init() { BW = btn.offsetWidth; }
+
+function pose(t, idx) { // mostra só uma pose do Zinho
+  zPose.forEach((z, k) => { z.style.opacity = k === idx ? 1 : 0; });
+}
+
+function render(t) {
+  grain.update(t);
+  // ---- qual fundo
+  let bgIdx = 0; // 0 sky, 1 peach, 2 mint, 3 butter
+  let irisC = null, irisP = 0, irisAt = [cx, CARD.y + CARD.h];
+  R.forEach(r => { const p = E.inOutCubic(M.seg(t, r.T + 2.0, r.T + 2.55)); if (p > 0) bgIdx = r.mito ? 1 : 2; if (p > 0 && p < 1) { irisC = r.bg; irisP = p; } });
+  R.forEach(r => { if (t >= r.T + 3.15) bgIdx = 0; });
+  const pc = E.inOutCubic(M.seg(t, TCTA - 0.25, TCTA + 0.4)); if (t >= TCTA - 0.25) { bgIdx = 3; if (pc < 1) { irisC = C.butter; irisP = pc; irisAt = [cx, H * 0.8]; } }
+  const prevBg = t >= TCTA - 0.25 ? 0 : bgIdx;
+  [BG0, BGP, BGM, BGC].forEach((b, i) => { const on = i === bgIdx || (irisC && i === 0); M.show(b, on); if (on) b.upd(t); });
+  M.attr(iris, { cx: irisAt[0], cy: irisAt[1], r: irisC ? M.lerp(0, M.cover(1, irisAt[0], irisAt[1]) * 1.02, irisP) : 0, fill: irisC || '#fff' });
+
+  // ---- intro
+  const onI = t < 2.4; M.show(LI, onI);
+  if (onI) {
+    const lq = E.outExpo(M.seg(t, 0.1, 0.7)), lo = M.seg(t, 1.95, 2.1);
+    M.css(iLab, { opacity: lq * (1 - lo), transform: { y: (1 - lq) * u(20) } });
+    G.riseL(iH, t, 0.2, { each: 0.18, out: 2.05, outDur: 0.3 });
+    const sp = M.springAt(t, 0.5, 'bouncy'), out = E.inCubic(M.seg(t, 2.0, 2.4));
+    G.place(zS, cx, ZY + u(10) + (1 - Math.min(1.1, sp)) * u(900) + out * u(900), { s: 0.7 + 0.3 * Math.min(1.1, sp) });
+  }
+
+  // ---- rodadas
+  let zi = -1, zp = 0, zt0 = 0;
+  rounds.forEach((q, i) => {
+    const r = q.r, T = r.T, on = t >= T - 0.05 && t < T + 3.5; M.show(q.L, on); if (!on) return;
+    const cin = E.outBack(M.seg(t, T, T + 0.55), 1.2), cout = E.inCubic(M.seg(t, T + 3.15, T + 3.45));
+    M.css(q.card, { transform: { y: (1 - Math.min(1, cin)) * u(1300) - cout * u(1300), r: (1 - Math.min(1, cin)) * -5, s: 1 + 0.05 * Math.max(0, cin - 1) } });
+    G.riseL(q.tx, t, T + 0.35, { each: 0.12, out: T + 3.15, outDur: 0.3 });
+    // contagem regressiva
+    const cq = E.outBack(M.seg(t, T + 1.0, T + 1.35), 1.6), co = 1 - E.inCubic(M.seg(t, T + 2.0, T + 2.2)) * 0 ;
+    const rv = M.seg(t, T + 1.1, T + 1.95);
+    const digit = t < T + 1.45 ? '3' : t < T + 1.8 ? '2' : '1';
+    q.num.textContent = digit;
+    const dph = (t - (T + 1.1)) % 0.35; const dpop = t >= T + 1.1 && t < T + 1.95 ? Math.exp(-dph / 0.07) : 0;
+    const gone = E.inCubic(M.seg(t, T + 2.0, T + 2.3));
+    M.css(q.rg, { opacity: Math.min(1, cq) * (1 - gone), transform: { s: Math.max(0.01, cq) } , transformOrigin: `${q.RC.x}px ${q.RC.y}px` });
+    q.rg.style.transformOrigin = `${q.RC.x}px ${q.RC.y}px`;
+    M.draw(q.arc, 1 - rv);
+    M.css(q.num, { opacity: Math.min(1, cq) * (1 - gone), transform: { s: Math.max(0.01, cq) * (1 + 0.18 * dpop) } });
+    // carimbo
+    const sp = M.seg(t, T + 2.0, T + 2.28), ss = E.outBack(sp, 2.2);
+    const st0 = t >= T + 2.0;
+    const sk = M.shake(t, T + 2.0, { amp: u(18), dur: 0.4, seed: 3 + i });
+    q.stamp.style.opacity = st0 ? 1 : 0;
+    const wob = Math.sin((t - T - 2.28) * 5) * Math.exp(-(t - T - 2.28) * 2.2) * 2.5;
+    M.css(q.stamp, { transform: { s: st0 ? M.lerp(2.4, 1, Math.min(1, ss)) : 2.4, r: (r.mito ? -9 : 7) + (st0 && t > T + 2.28 ? wob : 0), x: sk.x * 0.5, y: sk.y * 0.5 } });
+    const rp = M.seg(t, T + 2.0, T + 2.7); M.attr(q.ring, { r: u(60) + u(420) * E.outExpo(rp), opacity: rp > 0 && rp < 1 ? 1 - rp : 0, 'stroke-width': u(18) * (1 - rp) + 1 });
+    q.spk.upd(t, T + 2.05, cx, CARD.y + CARD.h, u(520));
+    // empurrão do cartão no impacto
+    if (st0) { const k = Math.exp(-(t - T - 2.0) / 0.12) * Math.sin((t - T - 2.0) * 40); M.css(q.card, { transform: { y: (1 - Math.min(1, cin)) * u(1300) - cout * u(1300), s: 1 + 0.012 * k, r: 0 } }); }
+    // explicação
+    G.riseL(q.ex, t, T + 2.4, { each: 0.12, out: T + 3.15, outDur: 0.3 });
+    // pose do Zinho
+    if (t >= T && t < T + 3.5) { zi = t < T + 2.0 ? 0 : (r.mito ? 1 : 2); zt0 = t < T + 2.0 ? T : T + 2.0; }
+  });
+  // Zinho (pose + quique no veredito)
+  const inRound = rounds.some(q => t >= q.r.T - 0.05 && t < q.r.T + 3.5);
+  const zin = E.outBack(M.seg(t, R[0].T + 0.2, R[0].T + 0.8), 1.4);
+  const visZ = (t >= 2.0 && t < TCTA - 0.1);
+  zPose.forEach((z, k) => { z.style.opacity = (visZ && k === (zi < 0 ? 0 : zi)) ? 1 : 0; });
+  if (visZ) {
+    const zz = zPose[zi < 0 ? 0 : zi];
+    const jump = zi > 0 ? Math.abs(Math.sin(M.seg(t, zt0, zt0 + 0.6) * Math.PI * 2)) * (1 - M.seg(t, zt0, zt0 + 0.6)) * u(120) : 0;
+    const bob = Math.sin(t * 5) * u(6);
+    const gone = E.inCubic(M.seg(t, TCTA - 0.35, TCTA - 0.05));
+    G.place(zz, ZX, ZY + (1 - Math.min(1, zin)) * u(600) - jump + bob + gone * u(700), { s: 0.9 + 0.1 * Math.min(1, zin), r: zi === 1 ? -6 : zi === 2 ? 5 : 0 });
+  }
+
+  // ---- CTA
+  const onC = t >= TCTA - 0.05; M.show(LC, onC);
+  if (onC) {
+    G.riseL(cH, t, TCTA + 0.0, { each: 0.15 });
+    const land = G.logoIn(LC.logo || logo, t, TCTA + 0.35);
+    const zs = M.springAt(t, TCTA + 0.9, 'bouncy');
+    G.place(zH, cx, H * 0.77 + (1 - Math.min(1, zs)) * u(500), { s: Math.max(0.01, Math.min(1.1, zs)) });
+    const bs = M.springAt(t, TCTA + 1.5, 'bouncy'); M.css(btn, { left: (cx - BW / 2) + 'px', top: u(930) + 'px', transform: { s: Math.max(0, Math.min(1.1, bs)) * (t > 14 ? 1 + 0.04 * Math.sin((t - 14) * 6) : 1) } });
+    cSp.upd(t, land, cx, u(770), u(420));
+    if (t > land + 0.5) logo.face.style.transform = M.tf({ s: 1 + 0.03 * Math.sin((t - land) * 2.6), r: 4 * Math.sin((t - land) * 1.3) });
+  }
+}
+M.boot(render, { dur: DUR, init, poster: 7.4 });
+</script></body></html>

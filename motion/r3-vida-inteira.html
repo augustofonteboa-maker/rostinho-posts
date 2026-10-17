@@ -1,0 +1,132 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- R3 · A vida inteira — o Zinho envelhecendo (30 s) -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="motion.js"></script><script src="brand.js"></script>
+</head><body><div id="stage"></div>
+<script>
+const { W, H, S } = M, E = M.ease, cx = W / 2;
+const st = M.$('#stage');
+const DUR = 30, X0 = u(80);
+const AG = [
+  { k: 'age-00', n: 0, t: ['recém-', 'nascido'], c: ['O primeiro colo.'], bg: C.sky, t0: 3.0 },
+  { k: 'age-05', n: 5, t: ['5 anos'], c: ['Mochila nas costas.'], bg: C.butter, t0: 7.0 },
+  { k: 'age-18', n: 18, t: ['18 anos'], c: ['Formatura. Você vai', 'chorar, avisando.'], bg: C.lav, t0: 11.0 },
+  { k: 'age-40', n: 40, t: ['40 anos'], c: ['Aquele jeitinho', 'que veio de você.'], bg: C.peach, t0: 15.0 },
+  { k: 'age-70', n: 70, t: ['70 anos'], c: ['O cachinho virou', 'cabelo branco.'], bg: C.cream, t0: 19.0 },
+];
+const TL = 23.0, TC = 26.0;
+
+/* ---------- som ---------- */
+M.cue(0.1, 'start');
+AG.forEach((a, i) => { if (i) { M.cue(a.t0, 'sparkle'); M.cue(a.t0 - 0.35, 'whoosh', { len: 0.35, s: 0.6 }); } });
+M.cue(TL, 'swell', { len: 1.2 }); M.cue(TL + 0.3, 'sparkle');
+[0, 1, 2, 3, 4].forEach(i => M.cue(TL + 0.35 + i * 0.12, 'tick', { s: 0.6 }));
+M.cue(TC + 1.4, 'pop'); M.cue(28.5, 'end');
+AG.forEach((a, i) => { if (i) M.blur(a.t0 - 0.1, a.t0 + 0.6, 8); }); M.blur(TL - 0.1, TL + 0.9, 8);
+
+/* ---------- elementos ---------- */
+const BG = [G.bgLayer(st, C.blush, { glow: '#FFFFFF', glow2: C.peach })].concat(AG.map(a => G.bgLayer(st, a.bg, { glow: '#FFFFFF', alpha: 0.6 })));
+const LLine = G.bgLayer(st, C.paper, { glow: C.blush, glow2: C.sky, alpha: 0.8 });
+G.life(st, { n: 18, size: [38, 100], seed: 31, colors: ['#D86F5D', '#C9B9EE', '#F0C77A', '#F6B9A8'], alpha: 0.7 });
+const irisSvg = M.el('svg', { width: W, height: H }, st);
+const iris = M.el('circle', { r: 0 }, irisSvg);
+const figL = M.el('div', { class: 'layer' }, st);
+const figs = AG.map(a => { const f = G.img(figL, `assets/cut/${a.k}.png`, u(860)); return f; });
+const txtL = M.el('div', { class: 'layer' }, st);
+const lab = G.txt(txtL, 'lab', 'a vida inteira', { left: X0 + 'px', top: u(285) + 'px', fontSize: u(28) + 'px', color: C.coral });
+const hook = G.lines(txtL, X0, u(340), [['Quem ele', 'disp', u(156), C.ink, u(4)], ['vai ser?', 'ser', u(176), C.coral]]);
+const TS = u(150);
+const titles = AG.map((a, i) => {
+  const L = G.lines(txtL, X0, u(340), a.t.map(s => [s, 'disp', TS, C.ink]));
+  const cap = G.lines(txtL, X0, L.bottom + u(30), a.c.map(s => [s, 'ser', u(80), C.coral]));
+  return { L, cap, numEl: a.n ? L[0].in : null };
+});
+// linha do tempo
+const lineL = M.el('div', { class: 'layer' }, st);
+const mini = AG.map((a, i) => G.img(lineL, `assets/cut/${a.k}.png`, u(190)));
+const miniLab = AG.map((a, i) => G.txt(lineL, 'disp', String(a.n), { width: u(190) + 'px', textAlign: 'center', fontSize: u(54) + 'px', color: C.ink }));
+const lnSvg = M.el('svg', { width: W, height: H }, lineL);
+const tline = M.el('path', { d: `M${u(150)} ${u(1222)} L${u(930)} ${u(1222)}`, stroke: C.coral, 'stroke-width': u(5), 'stroke-linecap': 'round', fill: 'none' }, lnSvg);
+const amor = G.lines(lineL, 0, u(360), [['O amor continua', 'ser', u(112), C.coral], ['igual.', 'ser', u(112), C.coral]], { align: 'center' });
+const cta = G.lines(lineL, 0, u(330), [['Manda pra quem', 'disp', u(118), C.ink, u(6)], ['vai ser avó.', 'ser', u(150), C.coral]], { align: 'center' });
+const heart = G.heart(lineL, u(78), C.coral);
+const note = G.txt(lineL, 'body', 'Ilustração do Zinho. No app, retratos<br>realistas a partir do ultrassom.', { left: 0, width: W + 'px', textAlign: 'center', top: u(650) + 'px', fontSize: u(31) + 'px', color: C.inkSoft, lineHeight: 1.3 });
+const logo = G.logo(lineL, u(470), 'dark'); G.box(logo, cx - u(235), u(1285));
+const btn = G.pill(lineL, 'veja o seu · link na bio', { bg: C.ink, color: C.paper, size: u(34), pad: [0.55, 1.2], weight: 700 });
+const spk = G.sparks(st, 10, '#FFFFFF', 4); spk.style.zIndex = 5;
+const grain = M.grain(st, { opacity: 0.02 });
+let BW;
+async function init() { BW = btn.offsetWidth; }
+
+const MX = [u(180), u(360), u(540), u(720), u(900)];
+function render(t) {
+  grain.update(t);
+  // fundo: qual cena está por baixo + íris da próxima
+  let cur = 0; AG.forEach((a, i) => { if (t >= a.t0 + 0.55) cur = i + 1; });
+  BG.forEach((b, i) => { const on = i === cur; M.show(b, on); if (on) b.upd(t); });
+  const lineOn = t >= TL + 0.55; M.show(LLine, lineOn); if (lineOn) { LLine.upd(t); BG.forEach(b => M.show(b, false)); }
+  let ir = 0, irC = C.paper;
+  [...AG.map(a => [a.t0, a.bg]), [TL, C.paper]].forEach(([t0, c]) => { const p = E.inOutCubic(M.seg(t, t0 - 0.05, t0 + 0.55)); if (p > 0 && p < 1) { ir = p; irC = c; } });
+  M.attr(iris, { cx, cy: u(1380), r: ir ? M.lerp(0, M.cover(1, cx, u(1380)) * 1.02, ir) : 0, fill: irC });
+
+  // lab
+  const lq = E.outExpo(M.seg(t, 0, 0.6)), lo = M.seg(t, TL - 0.3, TL);
+  M.css(lab, { opacity: lq * (1 - lo) });
+  G.riseL(hook, t, 0.05, { each: 0.15, out: 2.75, outDur: 0.35 });
+
+  // figuras
+  M.show(figL, t < TL + 1.2);
+  AG.forEach((a, i) => {
+    const f = figs[i], next = AG[i + 1];
+    const tIn = i === 0 ? 0.55 : a.t0 + 0.15, tOut = next ? next.t0 - 0.25 : TL;
+    const on = t >= tIn - 0.01 && t < tOut + (next ? 0.4 : 1.0); f.style.opacity = on ? 1 : 0; if (!on) return;
+    let s, y;
+    if (i === 0) { const pk = M.springAt(t, 0.55, 'gentle'), gr = E.inOutCubic(M.seg(t, 2.95, 3.6)); s = M.lerp(0.62, 1, gr); y = H + u(20) + (1 - pk) * u(700) + M.lerp(u(160), 0, gr); }
+    else { const sp = M.springAt(t, tIn, 'bouncy'); s = 0.55 + 0.45 * sp; y = H + u(20) + (1 - Math.min(1, sp)) * u(300); }
+    const out = next ? E.inCubic(M.seg(t, tOut, tOut + 0.38)) : 0;
+    const br = Math.sin(t * 2.2 + i);
+    if (next || t < TL) G.place(f, cx, y + out * u(900), { s: s * (1 - 0.15 * out), sy: 1 + 0.012 * br, r: Math.sin(t * 0.9 + i) * 1.2 });
+    else { // 70 anos encolhe até a linha do tempo
+      const p = E.inOutCubic(M.seg(t, TL, TL + 0.9));
+      G.place(f, M.lerp(cx, MX[4], p), M.lerp(y, u(1120), p), { s: M.lerp(s, 190 / 860, p) });
+      f.style.opacity = t < TL + 0.9 ? 1 : 0;
+    }
+  });
+
+  // títulos
+  titles.forEach((T, i) => {
+    const a = AG[i], next = AG[i + 1], tIn = a.t0 + 0.2, tOut = next ? next.t0 - 0.25 : TL - 0.3;
+    const on = t > tIn - 0.1 && t < tOut + 0.6; M.show(T.L[0].wrap, on); T.L.forEach(l => M.show(l.wrap, on)); T.cap.forEach(l => M.show(l.wrap, on));
+    if (!on) return;
+    G.riseL(T.L, t, tIn, { each: 0.1, out: tOut, outDur: 0.35 });
+    G.riseL(T.cap, t, tIn + 0.4, { each: 0.1, out: tOut + 0.05, outDur: 0.35 });
+    if (T.numEl) { const prev = i > 1 ? AG[i - 1].n : 0; const v = Math.round(M.lerp(prev, a.n, E.outCubic(M.seg(M.frameT(t), tIn, tIn + 0.8)))); T.numEl.textContent = v + (v === 1 ? ' ano' : ' anos'); }
+  });
+
+  // brilhos na troca
+  let sp0 = -9; AG.forEach((a, i) => { if (i && t >= a.t0 + 0.1) sp0 = a.t0 + 0.1; }); if (t >= TL + 0.3) sp0 = TL + 0.3;
+  spk.upd(t, sp0, cx, u(1250), u(460));
+
+  // linha do tempo + CTA
+  const onLine = t >= TL; M.show(lineL, onLine);
+  if (onLine) {
+    mini.forEach((m, i) => {
+      const s = i === 4 ? (t >= TL + 0.9 ? 1 : 0) : M.springAt(t, TL + 0.35 + i * 0.12, 'bouncy');
+      m.style.opacity = s > 0 ? 1 : 0;
+      G.place(m, MX[i], u(1120) + Math.sin(t * 2.4 + i) * u(4), { s: Math.max(0, Math.min(1.15, s)) });
+      const lq = E.outExpo(M.seg(t, TL + 0.6 + i * 0.1, TL + 1.2 + i * 0.1));
+      M.css(miniLab[i], { left: (MX[i] - u(95)) + 'px', top: u(1168) + 'px', opacity: lq, transform: { y: (1 - lq) * u(20) } });
+    });
+    M.draw(tline, E.inOutCubic(M.seg(t, TL + 0.5, TL + 1.4))); tline.style.opacity = 0.0;
+    G.riseL(amor, t, TL + 0.6, { each: 0.15, out: TC - 0.2, outDur: 0.35 });
+    G.riseL(cta, t, TC + 0.15, { each: 0.14 });
+    const nq = E.outExpo(M.seg(t, TC + 0.8, TC + 1.5)); M.css(note, { opacity: nq });
+    const lgi = E.outExpo(M.seg(t, TC + 1.0, TC + 1.7)); M.css(logo, { opacity: lgi, transform: { y: (1 - lgi) * u(30) } });
+    const bs = M.springAt(t, TC + 1.4, 'bouncy'); M.css(btn, { left: (cx - BW / 2) + 'px', top: u(1420) + 'px', transform: { s: Math.max(0, Math.min(1.1, bs)) * (t > 28 ? 1 + 0.04 * Math.sin((t - 28) * 5) : 1) } });
+    const hs = M.springAt(t, TL + 1.4, 'bouncy'), hb = 1 + 0.12 * Math.max(0, Math.sin((t - TL) * 7)) ** 6;
+    M.css(heart, { left: (cx - u(39)) + 'px', top: u(800) + 'px', transform: { s: Math.max(0, hs) * hb } });
+  }
+}
+M.boot(render, { dur: DUR, init, poster: 12.5 });
+</script></body></html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- R1 · 03:07 — teaser de pré-lançamento (30 s) -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="motion.js"></script><script src="brand.js"></script>
+</head><body><div id="stage"></div>
+<script>
+const { W, H, S } = M, E = M.ease, cx = W / 2;
+const st = M.$('#stage'); st.style.background = C.night;
+const DUR = 30;
+
+/* ---------- som e blur ---------- */
+M.cue(0.15, 'start');
+M.cue(3.7, 'kick'); M.cue(4.35, 'kick', { s: 0.8 });
+const TYPE = [[6.3, 'com quem você vai parecer?'], [7.75, 'vai ter o meu sorriso?'], [9.1, 'o cabelo vai ser cacheado?'], [10.5, 'e com 15 anos? e com 40?']];
+const PS = '(dormir? amanhã eu tento)';
+M.cue(5.0, 'whoosh', { len: 0.5 });
+M.cue(13.65, 'whoosh', { len: 0.6 });
+M.cue(14.3, 'glow');
+M.cue(17.4, 'hit', { s: 0.6 });
+M.cue(21.55, 'whoosh', { len: 0.4 });
+M.cue(24.9, 'rise', { len: 1.3 });
+M.blur(2.95, 3.5, 6); M.blur(4.75, 5.7, 8); M.blur(13.0, 14.3, 12); M.blur(25.1, 26.4, 8);
+
+/* ---------- elementos ---------- */
+const world = M.el('div', { class: 'layer' }, st);
+// brilho coral de fundo
+const glowBg = M.el('div', { class: 'abs', style: { left: (cx - u(700)) + 'px', top: u(260) + 'px', width: u(1400) + 'px', height: u(1400) + 'px', borderRadius: '50%', background: `radial-gradient(circle, ${M.rgba(C.coral, 0.32)} 0%, ${M.rgba(C.coral, 0.08)} 40%, ${M.rgba(C.coral, 0)} 70%)` } }, world);
+
+G.life(world, { n: 20, seed: 5, colors: ['#FFD49A', '#D86F5D', '#F6D9CF'], kinds: ['spark', 'dot', 'dot'], alpha: 0.7, size: [20, 54], speed: [40, 90] });
+// A · relógio
+const LA = M.el('div', { class: 'layer' }, world);
+const lab = G.txt(LA, 'lab', 'hoje · madrugada', { left: 0, width: W + 'px', textAlign: 'center', top: u(560) + 'px', fontSize: u(28) + 'px', color: C.coral });
+const clock = M.el('div', { class: 'abs disp', style: { left: 0, width: W + 'px', top: u(620) + 'px', textAlign: 'center', fontSize: u(330) + 'px', color: C.cream, letterSpacing: '-0.04em', fontVariantNumeric: 'tabular-nums' } }, LA);
+const digits = [...'03:07'].map(ch => { const w = M.el('span', { style: { display: 'inline-block', overflow: 'hidden', verticalAlign: 'top', padding: '0 0.01em 0.1em' } }, clock); const i = M.el('span', { style: { display: 'inline-block' } }, w, ch); return i; });
+const sono = G.lines(LA, 0, u(1010), [['e o sono foi embora.', 'ser', u(78), C.coral]], { align: 'center' });
+const ringSvg = M.el('svg', { width: W, height: H }, LA);
+const rings = [0, 1].map(() => M.el('circle', { cx, cy: u(1260), r: 0, fill: 'none', stroke: C.coral, 'stroke-width': u(6) }, ringSvg));
+const kickT = G.lines(LA, 0, u(700), [['Ele resolveu', 'disp', u(124), C.cream], ['treinar futebol.', 'disp', u(124), C.cream]], { align: 'center' });
+
+// B · bloco de notas
+const LB = M.el('div', { class: 'layer' }, world);
+const CARD = { x: u(80), y: u(330), w: W - u(160), h: u(1000) };
+const card = M.el('div', { class: 'abs', style: { left: CARD.x + 'px', top: CARD.y + 'px', width: CARD.w + 'px', height: CARD.h + 'px', background: C.paper, borderRadius: u(48) + 'px', boxShadow: `0 ${u(40)}px ${u(90)}px rgba(0,0,0,.45)`, overflow: 'hidden', transformOrigin: '50% 50%' } }, LB);
+const cin = M.el('div', { class: 'layer' }, card);
+G.txt(cin, 'disp2', '‹ Notas', { left: u(48) + 'px', top: u(44) + 'px', fontSize: u(34) + 'px', color: '#C9922F' });
+G.txt(cin, 'disp2', '···', { right: u(48) + 'px', top: u(36) + 'px', fontSize: u(40) + 'px', color: '#C9922F' });
+G.txt(cin, 'body', 'hoje, 03:07', { left: 0, width: CARD.w + 'px', textAlign: 'center', top: u(118) + 'px', fontSize: u(26) + 'px', color: '#A99A9F' });
+G.txt(cin, 'disp', 'coisas que eu queria saber<br>sobre você, filho', { left: u(56) + 'px', top: u(186) + 'px', fontSize: u(60) + 'px', color: C.ink, lineHeight: 1.04, letterSpacing: '-0.025em' });
+const items = TYPE.map(([t0, s], i) => {
+  const row = M.el('div', { class: 'abs body', style: { left: u(70) + 'px', top: (u(400) + i * u(104)) + 'px', fontSize: u(47) + 'px', color: C.ink, whiteSpace: 'nowrap' } }, cin);
+  const dot = M.el('span', { style: { display: 'inline-block', width: u(12) + 'px', height: u(12) + 'px', borderRadius: '50%', background: C.ink, marginRight: u(26) + 'px', verticalAlign: 'middle', position: 'relative', top: -u(4) + 'px' } }, row);
+  const tx = M.el('span', {}, row); const car = M.el('span', { style: { display: 'inline-block', width: u(4) + 'px', height: u(50) + 'px', background: '#C9922F', marginLeft: u(4) + 'px', verticalAlign: 'middle', position: 'relative', top: -u(4) + 'px' } }, row);
+  return { row, dot, tx, car, t0, s };
+});
+const ps = M.el('div', { class: 'abs ser', style: { left: u(70) + 'px', top: u(838) + 'px', fontSize: u(54) + 'px', color: '#A99A9F', whiteSpace: 'nowrap' } }, cin);
+const psTx = M.el('span', {}, ps), psCar = M.el('span', { style: { display: 'inline-block', width: u(4) + 'px', height: u(46) + 'px', background: '#C9922F', marginLeft: u(4) + 'px', verticalAlign: 'middle' } }, ps);
+const zz = G.img(cin, 'assets/cut/zinho-dorme.png', u(170), { left: (CARD.w - u(215)) + 'px', top: (CARD.h - u(205)) + 'px' });
+TYPE.forEach(([t0, s]) => { const tw = M.typewriter(s, 99, t0, { cps: 21 }); M.cue(t0, 'type', { len: tw.end - t0, rate: 18 }); });
+{ const tw = M.typewriter(PS, 99, 11.85, { cps: 20 }); M.cue(11.85, 'type', { len: tw.end - 11.85, rate: 16, s: 0.7 }); }
+const dotLight = M.el('div', { class: 'abs', style: { width: u(60) + 'px', height: u(60) + 'px', borderRadius: '50%', background: `radial-gradient(circle, #FFE6B8 0%, ${C.coral} 45%, ${M.rgba(C.coral, 0)} 72%)` } }, LB);
+
+// D · ultrassom
+const LD = M.el('div', { class: 'layer' }, world);
+const US = { w: u(1060), top: u(800) };
+const usWrap = M.el('div', { class: 'abs', style: { left: (cx - US.w / 2) + 'px', top: US.top + 'px', width: US.w + 'px', transformOrigin: '50% 72%', WebkitMaskImage: 'radial-gradient(ellipse 54% 44% at 50% 68%, #000 58%, transparent 100%)', maskImage: 'radial-gradient(ellipse 54% 44% at 50% 68%, #000 58%, transparent 100%)' } }, LD);
+M.el('img', { src: 'assets/img/ultrassom.jpg', style: { width: '100%', display: 'block' } }, usWrap);
+const GC = { x: cx, y: US.top + US.w * (420 / 800) };   // centro do brilho dentro do ultrassom
+const beat = M.el('div', { class: 'abs', style: { left: (GC.x - u(420)) + 'px', top: (GC.y - u(420)) + 'px', width: u(840) + 'px', height: u(840) + 'px', borderRadius: '50%', background: `radial-gradient(circle, ${M.rgba('#FFD49A', 0.55)} 0%, ${M.rgba('#E8A657', 0.22)} 30%, rgba(232,166,87,0) 62%)` } }, LD);
+const tD = G.lines(LD, u(80), u(300), [['Toda mãe já conhece', 'disp', u(94), C.cream], ['o rostinho do filho.', 'disp', u(94), C.cream]]);
+const tD2 = G.lines(LD, u(80), u(512), [['Só ainda não viu.', 'ser', u(120), C.coral]]);
+const tE = G.lines(LD, u(80), u(300), [['Em breve,', 'disp', u(124), C.cream, u(10)], ['um jeito novo de imaginar', 'ser', u(80), C.coral], ['esse rostinho.', 'ser', u(80), C.coral]]);
+
+// F · logo
+const LF = M.el('div', { class: 'layer' }, world);
+const logo = G.logo(LF, u(800), 'light'); G.box(logo, cx - u(400), u(720));
+const date = G.pill(LF, 'em breve', { bg: C.coral, color: C.paper, size: u(70), pad: [0.3, 0.8], weight: 800, cls: 'disp' });
+const notif = G.txt(LF, 'lab', 'ative as notificações', { left: 0, width: W + 'px', textAlign: 'center', top: u(1170) + 'px', fontSize: u(28) + 'px', color: C.cream });
+const handle = G.txt(LF, 'body', '@rostinhobaby', { left: 0, width: W + 'px', textAlign: 'center', top: u(1230) + 'px', fontSize: u(34) + 'px', color: M.rgba(C.cream, 0.6) });
+const fSparks = G.sparks(LF, 9, '#FFD49A', 5);
+
+const vig = M.vignette(st, { strength: 0.5, inner: 0.5 });
+const grain = M.grain(st, { opacity: 0.025 });
+let DATEW = 0;
+async function init() { DATEW = date.offsetWidth; }
+
+/* ---------- render ---------- */
+function render(t) {
+  grain.update(t);
+  const sk1 = M.shake(t, 3.7, { amp: u(16), dur: 0.35 }), sk2 = M.shake(t, 4.35, { amp: u(12), dur: 0.3, seed: 4 });
+  M.css(world, { transform: { x: sk1.x + sk2.x, y: sk1.y + sk2.y, r: sk1.r + sk2.r } });
+  const gb = 0.75 + 0.25 * Math.sin(t * 1.3);
+  M.css(glowBg, { opacity: (t < 13 ? gb : M.lerp(gb, 0.25, M.seg(t, 13, 14.5))) * (t > 25 ? 1.2 : 1), transform: { s: 1 + 0.04 * Math.sin(t * 0.9) } });
+
+  // A
+  M.show(LA, t < 5.2);
+  if (t < 5.2) {
+    digits.forEach((d, i) => { const q = E.outExpo(M.seg(t, 0.1 + i * 0.09, 0.9 + i * 0.09)), o = E.inCubic(M.seg(t, 2.95 + i * 0.03, 3.35 + i * 0.03)); M.css(d, { transform: { y: (1 - q) * u(380) - o * u(420) } }); });
+    const colon = digits[2]; colon.style.opacity = t > 1.2 ? (Math.floor((t - 1.2) / 0.5) % 2 ? 0.25 : 1) : 1;
+    const lq = E.outExpo(M.seg(t, 0.4, 1.1)), lo = M.seg(t, 2.9, 3.2);
+    M.css(lab, { opacity: lq * (1 - lo), transform: { y: (1 - lq) * u(20) } });
+    G.riseL(sono, t, 1.5, { out: 2.9, outDur: 0.35 });
+    G.riseL(kickT, t, 3.1, { each: 0.08, out: 4.75, outDur: 0.35 });
+    [3.7, 4.35].forEach((k, i) => { const p = M.seg(t, k, k + 0.8); M.attr(rings[i], { r: u(30) + u(300) * E.outExpo(p), opacity: p > 0 && p < 1 ? (1 - p) : 0, 'stroke-width': u(10) * (1 - p) + 1 }); });
+    M.css(kickT[0].wrap, { transform: { s: 1 + 0.05 * M.pulse(t, 3.72, 0.12) } }); M.css(kickT[1].wrap, { transform: { s: 1 + 0.05 * M.pulse(t, 4.37, 0.12) } });
+  }
+
+  // B
+  const onB = t >= 4.9 && t < 14.3; M.show(LB, onB);
+  if (onB) {
+    const up = M.curve.snappy(M.seg(t, 4.95, 5.75));
+    const col = E.inOutExpo(M.seg(t, 13.0, 13.62));
+    const sc = M.lerp(1, 0.04, col);
+    M.css(card, { transform: { y: (1 - up) * u(1500), r: (1 - up) * 6, s: sc }, borderRadius: M.lerp(u(48), CARD.h / 2, col) + 'px', opacity: col > 0.92 ? 0 : 1 });
+    cin.style.opacity = 1 - M.seg(t, 13.0, 13.25);
+    items.forEach(it => {
+      const tw = M.typewriter(it.s, M.frameT(t), it.t0, { cps: 21 });
+      it.tx.textContent = tw.text;
+      it.dot.style.opacity = t >= it.t0 - 0.1 ? 1 : 0;
+      const active = t >= it.t0 && (t < it.t0 + 0.2 || !tw.done || (it === items[items.length - 1] && t < 11.8));
+      it.car.style.opacity = active ? tw.caret : 0;
+    });
+    const pw = M.typewriter(PS, M.frameT(t), 11.85, { cps: 20 }); psTx.textContent = pw.text; psCar.style.opacity = t >= 11.85 && t < 13 ? pw.caret : 0;
+    const br = Math.sin(t * 2.4);
+    M.css(zz, { transform: { sy: 1 + 0.025 * br, sx: 1 - 0.01 * br } });
+    // ponto de luz: nasce no centro do cartão encolhido e desce até o centro do ultrassom
+    const dp = M.seg(t, 13.3, 14.25), dq = E.inOutCubic(dp);
+    const y0 = CARD.y + CARD.h / 2 + (1 - up) * u(1500), py = M.lerp(y0, GC.y, dq);
+    const ds = t < 13.3 ? 0 : M.lerp(1.0, 9, E.inCubic(dp));
+    M.css(dotLight, { left: (cx - u(30)) + 'px', top: (py - u(30)) + 'px', opacity: t >= 13.3 ? M.seg(t, 13.3, 13.45) * (1 - M.seg(t, 14.05, 14.3)) : 0, transform: { s: ds } });
+  }
+
+  // D + E
+  const onD = t >= 14.0 && t < 25.6; M.show(LD, onD);
+  if (onD) {
+    const ir = E.outCubic(M.seg(t, 14.0, 14.9));
+    usWrap.style.clipPath = `circle(${M.lerp(0, u(900), ir)}px at 50% ${GC.y - US.top}px)`;
+    const push = 1 + 0.06 * E.inOutSine(M.seg(t, 14.2, 25.4));
+    const fo = M.seg(t, 24.9, 25.55);
+    M.css(usWrap, { transform: { s: push }, opacity: 1 - fo, filter: t > 21.4 ? `brightness(${1 - 0.25 * M.seg(t, 21.4, 22.2)})` : 'none' });
+    // batimento: duplo pulso a 72 bpm
+    const b = 60 / 72, ph = M.loop(t - 14.3, b);
+    const hb = t < 14.3 ? 0 : Math.exp(-ph / 0.09) + 0.6 * Math.exp(-Math.max(0, ph - 0.2) / 0.09) * (ph > 0.2 ? 1 : 0);
+    M.css(beat, { opacity: (0.35 + 0.65 * Math.min(1, hb)) * ir * (1 - fo), transform: { s: 0.9 + 0.18 * Math.min(1, hb) } });
+    G.riseL(tD, t, 15.0, { each: 0.12, out: 21.15, outDur: 0.4 });
+    G.riseL(tD2, t, 17.4, { dur: 0.9, out: 21.25, outDur: 0.4 });
+    G.riseL(tE, t, 21.65, { each: 0.12, out: 24.75, outDur: 0.4 });
+  }
+
+  // F
+  const onF = t >= 25.05; M.show(LF, onF);
+  if (onF) {
+    const land = G.logoIn(logo, t, 25.2);
+    const zs = M.springAt(t, 26.55, 'bouncy');
+    M.css(date, { left: (cx - DATEW / 2) + 'px', top: u(950) + 'px', transform: { s: Math.max(0, zs), r: -4 * (1 - Math.min(1, zs)) - 3 } });
+    const nq = E.outExpo(M.seg(t, 27.0, 27.8)), hq = E.outExpo(M.seg(t, 27.25, 28.0));
+    M.css(notif, { opacity: nq, transform: { y: (1 - nq) * u(30) } }); M.css(handle, { opacity: hq, transform: { y: (1 - hq) * u(30) } });
+    fSparks.upd(t, land - 0.05, cx + u(330), u(780), u(260));
+    // respiração da carinha após o encaixe
+    if (t > land + 0.5) logo.face.style.transform = M.tf({ s: 1 + 0.03 * Math.sin((t - land) * 2.6), r: 4 * Math.sin((t - land) * 1.3) });
+  }
+}
+M.cue(26.2, 'big'); M.cue(26.55, 'pop'); M.cue(28.4, 'end');
+M.boot(render, { dur: DUR, init, poster: 18.5 });
+</script></body></html>

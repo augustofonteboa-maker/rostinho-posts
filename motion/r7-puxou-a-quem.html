@@ -1,0 +1,162 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- R7 · Puxou a quem? — brincadeira de traços, mãe x pai (15 s) -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="motion.js"></script><script src="brand.js"></script>
+</head><body><div id="stage"></div>
+<script>
+const { W, H, S } = M, E = M.ease, cx = W / 2;
+const st = M.$('#stage');
+const DUR = 15;
+const TR = [
+  { T: 2.3, w: 'Olhos', res: 'da mamãe', win: 'm', bg: C.sky },
+  { T: 5.3, w: 'Sorriso', res: 'do papai', win: 'p', bg: C.butter },
+  { T: 8.3, w: 'Cabelinho', res: 'dos dois!', win: 'mp', bg: C.lav },
+];
+const TCTA = 11.5;
+const PY = u(1450), PXm = u(250), PXp = u(800), ZY = u(1090);
+
+/* ---------- som ---------- */
+M.cue(0.1, 'start'); M.cue(0.5, 'boing', { s: 0.8 }); M.cue(0.8, 'pop', { s: 0.6 }); M.cue(1.0, 'pop', { s: 0.6 });
+const flick = T => { const a = []; let tt = T + 0.85, d = 0.2; while (tt < T + 1.95) { a.push(tt); tt += d; d = Math.max(0.1, d * 0.9); } return a; };
+TR.forEach(r => {
+  M.cue(r.T - 0.2, 'whoosh', { len: 0.35, s: 0.7 }); M.cue(r.T + 0.3, 'pop', { s: 0.7 });
+  flick(r.T).forEach(x => M.cue(x, 'slot'));
+  M.cue(r.T + 2.0, 'ding'); M.cue(r.T + 2.0, 'land'); M.cue(r.T + 2.15, 'sparkle', { s: 0.8 }); M.cue(r.T + 2.4, 'pop', { s: 0.5 });
+  M.blur(r.T - 0.15, r.T + 0.5, 8);
+});
+M.cue(TCTA - 0.2, 'whoosh', { len: 0.4 }); M.cue(TCTA + 0.15, 'big'); M.cue(TCTA + 1.2, 'sparkle'); M.cue(TCTA + 1.5, 'pop'); M.cue(14.4, 'end');
+M.blur(TCTA - 0.25, TCTA + 0.5, 8); M.blur(1.9, 2.5, 6);
+
+/* ---------- fundo ---------- */
+const BGS = [C.lav, C.sky, C.butter, C.lav, C.blush].map((c, i) => G.bgLayer(st, c, { glow: '#FFFFFF', glow2: [C.sky, C.lav, C.peach, C.sky, C.peach][i], alpha: 0.7 }));
+G.life(st, { n: 18, size: [38, 100], seed: 71, colors: ['#D86F5D', '#C9B9EE', '#F0C77A', '#F6B9A8'], alpha: 0.7 });
+const irisSvg = M.el('svg', { width: W, height: H }, st);
+const iris = M.el('circle', { r: 0 }, irisSvg);
+
+/* ---------- arte ---------- */
+const ringL = M.el('svg', { width: W, height: H }, st);
+const rings = [PXm, PXp].map(x => M.el('circle', { cx: x, cy: PY - u(150), r: u(190), fill: M.rgba(C.coral, 0.16), stroke: C.coral, 'stroke-width': u(8) }, ringL));
+const links = TR.map(r => ['m', 'p'].map(k => M.el('path', { d: k === 'm' ? `M${cx - u(70)} ${u(930)} Q${u(330)} ${u(1010)} ${PXm + u(30)} ${PY - u(330)}` : `M${cx + u(70)} ${u(930)} Q${u(750)} ${u(1010)} ${PXp - u(30)} ${PY - u(330)}`, fill: 'none', stroke: C.coral, 'stroke-width': u(7), 'stroke-linecap': 'round', 'stroke-dasharray': `${u(2)} ${u(18)}` }, ringL)));
+const mom = G.img(st, 'assets/cut/mae.png', u(330));
+const dad = G.img(st, 'assets/cut/pai.png', u(330));
+const nameM = G.pill(st, 'mamãe', { bg: C.ink, color: C.paper, size: u(30), pad: [0.4, 0.9] });
+const nameP = G.pill(st, 'papai', { bg: C.ink, color: C.paper, size: u(30), pad: [0.4, 0.9] });
+const zS = G.img(st, 'assets/cut/zinho-stand.png', u(300));
+const zH = G.img(st, 'assets/cut/zinho-heart.png', u(300));
+const hearts = [0, 1].map(() => G.heart(st, u(80), C.coral));
+const spkA = G.sparks(st, 10, C.coral, 77), spkB = G.sparks(st, 10, '#F0A93C', 78);
+
+/* ---------- textos ---------- */
+const LI = M.el('div', { class: 'layer' }, st);
+const iLab = G.txt(LI, 'lab', 'brincadeira de família', { left: 0, width: W + 'px', textAlign: 'center', top: u(290) + 'px', fontSize: u(28) + 'px', color: C.coral });
+const iH = G.lines(LI, 0, u(350), [['Puxou', 'disp', u(250), C.ink, u(2)], ['a quem?', 'ser', u(190), C.coral]], { align: 'center' });
+const trT = TR.map(r => {
+  const L = M.el('div', { class: 'layer' }, st);
+  const lab = G.txt(L, 'lab', `traço ${TR.indexOf(r) + 1} de 3`, { left: 0, width: W + 'px', textAlign: 'center', top: u(285) + 'px', fontSize: u(26) + 'px', color: C.coral });
+  const w = G.lines(L, 0, u(335), [[r.w, 'disp', r.w.length > 7 ? u(170) : u(200), C.ink]], { align: 'center' });
+  const res = G.lines(L, 0, u(545), [[r.res, 'ser', u(110), C.coral]], { align: 'center' });
+  const q = G.txt(L, 'disp', '?', { left: 0, width: W + 'px', textAlign: 'center', top: u(545) + 'px', fontSize: u(120) + 'px', color: C.coral });
+  return { L, lab, w, res, q, r };
+});
+const LC = M.el('div', { class: 'layer' }, st);
+const cH = G.lines(LC, 0, u(290), [['Quase sempre é', 'disp', u(110), C.ink, u(6)], ['um pouco dos dois.', 'ser', u(124), C.coral]], { align: 'center' });
+const cS = G.lines(LC, 0, u(660), [['Descubra o seu palpite', 'body', u(46), C.inkSoft]], { align: 'center' });
+const logo = G.logo(LC, u(720), 'dark'); G.box(logo, cx - u(360), u(790));
+const btn = G.pill(LC, 'link na bio', { bg: C.ink, color: C.paper, size: u(36), pad: [0.55, 1.3], weight: 700 });
+const grain = M.grain(st, { opacity: 0.02 });
+let BW = 0, NMW = 0, NPW = 0; async function init() { BW = btn.offsetWidth; NMW = nameM.offsetWidth; NPW = nameP.offsetWidth; }
+
+function render(t) {
+  grain.update(t);
+  // fundo + íris a cada traço
+  let phase = 0, ic = null, ip = 1, iat = [cx, ZY - u(200)];
+  TR.forEach((r, i) => { if (t >= r.T - 0.05) { phase = i + 1; ip = E.inOutCubic(M.seg(t, r.T - 0.05, r.T + 0.55)); ic = r.bg; } });
+  if (t >= TCTA - 0.25) { phase = 4; ip = E.inOutCubic(M.seg(t, TCTA - 0.25, TCTA + 0.4)); ic = C.blush; iat = [cx, H * 0.85]; }
+  const midIris = phase > 0 && ip < 1;
+  const shown = midIris ? phase - 1 : phase;
+  BGS.forEach((b, i) => { const on = i === shown; M.show(b, on); if (on) b.upd(t); });
+  if (!midIris) ic = null;
+  M.attr(iris, { cx: iat[0], cy: iat[1], r: ic ? M.lerp(0, M.cover(1, iat[0], iat[1]) * 1.02, ip) : 0, fill: ic || '#fff' });
+
+  // ---- intro
+  const onI = t < 2.5; M.show(LI, onI);
+  if (onI) {
+    const lq = E.outExpo(M.seg(t, 0.1, 0.7)), lo = M.seg(t, 2.05, 2.2);
+    M.css(iLab, { opacity: lq * (1 - lo), transform: { y: (1 - lq) * u(20) } });
+    G.riseL(iH, t, 0.2, { each: 0.18, out: 2.1, outDur: 0.3 });
+  }
+
+  // ---- pais (sempre na base)
+  const mS = M.springAt(t, 0.8, 'bouncy'), pS = M.springAt(t, 1.0, 'bouncy');
+  const litM = { v: 0 }, litP = { v: 0 };
+  let activeMsg = null;
+  TR.forEach(r => {
+    if (t >= r.T + 0.85 && t < r.T + 3.0) {
+      if (t < r.T + 2.0) { // piscando, acelerando
+        const arr = flick(r.T); let n = 0; arr.forEach((x, k) => { if (t >= x) n = k + 1; });
+        const side = n % 2 ? 'm' : 'p'; if (side === 'm') litM.v = 1; else litP.v = 1;
+      } else { if (r.win.includes('m')) litM.v = 2; if (r.win.includes('p')) litP.v = 2; }
+    }
+  });
+  const landT = TR.reduce((a, r) => (t >= r.T + 2.0 && t < r.T + 3.0 ? r.T + 2.0 : a), -9);
+  const pop = landT > 0 ? Math.exp(-(t - landT) / 0.18) * Math.cos((t - landT) * 22) : 0;
+  const ringsOn = [litM.v, litP.v];
+  rings.forEach((c, i) => { const v = ringsOn[i]; M.attr(c, { opacity: t >= TCTA - 0.1 ? 0 : (v ? (v === 2 ? 1 : 0.85) : 0), r: u(190) * (v === 2 ? 1 + 0.06 * pop : 1) }); });
+  const flipSide = (x, v) => (v === 2 ? 1.1 + 0.08 * pop : v === 1 ? 1.06 : 1);
+  const cta = M.seg(t, TCTA - 0.1, TCTA + 0.5);
+  [[mom, PXm, litM.v, mS, 0], [dad, PXp, litP.v, pS, 1]].forEach(([el, x, v, sp, k]) => {
+    const dim = (t >= 2.3 && t < TCTA - 0.1 && ((litM.v === 2 || litP.v === 2) && v === 0)) ? 0.5 : 1;
+    el.style.opacity = Math.min(1, sp * 2) * dim;
+    G.place(el, x, PY + (1 - Math.min(1.1, sp)) * u(500), { s: Math.max(0.01, Math.min(1.2, sp)) * flipSide(el, v) * (1 + (t > TCTA ? 0.03 * Math.sin(t * 6 + k) : 0)) });
+  });
+  [[nameM, PXm, NMW, mS], [nameP, PXp, NPW, pS]].forEach(([el, x, w, sp]) => { M.css(el, { left: (x - w / 2) + 'px', top: (PY + u(30)) + 'px', opacity: t >= 2.2 ? Math.min(1, sp) * (1 - cta) : 0, transform: { s: Math.max(0, Math.min(1.1, sp)) } }); });
+
+  // ---- Zinho
+  const zIn = M.springAt(t, 0.5, 'bouncy');
+  const toCta = E.inOutCubic(M.seg(t, TCTA - 0.1, TCTA + 0.55));
+  const zj = landT > 0 ? Math.abs(Math.sin(M.seg(t, landT, landT + 0.55) * Math.PI * 2)) * (1 - M.seg(t, landT, landT + 0.55)) * u(80) : 0;
+  const zy = M.lerp(t < 2.3 ? M.lerp(u(1180), ZY, E.inOutCubic(M.seg(t, 2.0, 2.45))) : ZY, PY, toCta) - zj;
+  const zx = M.lerp(cx, cx, toCta);
+  const showHeart = t >= TCTA + 0.35;
+  zS.style.opacity = showHeart ? 0 : 1; zH.style.opacity = showHeart ? 1 : 0;
+  G.place(showHeart ? zH : zS, zx, zy + (1 - Math.min(1.1, zIn)) * u(900), { s: Math.max(0.01, Math.min(1.1, zIn)) * (1 + 0.04 * toCta) * (1 + 0.12 * Math.max(0, pop) * 0) });
+  // linhas de ligação
+  TR.forEach((r, i) => {
+    const arr = links[i], on = t >= r.T + 2.0 && t < r.T + 3.0, p = E.outCubic(M.seg(t, r.T + 2.0, r.T + 2.5)), o = M.seg(t, r.T + 2.85, r.T + 3.0);
+    arr.forEach((pa, k) => { const use = (k === 0 && r.win.includes('m')) || (k === 1 && r.win.includes('p')); pa.style.opacity = on && use ? 1 - o : 0; M.draw(pa, p); pa.setAttribute('stroke-dasharray', `${u(2)} ${u(18)}`); pa.removeAttribute('stroke-dashoffset'); pa.style.strokeDasharray = `${u(2)} ${u(18)}`; });
+  });
+  // corações no pouso
+  hearts.forEach((h, i) => {
+    const r = TR.find(r => t >= r.T + 2.0 && t < r.T + 3.0); const k = i === 0 ? 'm' : 'p';
+    const on = r && r.win.includes(k); const s = on ? M.springAt(t, r.T + 2.1, 'bouncy') : 0; const x = i === 0 ? PXm : PXp;
+    M.css(h, { left: (x + u(80)) + 'px', top: (PY - u(430) - Math.max(0, s - 1) * u(40) - M.seg(t, r ? r.T + 2.1 : 0, r ? r.T + 2.9 : 1) * u(60)) + 'px', opacity: on ? 1 - M.seg(t, r.T + 2.7, r.T + 3.0) : 0, transform: { s: Math.max(0, Math.min(1.2, s)), r: i ? 10 : -10 } });
+  });
+  spkA.upd(t, 2.0 + 0.0 + (landT > 0 ? landT - 2.0 : 99), litM.v === 2 ? PXm : cx, PY - u(150), u(300));
+  spkB.upd(t, landT > 0 ? landT : 99, litP.v === 2 ? PXp : cx, PY - u(150), u(300));
+
+  // ---- traços
+  trT.forEach(T => {
+    const r = T.r, on = t >= r.T - 0.05 && t < r.T + 3.05; M.show(T.L, on); if (!on) return;
+    const out = r.T + 2.75;
+    const lq = E.outExpo(M.seg(t, r.T, r.T + 0.5)), lo = E.inCubic(M.seg(t, out, out + 0.25));
+    M.css(T.lab, { opacity: lq * (1 - lo), transform: { y: (1 - lq) * u(20) } });
+    G.riseL(T.w, t, r.T + 0.2, { each: 0.1, out, outDur: 0.3 });
+    // ? que gira até o resultado
+    const qa = E.outBack(M.seg(t, r.T + 0.7, r.T + 1.05), 1.8), qo = E.inCubic(M.seg(t, r.T + 1.95, r.T + 2.1));
+    M.css(T.q, { opacity: qa > 0 ? 1 - qo : 0, transform: { s: Math.max(0.01, qa) * (1 + 0.1 * Math.sin(t * 14)), r: Math.sin(t * 9) * 8 } });
+    G.riseL(T.res, t, r.T + 2.05, { out, outDur: 0.3 });
+  });
+
+  // ---- CTA
+  const onC = t >= TCTA - 0.05; M.show(LC, onC);
+  if (onC) {
+    G.riseL(cH, t, TCTA + 0.05, { each: 0.15 });
+    G.riseL(cS, t, TCTA + 0.7);
+    const land = G.logoIn(logo, t, TCTA + 0.3);
+    const bs = M.springAt(t, TCTA + 1.5, 'bouncy'); M.css(btn, { left: (cx - BW / 2) + 'px', top: u(1040) + 'px', transform: { s: Math.max(0, Math.min(1.1, bs)) * (t > 13.8 ? 1 + 0.04 * Math.sin((t - 13.8) * 6) : 1) } });
+    if (t > land + 0.5) logo.face.style.transform = M.tf({ s: 1 + 0.03 * Math.sin((t - land) * 2.6), r: 4 * Math.sin((t - land) * 1.3) });
+  }
+}
+M.boot(render, { dur: DUR, init, poster: 4.5 });
+</script></body></html>

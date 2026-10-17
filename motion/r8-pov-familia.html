@@ -1,0 +1,146 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- R8 · POV: você manda o ultrassom no grupo da família (15 s) -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="motion.js"></script><script src="brand.js"></script>
+</head><body><div id="stage"></div>
+<script>
+const { W, H, S } = M, E = M.ease, cx = W / 2;
+const st = M.$('#stage');
+const DUR = 15;
+const TCTA = 11.6;
+const PH = { x: cx - u(410), y: u(505), w: u(820), h: u(955) };
+const HEAD = u(124), AREA = PH.h - HEAD - u(10);
+const MSG = [
+  { t: 1.0, out: true, img: true, tx: 'olha ele aqui' },
+  { t: 2.7, who: 'Vovó', av: 'age-70', col: '#B8523F', tx: 'Cadê o nariz??' },
+  { t: 4.2, who: 'Tia Lu', av: 'age-18', col: '#6B5BB0', tx: 'Tá a cara do pai!!' },
+  { t: 5.6, who: 'Pai', av: 'pai', col: '#2F7F58', tx: 'Essa testa é minha.' },
+  { t: 7.0, who: 'Vovó', av: 'age-70', col: '#B8523F', tx: 'Eu vi um sorrisinho.' },
+  { t: 8.4, out: true, tx: 'gente, calma. é só um ultrassom.' },
+  { t: 9.9, out: true, tx: 'mas eu sei onde ver o rostinho.' },
+];
+
+/* ---------- som ---------- */
+M.cue(0.1, 'start'); M.cue(0.35, 'whoosh', { len: 0.3, s: 0.6 });
+MSG.forEach(m => { M.cue(m.t, m.out ? 'send' : 'msg'); if (!m.out) M.cue(m.t - 0.9, 'tick', { s: 0.5 }); });
+M.cue(TCTA - 0.2, 'whoosh', { len: 0.4 }); M.cue(TCTA + 0.15, 'big'); M.cue(TCTA + 1.2, 'sparkle'); M.cue(TCTA + 1.5, 'pop'); M.cue(14.4, 'end');
+M.blur(TCTA - 0.25, TCTA + 0.5, 8); M.blur(0.2, 0.7, 6);
+
+/* ---------- fundo ---------- */
+const BG0 = G.bgLayer(st, C.blush, { glow: '#FFFFFF', glow2: C.peach, alpha: 0.7 });
+const BG1 = G.bgLayer(st, C.butter, { glow: '#FFFFFF', glow2: C.peach, alpha: 0.7 });
+G.life(st, { n: 18, size: [38, 100], seed: 81, colors: ['#D86F5D', '#C9B9EE', '#F0C77A', '#F6B9A8'], alpha: 0.7 });
+const irisSvg = M.el('svg', { width: W, height: H }, st);
+const iris = M.el('circle', { r: 0 }, irisSvg);
+
+/* ---------- título ---------- */
+const LT = M.el('div', { class: 'layer' }, st);
+const tLab = G.txt(LT, 'lab', 'pov', { left: 0, width: W + 'px', textAlign: 'center', top: u(268) + 'px', fontSize: u(30) + 'px', color: C.coral });
+const tH = G.lines(LT, 0, u(322), [['você manda o ultrassom', 'disp', u(66), C.ink], ['pro grupo da família', 'ser', u(80), C.coral]], { align: 'center' });
+
+/* ---------- celular ---------- */
+const phone = M.el('div', { class: 'abs', style: { left: PH.x + 'px', top: PH.y + 'px', width: PH.w + 'px', height: PH.h + 'px', borderRadius: u(78) + 'px', background: C.cream, border: `${u(14)}px solid ${C.ink}`, boxSizing: 'border-box', boxShadow: `0 ${u(40)}px ${u(90)}px rgba(43,25,34,.28)`, overflow: 'hidden', transformOrigin: '50% 50%' } }, st);
+const head = M.el('div', { class: 'abs', style: { left: 0, top: 0, width: '100%', height: HEAD + 'px', background: C.paper, borderBottom: `${u(3)}px solid ${C.line}` } }, phone);
+G.txt(head, 'disp2', 'Família', { left: u(130) + 'px', top: u(26) + 'px', fontSize: u(42) + 'px', color: C.ink });
+G.txt(head, 'body', 'Vovó, Tia Lu, Pai e você', { left: u(130) + 'px', top: u(76) + 'px', fontSize: u(26) + 'px', color: C.inkSoft });
+{ const hv = G.heart(head, u(64), C.coral); G.box(hv, u(40), u(28)); }
+const chat = M.el('div', { class: 'abs', style: { left: 0, top: HEAD + 'px', width: '100%', height: AREA + 'px', overflow: 'hidden' } }, phone);
+const inner = M.el('div', { class: 'abs', style: { left: 0, top: 0, width: '100%' } }, chat);
+const PADX = u(30);
+const msgs = MSG.map(m => {
+  const row = M.el('div', { class: 'abs', style: { left: 0, width: '100%', top: 0 } }, inner);
+  let av = null, nm = null;
+  const bw = m.img ? u(420) : null;
+  const bub = M.el('div', { class: 'abs body', style: { background: m.out ? C.coral : '#FFFFFF', color: m.out ? C.paper : C.ink, fontSize: u(42) + 'px', fontWeight: 600, padding: m.img ? `${u(14)}px` : `${u(22)}px ${u(30)}px`, borderRadius: u(40) + 'px', whiteSpace: 'nowrap', transformOrigin: m.out ? '100% 100%' : '0% 100%', boxShadow: `0 ${u(4)}px ${u(12)}px rgba(43,25,34,.08)` } }, row);
+  if (m.out) bub.style.borderBottomRightRadius = u(10) + 'px'; else bub.style.borderBottomLeftRadius = u(10) + 'px';
+  if (m.img) { M.el('img', { src: 'assets/img/ultrassom.jpg', style: { width: bw + 'px', height: u(300) + 'px', objectFit: 'cover', borderRadius: u(28) + 'px', display: 'block' } }, bub); M.el('div', { style: { marginTop: u(12) + 'px', padding: `0 ${u(10)}px ${u(4)}px`, fontSize: u(36) + 'px' } }, bub, m.tx); }
+  else bub.textContent = m.tx;
+  if (!m.out) {
+    nm = G.txt(row, 'lab', m.who, { fontSize: u(20) + 'px', color: m.col, letterSpacing: '0.1em' });
+    av = M.el('div', { class: 'abs', style: { width: u(78) + 'px', height: u(78) + 'px', borderRadius: '50%', overflow: 'hidden', background: '#EADBD4' } }, row);
+    M.el('img', { src: `assets/cut/${m.av}.png`, style: { position: 'absolute', width: '135%', left: '-18%', top: '-8%' } }, av);
+  }
+  // indicador digitando
+  let ty = null, dots = null;
+  if (!m.out) { ty = M.el('div', { class: 'abs', style: { background: '#FFFFFF', borderRadius: u(40) + 'px', borderBottomLeftRadius: u(10) + 'px', padding: `${u(26)}px ${u(34)}px`, display: 'flex', gap: u(12) + 'px', left: (PADX + u(94)) + 'px' } }, row); dots = [0, 1, 2].map(() => M.el('div', { style: { width: u(16) + 'px', height: u(16) + 'px', borderRadius: '50%', background: '#B7A8AE' } }, ty)); }
+  return { m, row, bub, av, nm, ty, dots };
+});
+const heartsF = [0, 1, 2, 3, 4].map(i => G.heart(st, u(56 + (i % 3) * 14), C.coral));
+
+/* ---------- CTA ---------- */
+const LC = M.el('div', { class: 'layer' }, st);
+const cH = G.lines(LC, 0, u(300), [['Imagina o rostinho', 'disp', u(108), C.ink, u(6)], ['dele agora.', 'ser', u(130), C.coral]], { align: 'center' });
+const zH = G.img(LC, 'assets/cut/zinho-happy.png', u(330));
+const logo = G.logo(LC, u(760), 'dark'); G.box(logo, cx - u(380), u(740));
+const btn = G.pill(LC, 'link na bio', { bg: C.ink, color: C.paper, size: u(36), pad: [0.55, 1.3], weight: 700 });
+const cSp = G.sparks(LC, 10, C.coral, 84);
+const grain = M.grain(st, { opacity: 0.02 });
+let BW = 0, LAY = [];
+async function init() {
+  BW = btn.offsetWidth; let y = u(26);
+  msgs.forEach((q, i) => {
+    const bw = q.bub.offsetWidth, bh = q.bub.offsetHeight, m = q.m;
+    const x = m.out ? PH.w - u(28) - bw - u(28) : PADX + u(94);
+    const top = y + (m.out ? 0 : u(30));
+    q.bub.style.left = x + 'px'; q.bub.style.top = top + 'px';
+    if (q.nm) { q.nm.style.left = (x + u(14)) + 'px'; q.nm.style.top = (top - u(30)) + 'px'; }
+    if (q.av) { q.av.style.left = PADX + 'px'; q.av.style.top = (top + bh - u(78)) + 'px'; }
+    if (q.ty) q.ty.style.top = top + 'px';
+    q.y = top; q.h = bh; q.bw = bw; q.x = x; y = top + bh + u(24);
+  });
+  LAY = msgs.map(q => Math.max(0, q.y + q.h + u(26) - AREA));
+}
+
+function render(t) {
+  grain.update(t);
+  const cp = E.inOutCubic(M.seg(t, TCTA - 0.25, TCTA + 0.4));
+  M.show(BG0, t < TCTA - 0.25 || cp < 1); M.show(BG1, t >= TCTA - 0.25 && cp >= 1); BG0.upd(t); BG1.upd(t);
+  M.attr(iris, { cx, cy: H * 0.85, r: cp > 0 && cp < 1 ? M.lerp(0, M.cover(1, cx, H * 0.85) * 1.02, cp) : 0, fill: C.butter });
+
+  // título
+  M.show(LT, t < TCTA);
+  const lq = E.outExpo(M.seg(t, 0.1, 0.6)); M.css(tLab, { opacity: lq, transform: { y: (1 - lq) * u(16) } });
+  G.riseL(tH, t, 0.2, { each: 0.16, out: TCTA - 0.3, outDur: 0.3 });
+
+  // celular: entra, vibra a cada mensagem, sai
+  const pin = E.outBack(M.seg(t, 0.2, 0.85), 1.1), pout = E.inCubic(M.seg(t, TCTA - 0.25, TCTA + 0.15));
+  let vx = 0, vy = 0, vr = 0; MSG.forEach(m => { const s = M.shake(t, m.t, { amp: u(m.out ? 3 : 7), dur: 0.3, rot: m.out ? 0.1 : 0.35, seed: Math.round(m.t * 10) }); vx += s.x; vy += s.y; vr += s.r; });
+  M.show(phone, t < TCTA + 0.2);
+  M.css(phone, { transform: { y: (1 - Math.min(1, pin)) * u(1500) + pout * u(1400) + vy, x: vx, r: (1 - Math.min(1, pin)) * 5 + vr, s: Math.max(0.2, Math.min(1.04, pin)) } });
+  // rolagem
+  let sc = 0; MSG.forEach((m, i) => { sc = Math.max(sc, LAY[i] * E.outCubic(M.seg(t, m.t - 0.15, m.t + 0.45))); });
+  inner.style.transform = M.tf({ y: -sc });
+  msgs.forEach((q, i) => {
+    const m = q.m, sp = M.springAt(t, m.t, 'bouncy'), on = t >= m.t;
+    q.bub.style.opacity = on ? 1 : 0;
+    M.css(q.bub, { transform: { s: on ? Math.max(0.01, Math.min(1.1, sp)) : 0, sy: on ? 1 : 1 } });
+    if (q.av) { q.av.style.opacity = on ? 1 : 0; M.css(q.av, { transform: { s: on ? Math.max(0.01, Math.min(1.15, sp)) : 0 } }); }
+    if (q.nm) q.nm.style.opacity = on ? E.outExpo(M.seg(t, m.t + 0.05, m.t + 0.3)) : 0;
+    if (q.ty) {
+      const typing = t >= m.t - 0.9 && t < m.t;
+      q.ty.style.opacity = typing ? 1 : 0;
+      q.dots.forEach((d, k) => { d.style.transform = M.tf({ y: -u(12) * Math.max(0, Math.sin(t * 11 - k * 0.9)) }); });
+    }
+    // coraçõezinhos saem da última mensagem
+  });
+  // corações flutuando depois da última mensagem
+  heartsF.forEach((h, i) => {
+    const t0 = MSG[6].t + 0.5 + i * 0.16, p = M.seg(t, t0, t0 + 1.3), q = E.outCubic(p);
+    const x = PH.x + PH.w - u(150) - i * u(70) + Math.sin(t * 3 + i) * u(18), y = PH.y + PH.h - u(380) - q * u(520);
+    M.css(h, { left: x + 'px', top: y + 'px', opacity: p > 0 && p < 1 ? Math.min(1, p * 5) * (1 - p) * 1.4 : 0, transform: { s: 0.4 + 0.8 * Math.min(1, p * 3), r: (i - 2) * 12 } });
+  });
+
+  // CTA
+  const onC = t >= TCTA - 0.05; M.show(LC, onC);
+  if (onC) {
+    G.riseL(cH, t, TCTA + 0.0, { each: 0.15 });
+    const land = G.logoIn(logo, t, TCTA + 0.35);
+    const zs = M.springAt(t, TCTA + 0.9, 'bouncy'); G.place(zH, cx, H * 0.79 + (1 - Math.min(1, zs)) * u(600), { s: Math.max(0.01, Math.min(1.1, zs)) });
+    const bs = M.springAt(t, TCTA + 1.5, 'bouncy'); M.css(btn, { left: (cx - BW / 2) + 'px', top: u(920) + 'px', transform: { s: Math.max(0, Math.min(1.1, bs)) * (t > 13.8 ? 1 + 0.04 * Math.sin((t - 13.8) * 6) : 1) } });
+    cSp.upd(t, land, cx, u(800), u(420));
+    if (t > land + 0.5) logo.face.style.transform = M.tf({ s: 1 + 0.03 * Math.sin((t - land) * 2.6), r: 4 * Math.sin((t - land) * 1.3) });
+  }
+}
+M.boot(render, { dur: DUR, init, poster: 8.0 });
+</script></body></html>

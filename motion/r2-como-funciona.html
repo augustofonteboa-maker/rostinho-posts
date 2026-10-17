@@ -1,0 +1,192 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- R2 · Do ultrassom ao rostinho — como funciona (30 s) -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="motion.js"></script><script src="brand.js"></script>
+</head><body><div id="stage"></div>
+<script>
+const { W, H, S } = M, E = M.ease, cx = W / 2;
+const st = M.$('#stage');
+const DUR = 30, X0 = u(80);
+const T = { s1: 2.6, s2: 9.0, s3: 15.4, rev: 21.8, cta: 25.6 };
+
+/* ---------- som e blur ---------- */
+M.cue(0.1, 'start'); M.cue(1.55, 'pop');
+M.cue(T.s1 + 0.05, 'whoosh', { len: 0.45 });
+M.cue(6.7, 'pop', { s: 1.2 }); [7.2, 7.4, 7.6].forEach(t => M.cue(t, 'tick'));
+M.cue(T.s2 + 0.25, 'whoosh', { len: 0.35 });
+M.cue(10.4, 'pop'); M.cue(11.0, 'pop', { s: 0.8 }); M.cue(11.4, 'pop'); M.cue(12.3, 'tick'); M.cue(12.5, 'tick');
+M.cue(T.s3 + 0.1, 'whoosh', { len: 0.45 });
+const PICK = [[17.0, 0], [17.6, 4], [18.2, 9], [18.8, 13], [19.4, 16], [20.3, 4]];
+PICK.forEach(([t]) => M.cue(t, 'click'));
+M.cue(T.rev + 0.3, 'big'); M.cue(T.rev + 0.3, 'sparkle');
+M.cue(T.cta + 0.05, 'whoosh', { len: 0.4 }); M.cue(27.3, 'pop'); M.cue(28.6, 'end');
+M.blur(T.s1 - 0.05, T.s1 + 0.6, 12); M.blur(T.s2 - 0.1, T.s2 + 0.45, 12); M.blur(T.s3 - 0.05, T.s3 + 0.6, 12); M.blur(T.rev - 0.05, T.rev + 0.7, 8); M.blur(T.cta, T.cta + 0.8, 6);
+
+/* ---------- planos ---------- */
+const L0 = G.bgLayer(st, C.cream, { glow: '#FFFFFF', glow2: C.peach });
+const L1 = G.bgLayer(st, C.ink, { glow: C.coral, alpha: 0.22 });
+const L2 = G.bgLayer(st, C.lav, { glow: '#FFFFFF', glow2: '#D2C8EE' });
+const L3 = G.bgLayer(st, C.butter, { glow: '#FFFFFF', glow2: '#F4D9A0' });
+const L4 = G.bgLayer(st, C.blush, { glow: '#FFFFFF', glow2: C.peach });
+G.life(st, { n: 18, size: [38, 100], seed: 21, colors: ['#D86F5D', '#C9B9EE', '#F0C77A', '#F6B9A8'], alpha: 0.7 });
+const irisSvg = M.el('svg', { width: W, height: H, style: { zIndex: 50 } }, st);
+const iris = [C.coral, C.ink].map(c => M.el('circle', { r: 0, fill: c }, irisSvg));
+
+// 0 · gancho
+const lab0 = G.txt(L0, 'lab', 'como funciona', { left: X0 + 'px', top: u(300) + 'px', fontSize: u(28) + 'px', color: C.coral });
+const t0a = G.lines(L0, X0, u(360), [['Do ultrassom', 'disp', u(132), C.ink, u(6)], ['ao rostinho.', 'ser', u(156), C.coral]]);
+const stick = G.pill(L0, '3 passos', { bg: C.ink, color: C.cream, size: u(46), pad: [0.4, 0.9], weight: 800, cls: 'disp' });
+const z0 = G.img(L0, 'assets/cut/zinho-stand.png', u(470));
+
+// 1 · ultrassom
+const n1 = G.lines(L1, X0, u(250), [['1', 'ser', u(190), C.coral]]);
+const t1 = G.lines(L1, X0, u(450), [['Envie o', 'disp', u(122), C.cream], ['ultrassom.', 'disp', u(122), C.cream]]);
+const c1 = G.lines(L1, X0, u(712), [['Vale a foto do exame que', 'body', u(38), M.rgba(C.cream, 0.75)], ['já está no seu celular.', 'body', u(38), M.rgba(C.cream, 0.75)]]);
+const PH = { w: u(600), h: u(640), y: u(860) };
+const phone = M.el('div', { class: 'abs', style: { left: (cx - PH.w / 2) + 'px', top: PH.y + 'px', width: PH.w + 'px', height: PH.h + 'px', background: C.paper, borderRadius: u(56) + 'px', boxShadow: `0 ${u(40)}px ${u(80)}px rgba(0,0,0,.45)`, overflow: 'hidden' } }, L1);
+const scr = M.el('div', { class: 'abs', style: { left: u(22) + 'px', top: u(22) + 'px', width: (PH.w - u(44)) + 'px', height: u(400) + 'px', borderRadius: u(38) + 'px', overflow: 'hidden', background: '#150F11' } }, phone);
+const usImg = M.el('img', { src: 'assets/img/ultrassom.jpg', class: 'abs', style: { left: '50%', top: '50%', width: u(720) + 'px', transform: 'translate(-50%,-60%)' } }, scr);
+const chips = ['2D', '3D', '4D'].map((s, i) => { const c = G.pill(scr, s, { bg: M.rgba('#FFFFFF', 0.92), color: C.ink, size: u(30), pad: [0.32, 0.7], weight: 800 }); G.box(c, u(24) + i * u(104), u(24)); return c; });
+const barBg = M.el('div', { class: 'abs', style: { left: u(44) + 'px', top: u(480) + 'px', width: (PH.w - u(88)) + 'px', height: u(16) + 'px', borderRadius: u(8) + 'px', background: C.line } }, phone);
+const bar = M.el('div', { class: 'abs', style: { left: 0, top: 0, height: '100%', borderRadius: u(8) + 'px', background: C.coral, width: '0px' } }, barBg);
+const upTx = G.txt(phone, 'disp2', '', { left: u(44) + 'px', top: u(530) + 'px', fontSize: u(36) + 'px', color: C.ink, fontVariantNumeric: 'tabular-nums' });
+const okBadge = M.el('div', { class: 'abs', style: { right: u(44) + 'px', top: u(518) + 'px', width: u(64) + 'px', height: u(64) + 'px', borderRadius: '50%', background: '#3F7A5A' } }, phone,
+  `<svg viewBox="0 0 64 64" width="${u(64)}" height="${u(64)}"><path id="ck" d="M18 33 L28 43 L47 22" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>`);
+const ck = okBadge.querySelector('#ck');
+
+// 2 · mãe + pai
+const n2 = G.lines(L2, X0, u(250), [['2', 'ser', u(190), C.coral]]);
+const t2 = G.lines(L2, X0, u(450), [['Some a mãe', 'disp', u(122), C.ink], ['e o pai.', 'disp', u(122), C.ink]]);
+const c2 = G.lines(L2, X0, u(712), [['Uma foto de cada, se quiser.', 'body', u(38), C.inkSoft]]);
+const mae = G.img(L2, 'assets/cut/mae.png', u(380)), pai = G.img(L2, 'assets/cut/pai.png', u(380));
+const plus = G.txt(L2, 'ser', '+', { fontSize: u(200) + 'px', color: C.coral, width: u(120) + 'px', textAlign: 'center', lineHeight: 1 });
+const opt = [0, 1].map(() => G.pill(L2, 'opcional', { bg: C.paper, color: C.ink, size: u(30), pad: [0.4, 0.9], weight: 700 }));
+
+// 3 · idade
+const n3 = G.lines(L3, X0, u(250), [['3', 'ser', u(190), C.coral]]);
+const t3 = G.lines(L3, X0, u(450), [['Escolha', 'disp', u(122), C.ink], ['a idade.', 'disp', u(122), C.ink]]);
+const c3 = G.lines(L3, X0, u(712), [['De recém-nascido a 70 anos.', 'body', u(38), C.inkSoft]]);
+const AGES = [0, 1, 2, 3, 5, 7, 10, 12, 15, 18, 20, 25, 30, 40, 50, 60, 70];
+const CH = { d: u(98), gx: u(144), gy: u(124), y: u(800) };
+const ageChips = AGES.map((a, i) => {
+  const col = i % 6, row = Math.floor(i / 6);
+  const d = M.el('div', { class: 'abs disp2', style: { left: (X0 + col * CH.gx) + 'px', top: (CH.y + row * CH.gy) + 'px', width: CH.d + 'px', height: CH.d + 'px', borderRadius: '50%', background: C.paper, color: C.ink, fontSize: u(36) + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontVariantNumeric: 'tabular-nums' } }, L3, String(a));
+  d.c = [X0 + col * CH.gx + CH.d / 2, CH.y + row * CH.gy + CH.d / 2]; return d;
+});
+const sel = M.el('div', { class: 'abs', style: { width: CH.d + 'px', height: CH.d + 'px', borderRadius: '50%', border: `${u(6)}px solid ${C.coral}`, boxSizing: 'border-box' } }, L3);
+const BUSTS = { 0: 'age-00', 4: 'age-05', 9: 'age-18', 13: 'age-40', 16: 'age-70' };
+const busts = {}; Object.entries(BUSTS).forEach(([k, f]) => { busts[k] = G.img(L3, `assets/cut/${f}.png`, u(400)); busts[k].style.webkitMaskImage = busts[k].style.maskImage = 'linear-gradient(to bottom, #000 78%, transparent 100%)'; });
+const cur = M.cursor(L3, { size: u(64) });
+
+// revelação + CTA
+const zr = G.img(L4, 'assets/cut/zinho-happy.png', u(560));
+const spk = G.sparks(L4, 12, C.coral, 7);
+const t4 = G.lines(L4, X0, u(290), [['Em segundos,', 'disp', u(124), C.ink, u(8)], ['um retrato de quem', 'ser', u(104), C.coral], ['está chegando.', 'ser', u(104), C.coral]]);
+const logo = G.logo(L4, u(560), 'dark'); G.box(logo, cx - u(280), u(290));
+const t5 = G.lines(L4, 0, u(470), [['Conheça quem', 'disp', u(118), C.ink, u(4)], ['você já ama.', 'ser', u(140), C.coral]], { align: 'center' });
+const btn = G.pill(L4, 'link na bio', { bg: C.ink, color: C.paper, size: u(40), pad: [0.55, 1.3], weight: 700 });
+const disc = G.txt(L4, 'body', 'Retratos gerados por IA: um jeito carinhoso<br>de imaginar, não uma previsão médica.', { left: 0, width: W + 'px', textAlign: 'center', top: u(1410) + 'px', fontSize: u(30) + 'px', color: C.inkSoft, lineHeight: 1.3 });
+const grain = M.grain(st, { opacity: 0.02 });
+let SW, BW;
+async function init() { SW = stick.offsetWidth; BW = btn.offsetWidth; }
+
+const layerOn = (L, a, b) => M.show(L, a <= 0 || true) && (L.style.visibility = 'visible');
+function irisAt(t, t0, px, py, cols) {
+  iris.forEach((c, i) => {
+    const p = E.inOutCubic(M.seg(t, t0 + i * 0.1, t0 + 0.42 + i * 0.1));
+    M.attr(c, { cx: px, cy: py, r: p > 0 ? M.expLerp(4, M.cover(1, px, py) * 1.02, p) : 0, fill: cols[i] });
+  });
+}
+
+/* ---------- render ---------- */
+function render(t) {
+  grain.update(t);
+  // visibilidade de fundos (o de cima cobre)
+  const vis = [[L0, 0, T.s1 + 0.6], [L1, T.s1 + 0.45, T.s2 + 0.5], [L2, T.s2, T.s3 + 0.6], [L3, T.s3 + 0.45, T.rev + 0.6], [L4, T.rev + 0.45, 99]];
+  vis.forEach(([L, a, b]) => { const on = t >= a && t < b; M.show(L, on); if (on) L.upd(t); });
+  [L0, L1, L2, L3, L4].forEach((L, i) => L.style.zIndex = i);
+  iris.forEach(c => M.attr(c, { r: 0 }));
+
+  // 0 gancho
+  if (t < T.s1 + 0.6) {
+    const lq = E.outExpo(M.seg(t, 0.0, 0.6)); M.css(lab0, { opacity: lq });
+    G.riseL(t0a, t, 0.08, { each: 0.14 });
+    const ss = M.springAt(t, 1.5, 'bouncy');
+    M.css(stick, { left: X0 + 'px', top: u(700) + 'px', transform: { s: Math.max(0, ss), r: -7 } });
+    const zp = M.springAt(t, 0.7, 'gentle'), bob = Math.sin(t * 3.2) * u(8);
+    G.place(z0, W - u(330), H + u(40) - zp * u(560) + bob, { r: -8 + 3 * Math.sin(t * 2) });
+    irisAt(t, T.s1 - 0.12, X0 + SW / 2, u(740), [C.coral, C.ink]);
+  }
+  // 1
+  if (t >= T.s1 + 0.3 && t < T.s2 + 0.5) {
+    const lt = t;
+    G.riseL(n1, t, T.s1 + 0.35); G.riseL(t1, t, T.s1 + 0.45, { each: 0.1 }); G.riseL(c1, t, T.s1 + 0.8, { each: 0.08 });
+    const up = M.curve.snappy(M.seg(t, 3.0, 3.8)), fl = Math.sin(t * 1.6) * u(10);
+    M.css(phone, { transform: { y: (1 - up) * u(900) + fl, r: (1 - up) * 8 + Math.sin(t * 1.1) * 1.2 } });
+    const im = E.outCubic(M.seg(t, 3.6, 4.3)); M.css(usImg, { opacity: im, transform: `translate(-50%,-60%) scale(${1.15 - 0.15 * im})` });
+    const pr = E.inOutCubic(M.seg(M.frameT(t), 4.3, 6.6));
+    bar.style.width = (pr * (PH.w - u(88))) + 'px';
+    upTx.textContent = t < 4.2 ? '' : pr < 1 ? 'enviando… ' + Math.round(pr * 100) + '%' : 'pronto!';
+    const ok = M.springAt(t, 6.7, 'bouncy'); M.css(okBadge, { transform: { s: Math.max(0, ok) } }); M.draw(ck, E.outCubic(M.seg(t, 6.78, 7.1)));
+    chips.forEach((c, i) => { const s = M.springAt(t, 7.2 + i * 0.2, 'bouncy'); M.css(c, { transform: { s: Math.max(0, s) } }); });
+    // whip pan para a esquerda
+    const sw = M.curve.swift(M.seg(t, T.s2 - 0.05, T.s2 + 0.3));
+    L1.style.transform = `translateX(${-W * sw}px)`;
+  } else L1.style.transform = 'none';
+  // 2
+  if (t >= T.s2 && t < T.s3 + 0.6) {
+    const sw = M.curve.swift(M.seg(t, T.s2 - 0.05, T.s2 + 0.3));
+    L2.style.transform = `translateX(${W * (1 - sw)}px)`;
+    G.riseL(n2, t, T.s2 + 0.3); G.riseL(t2, t, T.s2 + 0.4, { each: 0.1 }); G.riseL(c2, t, T.s2 + 0.9);
+    const base = u(1420), br = Math.sin(t * 2.4);
+    const sm = M.springAt(t, 10.4, 'bouncy'), sp = M.springAt(t, 11.4, 'bouncy');
+    G.place(mae, u(285), base, { x: (1 - Math.min(1, sm)) * -u(500), s: Math.max(0, sm) * 0.2 + 0.8, sy: 1 + 0.015 * br });
+    G.place(pai, u(735), base, { x: (1 - Math.min(1, sp)) * u(500), s: Math.max(0, sp) * 0.2 + 0.8, sy: 1 - 0.015 * br });
+    mae.style.opacity = t >= 10.4 ? 1 : 0; pai.style.opacity = t >= 11.4 ? 1 : 0;
+    const pl = M.springAt(t, 11.0, 'bouncy');
+    M.css(plus, { left: (u(510) - u(60)) + 'px', top: u(1060) + 'px', transform: { s: Math.max(0, pl), r: (1 - Math.min(1, pl)) * 90 } });
+    opt.forEach((o, i) => { const s = M.springAt(t, 12.3 + i * 0.2, 'bouncy'); const w = o.offsetWidth; M.css(o, { left: ([u(285), u(735)][i] - w / 2) + 'px', top: u(1428) + 'px', transform: { s: Math.max(0, s), r: i ? 4 : -4 } }); });
+    irisAt(t, T.s3 - 0.12, u(510), u(1160), [C.coral, C.butter]);
+  } else L2.style.transform = 'none';
+  // 3
+  if (t >= T.s3 + 0.3 && t < T.rev + 0.6) {
+    G.riseL(n3, t, T.s3 + 0.35); G.riseL(t3, t, T.s3 + 0.45, { each: 0.1 }); G.riseL(c3, t, T.s3 + 0.9);
+    ageChips.forEach((d, i) => { const col = i % 6, row = Math.floor(i / 6); const s = M.springAt(t, 15.95 + (col + row) * 0.045, 'snappy'); M.css(d, { transform: { s: Math.max(0, Math.min(1.1, s)) } }); });
+    // seleção / cursor
+    let k = -1; PICK.forEach(([pt, idx], j) => { if (t >= pt) k = j; });
+    const idx = k < 0 ? 0 : PICK[k][1];
+    ageChips.forEach((d, i) => { const on = k >= 0 && i === idx; d.style.background = on ? C.ink : C.paper; d.style.color = on ? C.paper : C.ink; });
+    const sc = k < 0 ? 0 : 1 + 0.18 * M.pulse(t, PICK[k][0] + 0.05, 0.12);
+    M.css(sel, { left: (ageChips[idx].c[0] - CH.d / 2) + 'px', top: (ageChips[idx].c[1] - CH.d / 2) + 'px', opacity: k < 0 ? 0 : 1, transform: { s: sc * 1.18 } });
+    const ck2 = [[16.4, [W + u(80), H * 0.9]]]; PICK.forEach(([pt, i]) => { ck2.push([pt - 0.08, ageChips[i].c]); ck2.push([pt + 0.12, ageChips[i].c]); }); ck2.push([21.4, [W * 0.8, H * 1.05]]);
+    const cp = M.cursorPath(t, ck2);
+    let pressed = 0; PICK.forEach(([pt]) => pressed = Math.max(pressed, M.pulse(t, pt, 0.07)));
+    M.css(cur, { transform: { x: cp[0], y: cp[1], s: 1 - 0.18 * pressed } });
+    // busto correspondente
+    Object.entries(busts).forEach(([key, b]) => {
+      const active = +key === idx && k >= 0;
+      const last = PICK[k] ? PICK[k][0] : 0, s = active ? M.springAt(t, last, 'bouncy') : 0;
+      b.style.opacity = active ? 1 : 0;
+      if (active) G.place(b, cx, u(1590), { s: 0.55 + 0.32 * Math.min(1.08, s) });
+    });
+    // flash para a revelação
+    irisAt(t, T.rev - 0.1, cx, u(1250), ['#FFFFFF', C.blush]);
+  }
+  // revelação + CTA
+  if (t >= T.rev + 0.3) {
+    const ctaP = E.inOutCubic(M.seg(t, T.cta, T.cta + 0.8));
+    const zs = M.springAt(t, T.rev + 0.3, 'bouncy'), bob = Math.sin(t * 3) * u(10);
+    const zBase = M.lerp(u(1400), u(1300), ctaP), zSc = M.lerp(1, 0.66, ctaP);
+    G.place(zr, cx, zBase + bob * (1 - ctaP), { s: Math.max(0, zs) * zSc, r: Math.sin(t * 2.2) * 3 });
+    spk.upd(t, T.rev + 0.3, cx, u(1060), u(420));
+    G.riseL(t4, t, T.rev + 0.55, { each: 0.12, out: T.cta - 0.05, outDur: 0.35 });
+    const lg = E.outExpo(M.seg(t, T.cta + 0.3, T.cta + 1.0)); M.css(logo, { opacity: lg, transform: { y: (1 - lg) * u(30) } });
+    G.riseL(t5, t, T.cta + 0.45, { each: 0.14 });
+    const bs = M.springAt(t, 27.3, 'bouncy'), bp = t > 28 ? 1 + 0.05 * Math.sin((t - 28) * 5) : 1;
+    M.css(btn, { left: (cx - BW / 2) + 'px', top: u(1316) + 'px', transform: { s: Math.max(0, bs) * bp } });
+    const dq = E.outExpo(M.seg(t, 27.6, 28.3)); M.css(disc, { opacity: dq });
+  }
+}
+M.boot(render, { dur: DUR, init, poster: 2.3 });
+</script></body></html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- R9 · Carrossel de feed 4:5 — "5 perguntas que todo pai e mãe já se fez" (6 slides, 1 s = 1 slide para render de quadros) -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="motion.js"></script><script src="brand.js"></script>
+</head><body><div id="stage"></div>
+<script>
+G.noCam = true;
+const { W, H, S } = M, E = M.ease, cx = W / 2;
+const st = M.$('#stage');
+const N = 6, DUR = N * 2, X0 = u(84);
+const BGC = [C.sky, C.butter, C.lav, C.mint, C.peach, C.blush];
+const slides = BGC.map((c, i) => {
+  const L = M.el('div', { class: 'layer' }, st);
+  const bg = G.bgLayer(L, c, { glow: '#FFFFFF', glow2: [C.lav, C.peach, C.sky, C.butter, C.blush, C.peach][i], alpha: 0.7 });
+  const life = G.life(L, { n: 10, size: [38, 100], seed: 90 + i, colors: ['#D86F5D', '#C9B9EE', '#F0C77A', '#F6B9A8'], alpha: 0.7 });
+  const content = M.el('div', { class: 'layer' }, L);
+  // progresso + marca
+  const prog = [0, 1, 2, 3, 4, 5].map(k => M.el('div', { class: 'abs', style: { left: (X0 + k * u(44)) + 'px', top: u(1262) + 'px', width: u(30) + 'px', height: u(8) + 'px', borderRadius: '99px', background: k <= i ? C.ink : M.rgba(C.ink, 0.18) } }, content));
+  G.txt(content, 'lab', `${i + 1}/${N}`, { right: X0 + 'px', top: u(1244) + 'px', fontSize: u(24) + 'px', color: C.inkSoft });
+  if (i < N - 1) { const sw = G.txt(content, 'lab', 'deslize →', { right: X0 + 'px', top: u(84) + 'px', fontSize: u(24) + 'px', color: C.coral }); }
+  G.txt(content, 'lab', '@rostinhobaby', { left: X0 + 'px', top: u(84) + 'px', fontSize: u(24) + 'px', color: C.inkSoft });
+  return { L, bg, content };
+});
+const add = (i, f) => f(slides[i].content);
+const lines = [], placers = [];
+const PL = (i, el, x, y, tf) => placers.push({ i, el, x, y, tf });
+function lns(i, y, spec, o) { const l = G.lines(slides[i].content, X0, y, spec, o); lines.push({ i, l }); return l; }
+
+// 1 capa
+lns(0, u(210), [['Todo pai e', 'disp', u(132), C.ink], ['toda mãe já', 'disp', u(132), C.ink], ['se perguntou.', 'ser', u(150), C.coral]]);
+add(0, c => { const z = G.img(c, 'assets/cut/zinho-surpreso.png', u(430)); PL(0, z, W - u(300), H - u(110), { r: 4, idle: false }); });
+// 2 pais
+lns(1, u(210), [['Com quem ele', 'disp', u(122), C.ink], ['vai parecer?', 'ser', u(146), C.coral]]);
+add(1, c => { const m = G.img(c, 'assets/cut/mae.png', u(360)), p = G.img(c, 'assets/cut/pai.png', u(360)); PL(1, m, u(300), u(1090), { r: -4, idle: false }); PL(1, p, W - u(300), u(1090), { r: 4, idle: false });
+  const q = G.txt(c, 'disp', '?', { left: 0, width: W + 'px', textAlign: 'center', top: u(780) + 'px', fontSize: u(260) + 'px', color: C.coral }); });
+// 3 sorriso
+lns(2, u(210), [['Vai ter o', 'disp', u(122), C.ink], ['meu sorriso?', 'ser', u(146), C.coral]]);
+add(2, c => { const z = G.img(c, 'assets/cut/zinho-happy.png', u(470)); PL(2, z, cx, u(1170), { idle: false }); });
+// 4 cabelo
+lns(3, u(210), [['O cabelo vai ser', 'disp', u(112), C.ink], ['cacheado?', 'ser', u(150), C.coral]]);
+add(3, c => { const z = G.img(c, 'assets/cut/age-18.png', u(560)); PL(3, z, cx, u(1190), { idle: false }); });
+// 5 idades
+lns(4, u(210), [['E com 15 anos?', 'disp', u(112), C.ink], ['E com 40?', 'ser', u(150), C.coral]]);
+add(4, c => { [['age-05', 0], ['age-18', 1], ['age-40', 2], ['age-70', 3]].forEach(([k, j]) => { const z = G.img(c, `assets/cut/${k}.png`, u(250)); PL(4, z, u(170) + j * u(247), u(1010) - (j % 2) * u(80), { idle: false, r: (j - 1.5) * 3 }); });
+  G.txt(c, 'body', 'e com 70, o cachinho vira cabelo branco.', { left: 0, width: W + 'px', textAlign: 'center', top: u(1110) + 'px', fontSize: u(34) + 'px', color: C.inkSoft }); });
+// 6 CTA
+lns(5, u(210), [['Chegou a hora', 'disp', u(122), C.ink], ['de imaginar.', 'ser', u(150), C.coral]]);
+let logo, btn;
+add(5, c => { logo = G.logo(c, u(760), 'dark'); G.box(logo, cx - u(380), u(560)); btn = G.pill(c, 'link na bio', { bg: C.ink, color: C.paper, size: u(40), pad: [0.55, 1.3], weight: 700 }); const z = G.img(c, 'assets/cut/zinho-heart.png', u(270)); PL(5, z, cx, u(1215), { idle: false }); });
+const grain = M.grain(st, { opacity: 0.02 });
+async function init() { btn.style.left = (cx - btn.offsetWidth / 2) + 'px'; btn.style.top = u(745) + 'px'; }
+
+function render(t) {
+  grain.update(t);
+  const idx = Math.min(N - 1, Math.floor(t / 2)), lt = t - idx * 2;
+  slides.forEach((s, i) => { M.show(s.L, i === idx); if (i === idx) { s.bg.upd(t); } });
+  lines.forEach(({ i, l }) => { if (i === idx) G.riseL(l, 100, 0, {}); });  // estado final (assentado)
+  placers.forEach(p => { if (p.i === idx) G.place(p.el, p.x, p.y, p.tf); });
+  if (idx === 5) G.logoIn(logo, 100, 0);
+  G.lives.forEach(l => l.upd(t));
+}
+M.boot(render, { dur: DUR, init, poster: 1.4 });
+</script></body></html>

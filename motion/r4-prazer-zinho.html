@@ -1,0 +1,180 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- R4 · Prazer, Zinho — o mascote acorda (30 s) -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="motion.js"></script><script src="brand.js"></script>
+</head><body><div id="stage"></div>
+<script>
+const { W, H, S } = M, E = M.ease, cx = W / 2;
+const st = M.$('#stage');
+const DUR = 30, X0 = u(80);
+const TW = 4.35, TP = 5.5, TA = 10.4, TQ = 16.0, TC = 25.0;
+const NAMES = ['Feijãozinho', 'Pitoco', 'Inquilino', 'Jabuticaba', 'Bolinha', 'Pipoca', 'Chiclete', 'Tampinha', 'Bebezão', 'Pitoco', 'Inquilino', 'Feijãozinho'];
+const SLOT = []; { let tt = 17.7, d = 0.13; NAMES.forEach((n, i) => { SLOT.push(tt); tt += d; d *= 1.22; }); }
+const STK = [['Pitoco', C.lav, -8, u(250), u(770)], ['Inquilino', C.peach, 7, u(820), u(760)], ['Jabuticaba', C.sky, 6, u(210), u(1010)], ['Bolinha', C.blush, -6, u(840), u(1000)], ['Pipoca', '#FFFFFF', 5, u(860), u(1130)]];
+
+/* ---------- som ---------- */
+M.cue(0.1, 'start');
+M.cue(3.05, 'wiggle'); M.cue(3.55, 'fall'); M.cue(TW, 'big'); M.cue(TW, 'pop', { s: 1.3 });
+M.cue(4.45, 'hit', { s: 0.5 });
+M.cue(5.6, 'boing'); M.cue(6.2, 'land'); M.cue(6.25, 'boing', { s: 0.8 }); M.cue(6.85, 'land');
+M.cue(TA + 0.2, 'tick'); [11.0, 12.4, 13.8].forEach(t => M.cue(t, 'draw'));
+M.cue(TQ, 'whoosh', { len: 0.4 }); M.cue(TQ + 0.3, 'pop');
+SLOT.forEach((t, i) => M.cue(t, 'slot', { s: i === SLOT.length - 1 ? 1.4 : 0.8 }));
+M.cue(SLOT[SLOT.length - 1] + 0.02, 'hit', { s: 0.6 });
+STK.forEach((s, i) => M.cue(22.0 + i * 0.28, 'pop', { s: 0.8 }));
+M.cue(TC, 'whoosh', { len: 0.35 }); M.cue(28.6, 'end');
+M.blur(3.5, 4.5, 12); M.blur(5.55, 6.95, 8); M.blur(TQ - 0.1, TQ + 0.6, 8);
+
+/* ---------- elementos ---------- */
+const L0 = G.bgLayer(st, C.sky, { glow: '#FFFFFF', glow2: C.lav, alpha: 0.7 });
+const L1 = G.bgLayer(st, C.butter, { glow: '#FFFFFF', glow2: C.peach, alpha: 0.7 });
+G.life(st, { n: 18, size: [38, 100], seed: 41, colors: ['#D86F5D', '#C9B9EE', '#F0C77A', '#F6B9A8'], alpha: 0.7 });
+const irisSvg = M.el('svg', { width: W, height: H }, st); const iris = M.el('circle', { r: 0, fill: C.butter }, irisSvg);
+const A = M.el('div', { class: 'layer' }, st);
+
+// gancho: logo dormindo
+const t0 = G.lines(A, 0, u(330), [['Ele dormia quietinho', 'disp', u(98), C.ink, u(4)], ['no nosso logo.', 'ser', u(126), C.coral]], { align: 'center' });
+const LOGO_W = u(860); const logo = G.logo(A, LOGO_W, 'dark'); G.box(logo, cx - LOGO_W / 2, u(860));
+const FACE = { x: cx - LOGO_W / 2 + (665 + 48) * logo.k, y: u(860) + 75 * logo.k, w: 97 * logo.k };
+const zs = [0, 1, 2].map(i => G.txt(A, 'ser', 'z', { fontSize: u(64 + i * 14) + 'px', color: C.inkSoft }));
+const ringSvg = M.el('svg', { width: W, height: H }, A); const ring = M.el('circle', { r: 0, fill: 'none', stroke: C.coral, 'stroke-width': u(8) }, ringSvg);
+const t1 = G.lines(A, 0, u(330), [['Até que um dia…', 'ser', u(104), C.coral, u(6)], ['acordou.', 'disp', u(160), C.ink]], { align: 'center' });
+
+// Zinho
+const zin = G.img(A, 'assets/cut/zinho-stand.png', u(520));
+const zhappy = G.img(A, 'assets/cut/zinho-happy.png', u(400));
+const shadow = M.el('div', { class: 'abs', style: { width: u(300) + 'px', height: u(46) + 'px', borderRadius: '50%', background: 'rgba(43,25,34,.16)' } }, A);
+
+// apresentação
+const tP = G.lines(A, X0, u(300), [['Prazer,', 'disp', u(212), C.ink]]);
+const tP2 = G.lines(A, 0, u(500), [['Zinho.', 'ser', u(250), C.coral]], { w: W - u(80) });
+tP2.forEach(l => { l.wrap.style.textAlign = 'right'; l.wrap.style.width = (W - u(90)) + 'px'; });
+
+// anotações
+const labA = G.txt(A, 'lab', 'mascote oficial do rostinho', { left: 0, width: W + 'px', textAlign: 'center', top: u(300) + 'px', fontSize: u(28) + 'px', color: C.coral });
+const annSvg = M.el('svg', { width: W, height: H }, A);
+const ANN = [
+  { t: 11.0, txt: ['cachinho', 'teimoso'], x: u(640), y: u(560), path: `M${u(700)} ${u(715)} C ${u(690)} ${u(775)}, ${u(650)} ${u(805)}, ${u(600)} ${u(810)}` },
+  { t: 12.4, txt: ['bochechas', 'de pêssego'], x: X0, y: u(880), path: `M${u(200)} ${u(1040)} C ${u(220)} ${u(1110)}, ${u(300)} ${u(1135)}, ${u(398)} ${u(1125)}` },
+  { t: 13.8, txt: ['macacão', 'azul'], x: X0, y: u(1215), path: `M${u(250)} ${u(1355)} C ${u(290)} ${u(1395)}, ${u(340)} ${u(1390)}, ${u(392)} ${u(1335)}` },
+].map(a => {
+  a.L = G.lines(A, a.x, a.y, a.txt.map(s => [s, 'ser', u(66), C.coral]));
+  a.p = M.el('path', { d: a.path, fill: 'none', stroke: C.coral, 'stroke-width': u(5), 'stroke-linecap': 'round' }, annSvg);
+  const end = a.path.match(/(-?[\d.]+) (-?[\d.]+)$/); a.hx = +end[1]; a.hy = +end[2];
+  a.hd = M.el('circle', { cx: a.hx, cy: a.hy, r: u(9), fill: C.coral }, annSvg);
+  return a;
+});
+
+// pergunta + slot
+const B = M.el('div', { class: 'layer' }, st);
+const tQ = G.lines(B, 0, u(290), [['E o seu bebê,', 'disp', u(108), C.ink, u(6)], ['qual apelido', 'ser', u(118), C.coral], ['já ganhou?', 'ser', u(118), C.coral]], { align: 'center' });
+const stk = STK.map(([n, bg, r]) => { const p = G.pill(B, n, { bg, color: C.ink, size: u(40), pad: [0.45, 0.85], weight: 800, cls: 'disp' }); p.style.boxShadow = `0 ${u(8)}px ${u(20)}px rgba(43,25,34,.12)`; return p; });
+const SL = { w: u(720), h: u(132), y: u(1235) };
+const slot = M.el('div', { class: 'abs', style: { left: (cx - SL.w / 2) + 'px', top: SL.y + 'px', width: SL.w + 'px', height: SL.h + 'px', borderRadius: u(66) + 'px', background: C.ink, overflow: 'hidden' } }, B);
+const slotTx = [0, 1].map(() => M.el('div', { class: 'abs disp', style: { left: 0, width: SL.w + 'px', textAlign: 'center', fontSize: u(70) + 'px', color: C.cream, lineHeight: SL.h + 'px', height: SL.h + 'px' } }, slot));
+const ph = M.el('div', { class: 'abs body', style: { left: 0, width: SL.w + 'px', textAlign: 'center', fontSize: u(44) + 'px', color: M.rgba(C.cream, 0.6), lineHeight: SL.h + 'px', height: SL.h + 'px' } }, slot, 'o apelido do seu bebê<span id="caret" style="display:inline-block;width:3px;height:1.1em;background:#D86F5D;vertical-align:middle;margin-left:6px"></span>');
+const caret = ph.querySelector('#caret');
+const tC = G.lines(B, 0, u(290), [['Conta aqui', 'disp', u(124), C.ink, u(6)], ['nos comentários.', 'ser', u(124), C.coral]], { align: 'center' });
+const arrowSvg = M.el('svg', { width: W, height: H }, B);
+const arrow = M.el('path', { d: `M${u(840)} ${u(600)} C ${u(1000)} ${u(690)}, ${u(1010)} ${u(960)}, ${u(965)} ${u(1150)}`, fill: 'none', stroke: C.coral, 'stroke-width': u(7), 'stroke-linecap': 'round' }, arrowSvg);
+const arrowHead = M.el('path', { d: `M${u(925)} ${u(1108)} L${u(963)} ${u(1152)} L${u(1004)} ${u(1114)}`, fill: 'none', stroke: C.coral, 'stroke-width': u(7), 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, arrowSvg);
+const logo2 = G.logo(B, u(330), 'dark'); G.box(logo2, cx - u(165), u(1420));
+const grain = M.grain(st, { opacity: 0.02 });
+async function init() {}
+
+function slotName(t) { let k = -1; SLOT.forEach((s, i) => { if (t >= s) k = i; }); return k; }
+
+function render(t) {
+  grain.update(t);
+  const onB = t >= TQ + 0.55;
+  M.show(L0, !onB); M.show(L1, onB); (onB ? L1 : L0).upd(t);
+  const ip = E.inOutCubic(M.seg(t, TQ - 0.05, TQ + 0.55));
+  M.attr(iris, { cx, cy: u(1000), r: ip > 0 && ip < 1 ? M.lerp(0, M.cover(1, cx, u(1000)) * 1.02, ip) : 0 });
+
+  // texto do gancho
+  G.riseL(t0, t, 0.05, { each: 0.14, out: 2.9, outDur: 0.35 });
+  // logo: respira, treme, letras caem, carinha cresce
+  M.show(logo, t < TW + 0.05);
+  if (t < TW + 0.05) {
+    logo.letters.forEach((d, i) => {
+      const a = 3.5 + M.stagger(i, 7, 0.05, 'end'), p = E.inBack(M.seg(t, a, a + 0.55), 1.6);
+      M.css(d, { transform: { y: p * u(1300), r: p * (i % 2 ? 40 : -35) } });
+    });
+    const wig = M.seg(t, 3.0, 3.5), wr = Math.sin(wig * Math.PI * 6) * 14 * (1 - wig) * (wig > 0 ? 1 : 0);
+    const grow = E.inOutCubic(M.seg(t, 3.6, TW));
+    const fx = M.lerp(0, cx - FACE.x, grow), fy = M.lerp(0, u(1050) - FACE.y, grow);
+    const br = 1 + 0.035 * Math.sin(t * 2.6);
+    M.css(logo.face, { transform: { x: fx, y: fy, s: br * M.lerp(1, 3.2, grow), r: wr } });
+  }
+  zs.forEach((z, i) => {
+    const per = 1.6, ph0 = M.loop(t + i * 0.53, per) / per, a = t < 2.95 ? Math.sin(Math.PI * ph0) : 0;
+    M.css(z, { left: (FACE.x + u(30) + ph0 * u(70)) + 'px', top: (FACE.y - u(90) - ph0 * u(200)) + 'px', opacity: a * E.outExpo(M.seg(t, 0.3, 0.8)), transform: { r: -10 + ph0 * 20 } });
+  });
+  // despertar
+  const rp = M.seg(t, TW, TW + 0.7); M.attr(ring, { cx, cy: u(1000), r: u(140) + u(420) * E.outExpo(rp), opacity: rp > 0 && rp < 1 ? 1 - rp : 0 });
+  G.riseL(t1, t, 3.25, { each: 1.0, dur: 0.7, out: 5.25, outDur: 0.3 });
+  const sk = M.shake(t, TW + 0.1, { amp: u(10), dur: 0.3 }); M.css(t1[1].wrap, { transform: { x: sk.x, y: sk.y } });
+
+  // Zinho (pé no chão em base)
+  const BASE = t < TQ ? u(1430) : u(1195);
+  let zx = cx, zy = BASE, sx = 1, sy = 1, zsx = 1;
+  if (t >= TW && t < TQ + 0.3) {
+    const pop = M.springAt(t, TW, 'bouncy');
+    // pulinhos
+    const hops = [[5.6, 6.2, cx, u(380)], [6.25, 6.85, u(380), cx]];
+    let off = 0; hops.forEach(([a, b, xa, xb]) => { const p = M.seg(t, a, b); if (t >= a && t <= b) { zx = M.lerp(xa, xb, E.inOutSine(p)); off = Math.sin(Math.PI * p) * u(260); } else if (t > b) zx = xb; });
+    const c1 = M.pulse(t, 6.2, 0.09) + M.pulse(t, 6.85, 0.09), an = M.pulse(t, 5.58, 0.07) + M.pulse(t, 6.23, 0.06);
+    sy = 1 - 0.22 * (c1 + an) + (off > 0 ? 0.08 : 0); sx = 1 / sy;
+    const br = Math.sin(t * 2.4); sy *= 1 + 0.012 * br;
+    zy = BASE - off - (1 - Math.min(1, pop)) * u(80);
+    zsx = (t > 6.0 && t < 6.25) ? -1 : 1;
+    M.css(zin, { opacity: 1 });
+    G.place(zin, zx, zy, { s: Math.max(0, pop) * 1, sx: sx * zsx, sy });
+    M.css(shadow, { left: (zx - u(150)) + 'px', top: (BASE - u(28)) + 'px', opacity: 1, transform: { s: (1 - off / u(500)) * Math.max(0, Math.min(1, pop)) } });
+  } else { zin.style.opacity = 0; if (t < TW) shadow.style.opacity = 0; }
+  if (t >= TQ + 0.3) {
+    const pop = M.springAt(t, TQ + 0.3, 'bouncy'), bob = Math.abs(Math.sin((t - TQ) * Math.PI * 2)) * u(16);
+    zhappy.style.opacity = 1; G.place(zhappy, cx, BASE - bob, { s: Math.max(0, pop), r: Math.sin(t * 4) * 3 });
+    M.css(shadow, { left: (cx - u(130)) + 'px', top: (BASE - u(24)) + 'px', opacity: 1, transform: { s: 0.85 - bob / u(80) } });
+  } else zhappy.style.opacity = 0;
+
+  // apresentação
+  G.riseL(tP, t, TP + 0.1, { out: TA - 0.2, outDur: 0.35 }); G.riseL(tP2, t, TP + 0.3, { dur: 0.9, out: TA - 0.15, outDur: 0.35 });
+  // anotações
+  const aOut = M.seg(t, TQ - 0.4, TQ - 0.1);
+  M.css(labA, { opacity: E.outExpo(M.seg(t, TA, TA + 0.6)) * (1 - aOut) });
+  ANN.forEach(a => {
+    G.riseL(a.L, t, a.t, { each: 0.08, out: TQ - 0.4, outDur: 0.3 });
+    M.draw(a.p, E.inOutCubic(M.seg(t, a.t + 0.15, a.t + 0.7)) * (1 - aOut)); a.p.style.opacity = t > a.t + 0.15 ? 1 : 0;
+    const hs = M.springAt(t, a.t + 0.7, 'bouncy'); M.attr(a.hd, { r: u(9) * Math.max(0, hs) * (1 - aOut) });
+  });
+
+  // pergunta
+  M.show(B, t >= TQ);
+  if (t >= TQ) {
+    G.riseL(tQ, t, TQ + 0.35, { each: 0.12, out: TC - 0.2, outDur: 0.35 });
+    const ss = M.springAt(t, 17.2, 'snappy'); M.css(slot, { transform: { s: Math.max(0, Math.min(1.05, ss)) } });
+    const k = slotName(M.frameT(t));
+    if (k >= 0) {
+      const t0s = SLOT[k], p = E.outBack(M.seg(t, t0s, t0s + Math.min(0.12, (SLOT[k + 1] || t0s + 0.3) - t0s)), 1.4);
+      slotTx[0].textContent = NAMES[k]; slotTx[1].textContent = k > 0 ? NAMES[k - 1] : '';
+      M.css(slotTx[0], { transform: { y: (1 - p) * SL.h } }); M.css(slotTx[1], { transform: { y: -p * SL.h } });
+    }
+    const swap = M.seg(t, TC + 0.4, TC + 0.8);
+    slotTx.forEach(s => s.style.opacity = 1 - swap);
+    M.css(ph, { opacity: swap }); caret.style.opacity = Math.floor(t / 0.5) % 2 ? 0 : 1;
+    const so = E.inCubic(M.seg(t, TC - 0.1, TC + 0.3));
+    STK.forEach(([n, bg, r, x, y], i) => {
+      const s = M.springAt(t, 22.0 + i * 0.28, 'bouncy'), w = stk[i].offsetWidth, d = M.drift(t, u(8), 0.5, i + 3);
+      M.css(stk[i], { left: (x - w / 2 + d.x) + 'px', top: (y + d.y) + 'px', transform: { s: Math.max(0, s) * (1 - so), r } });
+    });
+    G.riseL(tC, t, TC + 0.2, { each: 0.14 });
+    M.draw(arrow, E.inOutCubic(M.seg(t, TC + 0.9, TC + 1.5))); M.draw(arrowHead, E.outCubic(M.seg(t, TC + 1.45, TC + 1.7)));
+    arrow.style.opacity = arrowHead.style.opacity = t > TC + 0.9 ? 1 : 0;
+    const ab = t > TC + 1.7 ? Math.sin((t - TC) * 6) * u(8) : 0; arrowSvg.style.transform = `translate(${ab * 0.5}px, ${ab}px)`;
+    const lq = E.outExpo(M.seg(t, TC + 1.2, TC + 1.9)); M.css(logo2, { opacity: lq, transform: { y: (1 - lq) * u(24) } });
+  }
+}
+M.boot(render, { dur: DUR, init, poster: 8.0 });
+</script></body></html>
