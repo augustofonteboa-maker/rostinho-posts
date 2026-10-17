@@ -1,0 +1,614 @@
+{
+ "sections": [
+  {
+   "id": "s01",
+   "title": "Primeiros posts",
+   "folder": "01 - PRIMEIROS POSTS"
+  },
+  {
+   "id": "s02",
+   "title": "Carrossel: Como funciona",
+   "folder": "02 - CARROSSEL COMO FUNCIONA"
+  },
+  {
+   "id": "s03",
+   "title": "Carrossel: A vida inteira",
+   "folder": "03 - CARROSSEL A VIDA INTEIRA"
+  },
+  {
+   "id": "s04",
+   "title": "Conexão e compartilhamento",
+   "folder": "04 - CONEXAO E COMPARTILHAMENTO"
+  },
+  {
+   "id": "s05",
+   "title": "Bebês",
+   "folder": "05 - BEBES"
+  }
+ ],
+ "posts": [
+  {
+   "id": "01-teaser",
+   "section": "s01",
+   "order": "01",
+   "title": "Teaser",
+   "type": "single",
+   "goal": "Gerar curiosidade e seguidores",
+   "caption": "Você já sabe o jeito que ele se mexe às 3 da manhã. Só falta conhecer o rosto.\n\nDesde o primeiro ultrassom, a pergunta não sai da cabeça: vai ter o nariz de quem? O cabelo vai ser cacheado? Vai puxar o sorriso da mãe ou a teimosia do pai?\n\nTá chegando um jeito novo de imaginar esse rostinho. Com carinho e com aquele friozinho na barriga que só quem está esperando conhece.\n\nSiga o perfil e ative as notificações pra ver primeiro. 🤍",
+   "hashtags": [
+    "#rostinhobaby",
+    "#gravidez",
+    "#gestante",
+    "#ultrassom",
+    "#maternidade"
+   ],
+   "alt": "Fundo escuro com a imagem de um ultrassom iluminado em tons dourados e o texto: Em breve. Toda mãe já conhece o rostinho do filho. Só ainda não viu.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-01-teaser.png",
+     "web": "img/web/rostinho-01-teaser.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#150e11",
+     "bytes": 676990
+    }
+   ]
+  },
+  {
+   "id": "02-lancamento",
+   "section": "s01",
+   "order": "02",
+   "title": "Lançamento",
+   "type": "single",
+   "goal": "Anunciar o app e levar pro link",
+   "caption": "Chegou o dia de conhecer quem você já ama.\n\nO Rostinho junta três coisas:\n• o ultrassom do seu bebê\n• uma foto da mãe\n• uma foto do pai\n\nE devolve um retrato de como esse rostinho pode ser: recém-nascido, aos 5, aos 18… até os 70 anos. As fotos dos pais são opcionais.\n\nÉ um jeito carinhoso de imaginar, feito com inteligência artificial. Não é exame nem previsão médica. É aquele \"será que vai ser assim?\" finalmente ganhando forma.\n\nToque no link da bio e veja o seu. 🤍",
+   "hashtags": [
+    "#rostinhobaby",
+    "#gravidez",
+    "#ultrassom",
+    "#gestante",
+    "#maedeprimeiraviagem"
+   ],
+   "alt": "Logo do Rostinho em letras arredondadas marrons, com etiquetas de 0 anos e 70 anos, e o texto: Chegou. Conheça quem você já ama. Ultrassom mais mãe mais pai igual ao rostinho do seu bebê.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-02-lancamento.png",
+     "web": "img/web/rostinho-02-lancamento.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ecd6cd",
+     "bytes": 1410152
+    }
+   ]
+  },
+  {
+   "id": "story-lancamento",
+   "section": "s01",
+   "order": "02",
+   "title": "Story de lançamento",
+   "type": "story",
+   "goal": "Levar pro link no mesmo dia do lançamento",
+   "caption": "Conhecer o Rostinho",
+   "hashtags": [],
+   "storyTip": "Story não tem legenda. Publique no mesmo dia do post de lançamento, adicione o sticker de Link com o endereço do app (o mesmo da bio) e posicione em cima do botão \"toque no link e conheça\". O texto abaixo é o que vai escrito no sticker.",
+   "alt": "Fundo vinho com o logo do Rostinho, o mascote Zinho acenando e o texto: Seu bebê já tem um rostinho. A gente só ajuda você a ver.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-story-lancamento.png",
+     "web": "img/web/rostinho-story-lancamento.webp",
+     "w": 1080,
+     "h": 1920,
+     "bg": "#2b1922",
+     "bytes": 862669
+    }
+   ]
+  },
+  {
+   "id": "03-prazer-zinho",
+   "section": "s01",
+   "order": "03",
+   "title": "Prazer, Zinho",
+   "type": "single",
+   "goal": "Apresentar o mascote e puxar comentários",
+   "caption": "Ele dormia quietinho no nosso logo. Até que um dia acordou. 👋\n\nPrazer, Zinho. Mascote oficial do Rostinho, dono de um macacão azul e de um cachinho que nenhum pente vence.\n\nÉ ele quem vai aparecer por aqui explicando como tudo funciona, contando curiosidades da gestação e, claro, fazendo charme.\n\nE o seu bebê, qual apelido já ganhou antes de nascer? Feijãozinho, pitoco, inquilino… vale tudo. Conta aqui embaixo 👇",
+   "hashtags": [
+    "#rostinhobaby",
+    "#gestante",
+    "#gravidez",
+    "#bebe",
+    "#maternidade"
+   ],
+   "alt": "Fundo azul claro com o mascote Zinho em 3D, um bebê com macacão azul e um cachinho na cabeça, acenando. Texto: Prazer, Zinho. O rostinho do nosso logo ganhou corpo, macacão e um cachinho teimoso.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-03-prazer-zinho.png",
+     "web": "img/web/rostinho-03-prazer-zinho.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#cfddeb",
+     "bytes": 1461837
+    }
+   ]
+  },
+  {
+   "id": "04-como-funciona",
+   "section": "s02",
+   "order": "04",
+   "title": "Como funciona",
+   "type": "carousel",
+   "goal": "Explicar o app e gerar salvamentos",
+   "caption": "Do ultrassom ao rostinho em 3 passos. Arrasta pro lado →\n\n1. Envie o ultrassom\n2D, 3D ou 4D. Vale aquela foto do exame que já mora no seu celular.\n\n2. Some a mãe e o pai\nUma foto de cada, se quiser. São eles que emprestam o nariz, os olhos e o cabelo.\n\n3. Escolha a idade\nDe recém-nascido a 70 anos. Em segundos aparece um retrato de quem está chegando.\n\nPronto. Agora é só se emocionar (e mandar no grupo da família).\n\nOs retratos são gerados por inteligência artificial: um jeito carinhoso de imaginar, não uma previsão exata.\n\n📌 Salve este post pra usar no dia do próximo ultrassom. O Rostinho está no link da bio.",
+   "hashtags": [
+    "#rostinhobaby",
+    "#ultrassom",
+    "#ultrassom4d",
+    "#gestante",
+    "#gravidez"
+   ],
+   "alt": "Carrossel de 5 imagens explicando o Rostinho: capa Do ultrassom ao rostinho em 3 passos; passo 1, envie o ultrassom; passo 2, some a mãe e o pai; passo 3, escolha a idade de 0 a 70 anos; e o fechamento Conheça quem você já ama, link na bio.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-04-como-funciona-1.png",
+     "web": "img/web/rostinho-04-como-funciona-1.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ede1c7",
+     "bytes": 1462145
+    },
+    {
+     "full": "img/full/rostinho-04-como-funciona-2.png",
+     "web": "img/web/rostinho-04-como-funciona-2.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#150e11",
+     "bytes": 670738
+    },
+    {
+     "full": "img/full/rostinho-04-como-funciona-3.png",
+     "web": "img/web/rostinho-04-como-funciona-3.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ded9ec",
+     "bytes": 1505615
+    },
+    {
+     "full": "img/full/rostinho-04-como-funciona-4.png",
+     "web": "img/web/rostinho-04-como-funciona-4.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ede1c7",
+     "bytes": 1441270
+    },
+    {
+     "full": "img/full/rostinho-04-como-funciona-5.png",
+     "web": "img/web/rostinho-04-como-funciona-5.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ecd6cd",
+     "bytes": 1420270
+    }
+   ],
+   "zip": "zip/rostinho-04-como-funciona.zip"
+  },
+  {
+   "id": "05-notas",
+   "section": "s01",
+   "order": "05",
+   "title": "Notas 03:07",
+   "type": "single",
+   "goal": "Identificação, marcações e compartilhamentos",
+   "caption": "03:07. O bebê resolveu treinar futebol e o sono foi embora junto.\n\nE aí a cabeça começa: com quem ele vai parecer? Vai ter o meu sorriso ou o do pai? O cabelo vai ser cacheado? E com 15 anos? E com 40?\n\nSe você também tem uma lista assim escondida nas notas do celular, saiba que não está sozinha. 🤍\n\nMarca aqui uma mãe que está acordada agora (ou que vai se identificar amanhã cedo).",
+   "hashtags": [
+    "#rostinhobaby",
+    "#gestante",
+    "#maternidadereal",
+    "#maedeprimeiraviagem",
+    "#gravidez"
+   ],
+   "alt": "Print estilizado do app de notas do celular, às 3h07, com o título Coisas que eu queria saber sobre você, filho, e perguntas como com quem você vai parecer e como vai ser seu rosto com 15 anos. Embaixo, o mascote Zinho dormindo e o texto: marca uma mãe acordada agora.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-05-notas.png",
+     "web": "img/web/rostinho-05-notas.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#fbfaf7",
+     "bytes": 124393
+    }
+   ]
+  },
+  {
+   "id": "06-vida-inteira",
+   "section": "s03",
+   "order": "06",
+   "title": "A vida inteira",
+   "type": "carousel",
+   "goal": "Emocionar e gerar comentários e envios",
+   "caption": "Você vai ver esse rostinho mudar a vida inteira. Que tal dar uma espiadinha agora?\n\nRecém-nascido: o primeiro colo e o rosto que você esperou nove meses.\n5 anos: mochila nas costas, primeiro dia de escola.\n18 anos: formatura. Você vai chorar, avisando.\n40 anos: aquele jeitinho que veio de você.\n70 anos: o cachinho virou cabelo branco. O amor continua igual.\n\nAqui quem posou foi o Zinho. No app, os retratos são realistas e feitos a partir do ultrassom e das fotos de vocês.\n\nQual idade você teria mais curiosidade de ver? Conta aqui embaixo 👇",
+   "hashtags": [
+    "#rostinhobaby",
+    "#gravidez",
+    "#gestante",
+    "#maternidade",
+    "#bebe"
+   ],
+   "alt": "Carrossel de 6 imagens com o Zinho em várias idades: capa Quem ele vai ser?, depois recém-nascido, 5 anos, 18 anos, 40 anos e 70 anos, cada um com uma frase sobre aquela fase da vida.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-06-vida-inteira-1.png",
+     "web": "img/web/rostinho-06-vida-inteira-1.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#e3e0da",
+     "bytes": 960516
+    },
+    {
+     "full": "img/full/rostinho-06-vida-inteira-2.png",
+     "web": "img/web/rostinho-06-vida-inteira-2.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#cfddeb",
+     "bytes": 1598683
+    },
+    {
+     "full": "img/full/rostinho-06-vida-inteira-3.png",
+     "web": "img/web/rostinho-06-vida-inteira-3.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ede1c7",
+     "bytes": 1584353
+    },
+    {
+     "full": "img/full/rostinho-06-vida-inteira-4.png",
+     "web": "img/web/rostinho-06-vida-inteira-4.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ded9ec",
+     "bytes": 1562391
+    },
+    {
+     "full": "img/full/rostinho-06-vida-inteira-5.png",
+     "web": "img/web/rostinho-06-vida-inteira-5.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ecd6cd",
+     "bytes": 1612866
+    },
+    {
+     "full": "img/full/rostinho-06-vida-inteira-6.png",
+     "web": "img/web/rostinho-06-vida-inteira-6.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#dbe3eb",
+     "bytes": 1563981
+    }
+   ],
+   "zip": "zip/rostinho-06-vida-inteira.zip"
+  },
+  {
+   "id": "07-vinculo",
+   "section": "s04",
+   "order": "07",
+   "title": "Vínculo",
+   "type": "single",
+   "goal": "Educar e gerar salvamentos e envios",
+   "caption": "O amor pelo bebê começa antes do parto. E a psicologia tem até nome pra isso.\n\nChama vínculo pré-natal: o laço que mãe e pai constroem com o bebê ainda na barriga. Ele não pede nada mirabolante. Cresce com gestos pequenos do dia a dia:\n\n• conversar com a barriga (lá pela metade da gestação, ele já começa a ouvir sua voz)\n• escolher o nome e testar como ele soa\n• imaginar o rostinho\n\nFoi por causa desse terceiro gesto que o Rostinho nasceu.\n\nEnvie pra alguém que está esperando um bebê. 🤍",
+   "hashtags": [
+    "#rostinhobaby",
+    "#vinculoprenatal",
+    "#gestacao",
+    "#gravidez",
+    "#maternidade"
+   ],
+   "alt": "Fundo lilás com o Zinho segurando um coração e o texto: Ciência com carinho. O laço começa antes do colo. Psicólogos chamam de vínculo pré-natal o laço que mãe e pai criam com o bebê antes de ele nascer. Gestos: conversar com a barriga, escolher o nome, imaginar o rostinho.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-07-vinculo.png",
+     "web": "img/web/rostinho-07-vinculo.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ded9ec",
+     "bytes": 1407026
+    }
+   ]
+  },
+  {
+   "id": "08-toda-familia",
+   "section": "s04",
+   "order": "08",
+   "title": "Toda família",
+   "type": "single",
+   "goal": "Inclusão, envios e alcance",
+   "caption": "Aqui não tem campo obrigatório escrito \"nome do pai\".\n\nFamília é quem chega junto. Mãe solo, duas mães, dois pais, avó que cria, tia que virou mãe, padrasto que virou pai.\n\nNo Rostinho, as fotos são opcionais: dá pra fazer só com o ultrassom, com uma foto ou com duas. O que não é opcional é o amor (e esse a gente sabe que já está aí).\n\nEnvie pra família que está esperando esse rostinho. 🤍",
+   "hashtags": [
+    "#rostinhobaby",
+    "#familia",
+    "#diversidadefamiliar",
+    "#maesolo",
+    "#gestante"
+   ],
+   "alt": "Fundo amarelo claro com o Zinho de macacão verde acenando e o texto: Mãe solo. Duas mães. Dois pais. Avó que cria. Toda família cabe num rostinho. As fotos do pai e da mãe são opcionais. O amor, não.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-08-toda-familia.png",
+     "web": "img/web/rostinho-08-toda-familia.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ede1c7",
+     "bytes": 1473390
+    }
+   ]
+  },
+  {
+   "id": "09-marque",
+   "section": "s04",
+   "order": "09",
+   "title": "Marque",
+   "type": "single",
+   "goal": "Marcações e comentários",
+   "caption": "A vovó é a favorita, mas a gente já viu tio chorar mais. 👀\n\nToda família tem aquela pessoa que chora em chá revelação, em comercial de margarina e em foto de ultrassom. Quando o rostinho aparecer na tela, ela vai ser a primeira.\n\nMarca ela aqui. A gente quer saber quem é 😂👇",
+   "hashtags": [
+    "#rostinhobaby",
+    "#chadebebe",
+    "#charevelacao",
+    "#gravidez",
+    "#familia"
+   ],
+   "alt": "Fundo coral com o Zinho surpreso e o texto: Marca aqui quem vai chorar primeiro quando vir o rostinho. A vovó, né?",
+   "slides": [
+    {
+     "full": "img/full/rostinho-09-marque.png",
+     "web": "img/web/rostinho-09-marque.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#d56d5b",
+     "bytes": 756938
+    }
+   ]
+  },
+  {
+   "id": "f01-toda-familia",
+   "section": "s05",
+   "order": "F01",
+   "title": "Toda família",
+   "type": "single",
+   "goal": "Inclusão e envios",
+   "caption": "Quantas mãos cabem em volta de um bebê? Todas as que amam.\n\nNão existe formato certo de família. Existe gente esperando por um rostinho: mãe solo, duas mães, dois pais, avó que cria, a madrinha que já comprou metade do enxoval.\n\nPor isso, no Rostinho, as fotos são opcionais. Você monta com quem faz parte da história.\n\nCompartilhe com a sua rede de apoio. 🤍",
+   "hashtags": [
+    "#rostinhobaby",
+    "#familia",
+    "#rededeapoio",
+    "#maternidade",
+    "#bebe"
+   ],
+   "alt": "Foto de um bebê sorrindo deitado, rodeado por várias mãos de pessoas diferentes, com o texto: Toda família cabe num rostinho. Mãe solo, duas mães, dois pais, avó que cria. As fotos são opcionais. O amor, não.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-f01-toda-familia.png",
+     "web": "img/web/rostinho-f01-toda-familia.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#f5f1ee",
+     "bytes": 1838400
+    }
+   ]
+  },
+  {
+   "id": "f02-o-laco",
+   "section": "s05",
+   "order": "F02",
+   "title": "O laço",
+   "type": "single",
+   "goal": "Comentários e conexão",
+   "caption": "Teve um dia em que a ficha caiu. Qual foi o seu?\n\nPra algumas mães foi o primeiro chute. Pra outras, o nome escolhido, o enxoval dobrado na gaveta ou a música que o bebê parece reconhecer.\n\nA psicologia chama isso de vínculo pré-natal: o laço que começa antes do colo. E imaginar o rostinho é um dos gestos que aproximam mãe, pai e bebê antes mesmo do parto.\n\nConta nos comentários o momento em que você se sentiu mãe ou pai pela primeira vez 👇",
+   "hashtags": [
+    "#rostinhobaby",
+    "#vinculoprenatal",
+    "#gestante",
+    "#maternidade",
+    "#paternidade"
+   ],
+   "alt": "Foto de um recém-nascido enrolado em uma manta, apoiado nas mãos de dois adultos, com o texto: Vínculo pré-natal. O laço começa antes do colo. Imaginar o rostinho é um dos gestos que aproximam mãe, pai e bebê antes mesmo do parto.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-f02-o-laco.png",
+     "web": "img/web/rostinho-f02-o-laco.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#fbfaf7",
+     "bytes": 427457
+    }
+   ]
+  },
+  {
+   "id": "f03-dobrinhas",
+   "section": "s05",
+   "order": "F03",
+   "title": "Dobrinhas",
+   "type": "single",
+   "goal": "Encantar e levar pro link",
+   "caption": "Ele ainda nem nasceu e já tem opinião sobre a posição em que você dorme.\n\nJá tem jeito, já tem horário preferido pra chutar, já tem as dobrinhas que um dia você vai apertar sem parar. Só falta uma coisa: ver o rosto.\n\nO Rostinho ajuda com essa parte. Ultrassom + fotos dos pais = um retrato de quem já é dono do seu coração (e de cada dobrinha).\n\nVeja o seu pelo link da bio. 🤍",
+   "hashtags": [
+    "#rostinhobaby",
+    "#gravida",
+    "#gestante",
+    "#bebe",
+    "#gravidez"
+   ],
+   "alt": "Foto de perto das dobrinhas do braço e da perna de um bebê, com uma mãozinha segurando a meia, e o texto: Cada dobrinha já tem dono. Ele já tem jeito, cheirinho e manias. Só falta você ver o rosto.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-f03-dobrinhas.png",
+     "web": "img/web/rostinho-f03-dobrinhas.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#eeece9",
+     "bytes": 1871372
+    }
+   ]
+  },
+  {
+   "id": "f04-teaser",
+   "section": "s05",
+   "order": "F04",
+   "title": "Teaser",
+   "type": "single",
+   "goal": "Gerar curiosidade (pré-lançamento)",
+   "caption": "Ela já sabe o nome, o enxoval e o tamanho do pezinho. Só falta o rosto.\n\nToda mãe conhece o filho muito antes do parto. Conhece o jeito de mexer, a hora preferida de chutar, o soluço que aparece depois do almoço. O rostinho é a única parte que ainda é segredo.\n\nEm breve, esse segredo vai ganhar uma prévia. 🤍\n\nSiga @rostinhobaby pra ser a primeira a ver.",
+   "hashtags": [
+    "#rostinhobaby",
+    "#gestante",
+    "#ultrassom",
+    "#gravidez",
+    "#maternidade"
+   ],
+   "note": "A arte diz \"Em breve\": publique antes do lançamento.",
+   "alt": "Foto de uma gestante em ambiente escuro segurando a imagem impressa de um ultrassom junto à barriga iluminada, com o texto: Em breve. Toda mãe já conhece o rostinho do filho. Só ainda não viu.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-f04-teaser.png",
+     "web": "img/web/rostinho-f04-teaser.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#071718",
+     "bytes": 1857703
+    }
+   ]
+  },
+  {
+   "id": "f05-primeiro-colo",
+   "section": "s05",
+   "order": "F05",
+   "title": "Primeiro colo",
+   "type": "single",
+   "goal": "Emocionar e gerar salvamentos",
+   "caption": "Você já ensaiou esse abraço mais vezes do que consegue contar.\n\nNo banho, antes de dormir, na sala de espera do pré-natal. O primeiro colo é imaginado muito antes de acontecer: o peso, o cheirinho, o rosto encostado no seu peito.\n\nO Rostinho deixa esse ensaio mais nítido. Envie o ultrassom e veja um retrato do bebê que vai caber nesse abraço.\n\nSalve este post pra mostrar pra ele daqui a alguns anos. 🤍",
+   "hashtags": [
+    "#rostinhobaby",
+    "#recemnascido",
+    "#gestante",
+    "#maternidade",
+    "#gravidez"
+   ],
+   "alt": "Foto de um recém-nascido dormindo no colo da mãe, com o texto: Primeiro colo. Imaginado muito antes. Esse abraço você já sentiu mil vezes, antes de ele chegar.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-f05-primeiro-colo.png",
+     "web": "img/web/rostinho-f05-primeiro-colo.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#ece6fb",
+     "bytes": 597764
+    }
+   ]
+  },
+  {
+   "id": "f06-sonhando",
+   "section": "s05",
+   "order": "F06",
+   "title": "Sonhando",
+   "type": "single",
+   "goal": "Mostrar as idades e puxar comentários",
+   "caption": "Enquanto ele sonha aí dentro, você sonha com tudo o que vem depois.\n\nO primeiro dente. A primeira mochila. A formatura. O dia em que ele vai ter a idade que você tem agora.\n\nNo Rostinho, você escolhe a fase e vê um retrato dele: recém-nascido, 5, 18, 40 ou 70 anos, e várias idades no meio do caminho.\n\nQual fase você escolheria primeiro? 👇",
+   "hashtags": [
+    "#rostinhobaby",
+    "#gravidez",
+    "#gestante",
+    "#bebe",
+    "#maternidade"
+   ],
+   "alt": "Foto de um recém-nascido dormindo de bruços com as mãozinhas no rosto, com o texto: A vida inteira. Sonhando com quem vai ser. Recém-nascido, 5, 18, 40, 70 anos. Veja cada fase do rostinho.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-f06-sonhando.png",
+     "web": "img/web/rostinho-f06-sonhando.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#dcebfa",
+     "bytes": 597183
+    }
+   ]
+  },
+  {
+   "id": "f07-ja-ama",
+   "section": "s05",
+   "order": "F07",
+   "title": "Já ama",
+   "type": "single",
+   "goal": "Conversão: clique no link",
+   "caption": "A conta mais bonita que você vai fazer na gestação:\n\nultrassom + foto da mãe + foto do pai = o rostinho do seu bebê\n\nFunciona com ultrassom 2D, 3D ou 4D. As fotos dos pais são opcionais, mas deixam o retrato com mais cara de família: o nariz de um, os olhos do outro, o cabelo de quem ganhar a disputa.\n\nO resultado é uma estimativa feita com inteligência artificial, pra você imaginar com carinho.\n\nToque no link da bio e conheça quem você já ama. 🤍",
+   "hashtags": [
+    "#rostinhobaby",
+    "#ultrassom",
+    "#ultrassom3d",
+    "#gestante",
+    "#gravidez"
+   ],
+   "alt": "Foto de um bebê de bochechas rosadas olhando para a câmera, com o texto: Chegou. Conheça quem você já ama. Ultrassom mais foto da mãe mais foto do pai igual ao rostinho do seu bebê.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-f07-ja-ama.png",
+     "web": "img/web/rostinho-f07-ja-ama.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#fbe3da",
+     "bytes": 510548
+    }
+   ]
+  },
+  {
+   "id": "f08-o-dedo",
+   "section": "s05",
+   "order": "F08",
+   "title": "O dedo",
+   "type": "single",
+   "goal": "Falar com os pais e gerar marcações",
+   "caption": "Pai, esse post é pra você.\n\nUm dia ele vai segurar seu dedo desse jeito, com a mão inteira, e não vai querer soltar. Até lá, a gente sabe: pra quem está do lado de fora da barriga, a gestação às vezes parece distante.\n\nQue tal ver o rostinho antes desse dia? Envie o ultrassom, junte a sua foto e a da mãe e veja um retrato de como ele pode ser.\n\nMarque um pai que está contando os dias 👇",
+   "hashtags": [
+    "#rostinhobaby",
+    "#paideprimeiraviagem",
+    "#paternidade",
+    "#gravidez",
+    "#gestante"
+   ],
+   "alt": "Foto da mão de um bebê segurando o dedo indicador de um adulto, com o texto: Um dia. Ele vai segurar seu dedo assim. E se você pudesse ver o rostinho dele antes desse dia?",
+   "slides": [
+    {
+     "full": "img/full/rostinho-f08-o-dedo.png",
+     "web": "img/web/rostinho-f08-o-dedo.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#eaeded",
+     "bytes": 1409068
+    }
+   ]
+  },
+  {
+   "id": "f09-mil-vezes",
+   "section": "s05",
+   "order": "F09",
+   "title": "Mil vezes",
+   "type": "single",
+   "goal": "Conversão emocional: clique no link",
+   "caption": "03:07 da manhã. Você acordada, ele chutando e a mesma pergunta voltando: como vai ser esse rostinho?\n\nVocê já imaginou mil versões. Com o seu nariz, com os olhos do pai, com aquele cabelo que ninguém na família sabe de onde veio.\n\nAgora dá pra ver uma delas. Envie o ultrassom pro Rostinho e conheça um retrato de quem está chegando.\n\nO link está na bio, pra quando a insônia bater. 🤍",
+   "hashtags": [
+    "#rostinhobaby",
+    "#gestante",
+    "#terceirotrimestre",
+    "#gravidez",
+    "#maedeprimeiraviagem"
+   ],
+   "alt": "Foto de um recém-nascido dormindo no colo, sobre fundo lilás, com o texto: 3h07 da manhã. Você já imaginou esse rostinho mil vezes. Agora dá para ver.",
+   "slides": [
+    {
+     "full": "img/full/rostinho-f09-mil-vezes.png",
+     "web": "img/web/rostinho-f09-mil-vezes.webp",
+     "w": 1080,
+     "h": 1350,
+     "bg": "#d5c9da",
+     "bytes": 1663034
+    }
+   ]
+  }
+ ]
+}

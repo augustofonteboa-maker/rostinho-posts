@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rostinho · Central de posts</title>
+<meta name="description" content="Criativos do Rostinho com legenda, hashtags e download, prontos para publicar no Instagram.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2b1922">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta property="og:title" content="Rostinho · Central de posts">
+<meta property="og:description" content="Baixe o criativo, copie a legenda e publique.">
+<meta property="og:image" content="img/web/rostinho-02-lancamento.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2b1922; --ink-soft:#5b4650; --coral:#d86f5d; --coral-deep:#b8523f;
+  --blush:#f3e4de; --paper:#fbf7f4; --card:#ffffff; --line:#eadbd4;
+  --lav:#e3ddf0; --butter:#f1e5cb; --sky:#dfe7f0; --cream:#f2ebe2;
+  --ok:#3f7a5a;
+  --radius-xl:28px; --radius-lg:18px; --radius-md:12px;
+  --sans:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --serif:"Instrument Serif", Georgia, serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--coral);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+
+/* ---------- topo ---------- */
+.hero{background:var(--ink);color:#f6ece6;padding:28px 0 34px;position:relative;overflow:hidden}
+.hero .wrap{position:relative}
+.hero-logo{width:min(260px,62vw);height:auto}
+.hero h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(38px,8vw,72px);line-height:.98;letter-spacing:-.01em;margin:26px 0 14px;max-width:14ch}
+.hero p.lead{margin:0;max-width:52ch;color:#e3cfc7;font-size:17px}
+.steps{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:640px}
+.steps li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-md);padding:12px 12px 12px;font-size:14px;line-height:1.3;color:#f1e3dc}
+.steps b{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:28px;line-height:1;color:var(--coral);margin-bottom:6px}
+
+.progress{margin-top:28px;max-width:640px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:14px;color:#e3cfc7}
+.progress-top strong{font-size:22px;color:#fff;font-weight:700}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.dots span{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.12);transition:background .25s,transform .25s}
+.dots span.on{background:var(--coral);transform:scale(1.08)}
+
+/* ---------- barra de filtros ---------- */
+.bar{position:sticky;top:0;z-index:20;background:rgba(251,247,244,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:10px;padding-top:10px;padding-bottom:10px;overflow-x:auto;scrollbar-width:none}
+.bar .wrap::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip .n{opacity:.6;margin-left:4px;font-weight:400}
+.sep{flex:none;width:1px;height:24px;background:var(--line)}
+.toggle{flex:none;display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;white-space:nowrap;padding:6px 4px}
+.toggle input{width:18px;height:18px;accent-color:var(--coral);margin:0}
+
+/* ---------- seções ---------- */
+main{padding-bottom:80px}
+.section{padding-top:44px}
+.section-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.section-head h2{font-size:clamp(26px,5vw,38px);line-height:1.05;letter-spacing:-.025em;font-weight:800;margin:0}
+.section-head .count{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--coral)}
+.section.empty{display:none}
+
+/* ---------- post ---------- */
+.post{background:var(--card);border-radius:var(--radius-xl);border:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);overflow:hidden;margin-bottom:22px}
+.post[hidden]{display:none}
+@media (min-width:860px){
+  .post{grid-template-columns:minmax(0,46%) minmax(0,1fr)}
+  .post .media{border-right:1px solid var(--line)}
+}
+.post.is-done .media{opacity:.55}
+.post.is-done .done-flag{display:inline-flex}
+
+.media{position:relative;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:12px;transition:background .3s}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;border-radius:var(--radius-lg);scrollbar-width:none;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;position:relative}
+.slide img{width:100%;height:auto;border-radius:var(--radius-lg);box-shadow:0 1px 0 rgba(43,25,34,.06),0 12px 30px -18px rgba(43,25,34,.45);background:#eee}
+.post.story .slide img{max-height:72vh;width:auto;margin:0 auto}
+.slide-dl{position:absolute;right:10px;top:10px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 14px -6px rgba(0,0,0,.4)}
+.slide-dl svg{width:18px;height:18px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nav .pager{display:flex;gap:6px;align-items:center}
+.nav .pager i{width:7px;height:7px;border-radius:50%;background:rgba(43,25,34,.22);transition:width .2s,background .2s}
+.nav .pager i.cur{width:20px;border-radius:4px;background:var(--ink)}
+.nav .ctr{font-size:13px;font-weight:700;min-width:36px}
+.nav .arrows{display:flex;gap:6px}
+.nav .arrows button{width:38px;height:38px;border-radius:50%;border:0;background:var(--ink);color:#fff;cursor:pointer;display:grid;place-items:center}
+.nav .arrows button:disabled{opacity:.25;cursor:default}
+.nav .arrows svg{width:16px;height:16px}
+.post.single .nav, .post.story .nav{display:none}
+.media.dark .ctr{color:#fff}
+.media.dark .nav .pager i{background:rgba(255,255,255,.3)}
+.media.dark .nav .pager i.cur{background:#fff}
+.media.dark .nav .arrows button{background:#fff;color:var(--ink)}
+
+.body{padding:22px 20px 22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+@media (min-width:860px){.body{padding:30px 30px 28px}}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 11px;font-size:13px;font-weight:500;background:var(--blush)}
+.tag.order{background:var(--ink);color:#fff;font-weight:700}
+.tag.carousel{background:var(--lav)}
+.tag.story{background:var(--butter)}
+.done-flag{display:none;background:#e3efe7;color:var(--ok)}
+.post h3{margin:0;font-size:clamp(26px,4.4vw,34px);line-height:1.05;letter-spacing:-.025em;font-weight:800}
+.goal{margin:-6px 0 0;font-family:var(--serif);font-style:italic;font-size:20px;color:var(--coral-deep);line-height:1.2}
+.note{background:#fff4e6;border:1px solid #f1d7b3;border-radius:var(--radius-md);padding:10px 12px;font-size:14px}
+.tip{background:var(--blush);border-radius:var(--radius-md);padding:12px 14px;font-size:14px;line-height:1.45}
+
+.caption-box{border:1.5px solid var(--line);border-radius:var(--radius-lg);background:var(--paper);position:relative}
+.caption-label{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 14px 0;font-size:13px;color:var(--ink-soft)}
+.caption-label .edited{display:none;align-items:center;gap:6px}
+.caption-box.is-edited .edited{display:inline-flex}
+.link-btn{border:0;background:none;padding:0;color:var(--coral-deep);font-weight:700;font-size:13px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.caption{white-space:pre-wrap;word-wrap:break-word;padding:8px 14px 12px;font-size:15.5px;line-height:1.55;max-height:9.3em;overflow:hidden;outline:none;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.caption-box.open .caption{max-height:none;-webkit-mask-image:none;mask-image:none}
+.caption:focus{background:#fff;border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.caption-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:0 14px 12px}
+.more{border:0;background:none;padding:4px 0;font-weight:700;font-size:14px;cursor:pointer;color:var(--ink)}
+.chars{font-size:12.5px;color:var(--ink-soft)}
+.hashtags{padding:0 14px 14px;color:var(--coral-deep);font-weight:500;font-size:15px;word-spacing:4px}
+
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:10px 16px;border-radius:16px;border:0;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.98)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.accent{background:var(--coral);color:#fff}
+.btn.ready{background:var(--ok)}
+.btn[aria-busy="true"]{opacity:.7;cursor:progress}
+.minor{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:14px}
+.minor button,.minor a{border:0;background:none;padding:6px 0;font-weight:500;font-size:14px;color:var(--ink);cursor:pointer;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;text-decoration-thickness:2px}
+.minor button:hover,.minor a:hover{text-decoration-color:var(--coral)}
+.done-row{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:14px;font-weight:500;cursor:pointer}
+.done-row input{width:22px;height:22px;accent-color:var(--ok);margin:0;flex:none}
+
+.empty-state{display:none;text-align:center;padding:60px 16px}
+.empty-state.show{display:block}
+.empty-state p{font-family:var(--serif);font-style:italic;font-size:30px;margin:0 0 6px}
+
+footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color:var(--ink-soft)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translate(-50%,30px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-weight:500;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50;max-width:calc(100% - 32px);text-align:center;box-shadow:0 12px 30px -10px rgba(0,0,0,.45)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:600px){
+  .hero{padding:22px 0 24px}
+  .hero-logo{width:180px}
+  .hero h1{font-size:40px;margin:18px 0 10px}
+  .hero p.lead{font-size:15px}
+  .steps{margin-top:18px;gap:8px}
+  .steps li{font-size:13px;padding:9px 10px}
+  .steps b{font-size:22px;margin-bottom:2px}
+  .progress{margin-top:18px}
+  .dots{gap:5px}.dots span{width:13px;height:13px}
+  .section{padding-top:32px}
+  .media{padding:12px}
+  .body{padding:18px 16px 18px}
+}
+@media (max-width:420px){
+  .actions{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="hero-logo" src="assets/logo-light.png" alt="Rostinho" width="762" height="130">
+    <h1>Seus posts, prontos pra publicar.</h1>
+    <p class="lead">Cada criativo já vem com legenda, hashtags e texto alternativo. Carrossel tem uma legenda só; post único tem a sua.</p>
+    <ol class="steps" aria-label="Como publicar">
+      <li><b>1</b>Salve a imagem no celular</li>
+      <li><b>2</b>Copie a legenda com hashtags</li>
+      <li><b>3</b>Cole no Instagram e publique</li>
+    </ol>
+    <div class="progress" aria-live="polite">
+      <div class="progress-top"><span><strong id="doneCount">0</strong> de <span id="totalCount">0</span> publicados</span><button class="link-btn" id="resetBtn" style="color:#f0b3a6" hidden>Desmarcar todos</button></div>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+    </div>
+  </div>
+</header>
+
+<nav class="bar" aria-label="Filtros">
+  <div class="wrap">
+    <button class="chip" data-filter="all" aria-pressed="true">Tudo<span class="n" data-n="all"></span></button>
+    <button class="chip" data-filter="carousel" aria-pressed="false">Carrosséis<span class="n" data-n="carousel"></span></button>
+    <button class="chip" data-filter="single" aria-pressed="false">Posts únicos<span class="n" data-n="single"></span></button>
+    <button class="chip" data-filter="story" aria-pressed="false">Story<span class="n" data-n="story"></span></button>
+    <span class="sep" aria-hidden="true"></span>
+    <label class="toggle"><input type="checkbox" id="hideDone">Esconder publicados</label>
+  </div>
+</nav>
+
+<main class="wrap" id="app"></main>
+<div class="wrap"><div class="empty-state" id="emptyState"><p>Tudo publicado por aqui.</p><span>Desmarque “Esconder publicados” para ver os posts de novo.</span></div></div>
+
+<footer>
+  <div class="wrap">
+    <span>Rostinho · @rostinhobaby</span>
+    <span>O Instagram aceita no máximo 5 hashtags por post. Todas as legendas já respeitam esse limite.</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function(){
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("data").textContent);
+  var POSTS = DATA.posts, SECTIONS = DATA.sections;
+  var KEY_DONE = "rostinho.done.v1", KEY_EDIT = "rostinho.edits.v1";
+
+  /* ---------- armazenamento local (opcional) ---------- */
+  function load(k){ try{ return JSON.parse(localStorage.getItem(k)) || {}; }catch(e){ return {}; } }
+  function save(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  var done = load(KEY_DONE), edits = load(KEY_EDIT);
+
+  /* ---------- ícones ---------- */
+  var I = {
+    down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>',
+    copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>',
+    check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+    prev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg>',
+    next:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>'
+  };
+
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+  function captionOf(p){ return edits[p.id] != null ? edits[p.id] : p.caption; }
+  function fullText(p){ var c = captionOf(p).trim(); return p.hashtags.length ? c + "\n\n" + p.hashtags.join(" ") : c; }
+  function plural(n, a, b){ return n + " " + (n === 1 ? a : b); }
+  function fileName(path){ return path.split("/").pop(); }
+  function mb(bytes){ return (bytes/1048576).toFixed(1).replace(".", ",") + " MB"; }
+
+  /* ---------- toast ---------- */
+  var toastEl = document.getElementById("toast"), toastT;
+  function toast(msg){ toastEl.textContent = msg; toastEl.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function(){ toastEl.classList.remove("show"); }, 2400); }
+
+  /* ---------- copiar ---------- */
+  function copy(text, msg){
+    function fallback(){
+      var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.opacity="0";
+      document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+      var ok = false; try{ ok = document.execCommand("copy"); }catch(e){}
+      document.body.removeChild(ta);
+      toast(ok ? msg : "Não deu para copiar. Selecione o texto e copie manualmente.");
+    }
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(function(){ toast(msg); }, fallback);
+    } else fallback();
+  }
+
+  /* ---------- salvar imagens ---------- */
+  var isTouch = window.matchMedia("(pointer:coarse)").matches;
+  var blobCache = {};
+  function getFiles(paths){
+    return Promise.all(paths.map(function(path){
+      if (blobCache[path]) return blobCache[path];
+      return fetch(path).then(function(r){ if(!r.ok) throw new Error("http"); return r.blob(); }).then(function(b){
+        var f = new File([b], fileName(path), {type: b.type || "image/png"}); blobCache[path] = f; return f;
+      });
+    }));
+  }
+  function anchorDownload(href, name){
+    var a = document.createElement("a"); a.href = href; a.download = name || ""; a.rel = "noopener";
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  function canShareFiles(files){ try{ return !!(navigator.canShare && navigator.canShare({files: files})); }catch(e){ return false; } }
+
+  function saveImages(paths, btn, zip){
+    // Computador: baixa direto (carrossel vai em .zip)
+    if (!isTouch){
+      if (zip && paths.length > 1){ anchorDownload(zip, fileName(zip)); toast("Baixando o carrossel em .zip"); }
+      else { paths.forEach(function(p,i){ setTimeout(function(){ anchorDownload(p, fileName(p)); }, i*350); }); toast(paths.length > 1 ? "Baixando " + paths.length + " imagens" : "Baixando a imagem"); }
+      return;
+    }
+    // Celular: abre a folha de compartilhamento para "Salvar imagem"
+    var label = btn.querySelector("span").textContent;
+    if (btn.dataset.ready === "1"){
+      share(paths, btn, label); return;
+    }
+    btn.setAttribute("aria-busy","true"); btn.querySelector("span").textContent = "Preparando…";
+    getFiles(paths).then(function(files){
+      btn.removeAttribute("aria-busy");
+      if (!canShareFiles(files)){
+        btn.querySelector("span").textContent = btn.dataset.label;
+        paths.forEach(function(p,i){ setTimeout(function(){ anchorDownload(p, fileName(p)); }, i*400); });
+        toast("Download iniciado");
+        return;
+      }
+      navigator.share({files: files}).then(function(){
+        resetBtn(btn); toast(paths.length > 1 ? "Pronto! Escolha “Salvar " + paths.length + " imagens”." : "Pronto! Escolha “Salvar imagem”.");
+      }).catch(function(err){
+        if (err && err.name === "NotAllowedError"){
+          // o navegador pediu um toque novo: deixa o botão pronto
+          btn.dataset.ready = "1"; btn.classList.add("ready"); btn.querySelector("span").textContent = "Toque para salvar";
+        } else resetBtn(btn);
+      });
+    }).catch(function(){
+      resetBtn(btn); btn.removeAttribute("aria-busy");
+      toast("Não consegui carregar a imagem. Verifique a internet e tente de novo.");
+    });
+  }
+  function share(paths, btn){
+    var files = paths.map(function(p){ return blobCache[p]; });
+    navigator.share({files: files}).then(function(){ resetBtn(btn); toast("Imagem enviada para salvar"); }).catch(function(){ resetBtn(btn); });
+  }
+  function resetBtn(btn){ btn.dataset.ready = ""; btn.classList.remove("ready"); btn.querySelector("span").textContent = btn.dataset.label; }
+
+  /* ---------- render ---------- */
+  var app = document.getElementById("app");
+  var html = "";
+  SECTIONS.forEach(function(sec){
+    var list = POSTS.filter(function(p){ return p.section === sec.id; });
+    if (!list.length) return;
+    var feed = list.filter(function(p){ return p.type !== "story"; }).length;
+    var st = list.length - feed;
+    var countTxt = list[0].type === "carousel" && list.length === 1 ? plural(list[0].slides.length, "imagem", "imagens") + ", 1 legenda" : plural(feed, "post", "posts") + (st ? " + " + plural(st, "story", "stories") : "");
+    html += '<section class="section" data-section="'+sec.id+'"><div class="section-head"><h2>'+esc(sec.title)+'</h2><span class="count">'+countTxt+'</span></div>';
+    list.forEach(function(p){ html += card(p); });
+    html += "</section>";
+  });
+  app.innerHTML = html;
+
+  function card(p){
+    var n = p.slides.length, isCar = p.type === "carousel", isStory = p.type === "story";
+    var typeTag = isCar ? '<span class="tag carousel">Carrossel · '+n+' imagens</span>' : isStory ? '<span class="tag story">Story 9:16</span>' : '<span class="tag">Post único</span>';
+    var slides = p.slides.map(function(s,i){
+      return '<div class="slide" data-bg="'+s.bg+'"><img src="'+s.web+'" width="'+s.w+'" height="'+s.h+'" loading="lazy" decoding="async" alt="'+(n>1? "Imagem "+(i+1)+" de "+n : esc(p.title))+'">'+
+        (n>1 ? '<button class="slide-dl" data-act="slide" data-i="'+i+'" aria-label="Salvar só a imagem '+(i+1)+'">'+I.down+'</button>' : '')+'</div>';
+    }).join("");
+    var pager = isCar ? p.slides.map(function(_,i){ return '<i'+(i===0?' class="cur"':'')+'></i>'; }).join("") : "";
+    var saveLabel = n > 1 ? "Salvar " + n + " imagens" : "Salvar imagem";
+    var size = p.slides.reduce(function(a,s){ return a + s.bytes; }, 0);
+    var editedCls = edits[p.id] != null ? " is-edited" : "";
+
+    var textBlock;
+    if (isStory){
+      textBlock =
+        '<div class="tip">'+esc(p.storyTip)+'</div>'+
+        '<div class="caption-box open"><div class="caption-label"><span>Texto do sticker de link</span></div><div class="caption" style="font-weight:700;font-size:18px">'+esc(p.caption)+'</div></div>';
+    } else {
+      textBlock =
+        '<div class="caption-box'+editedCls+'">'+
+          '<div class="caption-label"><span>Legenda <span class="edit-hint">· toque no texto para editar</span></span><span class="edited">editada · <button class="link-btn" data-act="restore">desfazer</button></span></div>'+
+          '<div class="caption" contenteditable="plaintext-only" spellcheck="true" aria-label="Legenda de '+esc(p.title)+'">'+esc(captionOf(p))+'</div>'+
+          '<div class="caption-foot"><button class="more" data-act="more" aria-expanded="false">Ler legenda inteira</button><span class="chars"></span></div>'+
+          '<div class="hashtags">'+esc(p.hashtags.join(" "))+'</div>'+
+        '</div>';
+    }
+
+    var copyLabel = isStory ? "Copiar texto" : "Copiar legenda";
+    var minor = [];
+    if (!isStory) minor.push('<button data-act="tags">Copiar só as hashtags</button>');
+    minor.push('<button data-act="alt">Copiar texto alternativo</button>');
+    if (p.zip) minor.push('<a href="'+p.zip+'" download>Baixar .zip ('+mb(size)+')</a>');
+
+    return '<article class="post '+p.type+(done[p.id] ? " is-done" : "")+'" id="'+p.id+'" data-id="'+p.id+'" data-type="'+p.type+'">'+
+      '<div class="media" style="background:'+p.slides[0].bg+'">'+
+        '<div class="track" tabindex="0" aria-label="Pré-visualização">'+slides+'</div>'+
+        '<div class="nav"><span class="ctr">1/'+n+'</span><span class="pager">'+pager+'</span><span class="arrows"><button data-act="prev" aria-label="Imagem anterior" disabled>'+I.prev+'</button><button data-act="next" aria-label="Próxima imagem">'+I.next+'</button></span></div>'+
+      '</div>'+
+      '<div class="body">'+
+        '<div class="meta"><span class="tag order">'+esc(p.order)+'</span>'+typeTag+'<span class="tag done-flag">'+I.check.replace('<svg','<svg width="14" height="14"')+'Publicado</span></div>'+
+        '<h3>'+esc(p.title)+'</h3>'+
+        '<p class="goal">'+esc(p.goal)+'</p>'+
+        (p.note ? '<div class="note">'+esc(p.note)+'</div>' : '')+
+        textBlock+
+        '<div class="actions">'+
+          '<button class="btn primary" data-act="save" data-label="'+saveLabel+'">'+I.down+'<span>'+saveLabel+'</span></button>'+
+          '<button class="btn accent" data-act="copy">'+I.copy+'<span>'+copyLabel+'</span></button>'+
+        '</div>'+
+        '<div class="minor">'+minor.join("")+'</div>'+
+        '<label class="done-row"><input type="checkbox" data-act="done"'+(done[p.id]?" checked":"")+'>Já publiquei este '+(isStory ? "story" : "post")+'</label>'+
+      '</div>'+
+    '</article>';
+  }
+
+  var byId = {}; POSTS.forEach(function(p){ byId[p.id] = p; });
+
+  /* ---------- contadores e progresso ---------- */
+  var dotsEl = document.getElementById("dots");
+  dotsEl.innerHTML = POSTS.map(function(p){ return '<span data-dot="'+p.id+'"></span>'; }).join("");
+  document.getElementById("totalCount").textContent = POSTS.length;
+  ["all","carousel","single","story"].forEach(function(t){
+    var c = t === "all" ? POSTS.length : POSTS.filter(function(p){ return p.type === t; }).length;
+    var el = document.querySelector('[data-n="'+t+'"]'); if (el) el.textContent = c;
+  });
+  function updateProgress(){
+    var c = 0;
+    POSTS.forEach(function(p){ var on = !!done[p.id]; if (on) c++; var d = dotsEl.querySelector('[data-dot="'+p.id+'"]'); d.classList.toggle("on", on); });
+    document.getElementById("doneCount").textContent = c;
+    document.getElementById("resetBtn").hidden = c === 0;
+  }
+  updateProgress();
+
+  /* ---------- legenda: tamanho e expandir ---------- */
+  function updateChars(art){
+    var p = byId[art.dataset.id], el = art.querySelector(".chars"); if (!el) return;
+    var len = fullText(p).length;
+    el.textContent = len + " / 2.200 caracteres";
+    el.style.color = len > 2200 ? "#b3261e" : "";
+  }
+  document.querySelectorAll(".post").forEach(function(art){
+    updateChars(art);
+    var cap = art.querySelector(".caption-box:not(.open) .caption");
+    if (cap && cap.scrollHeight <= cap.clientHeight + 4){ art.querySelector(".caption-box").classList.add("open"); var m = art.querySelector('[data-act="more"]'); if (m) m.hidden = true; }
+  });
+  // navegadores sem plaintext-only
+  var probe = document.createElement("div"); probe.contentEditable = "plaintext-only";
+  if (probe.contentEditable !== "plaintext-only") document.querySelectorAll('.caption[contenteditable]').forEach(function(c){ c.contentEditable = "true"; });
+
+  app.addEventListener("input", function(e){
+    var cap = e.target.closest(".caption"); if (!cap) return;
+    var art = cap.closest(".post"), p = byId[art.dataset.id];
+    var val = cap.innerText.replace(/ /g," ");
+    if (val.trim() === p.caption.trim()) delete edits[p.id]; else edits[p.id] = val;
+    save(KEY_EDIT, edits);
+    art.querySelector(".caption-box").classList.toggle("is-edited", edits[p.id] != null);
+    updateChars(art);
+  });
+  app.addEventListener("focusin", function(e){
+    var cap = e.target.closest(".caption"); if (!cap) return;
+    var box = cap.closest(".caption-box"); box.classList.add("open");
+    var m = box.querySelector('[data-act="more"]'); if (m){ m.textContent = "Recolher legenda"; m.setAttribute("aria-expanded","true"); }
+  });
+
+  /* ---------- carrossel ---------- */
+  function setupTrack(art){
+    var track = art.querySelector(".track"), slides = track.children, n = slides.length;
+    var media = art.querySelector(".media"), ctr = art.querySelector(".ctr"), pager = art.querySelectorAll(".pager i");
+    var prev = art.querySelector('[data-act="prev"]'), next = art.querySelector('[data-act="next"]');
+    function idx(){ return Math.round(track.scrollLeft / (track.clientWidth + 12)); }
+    function sync(){
+      var i = Math.max(0, Math.min(n-1, idx()));
+      ctr.textContent = (i+1) + "/" + n;
+      pager.forEach(function(d,k){ d.classList.toggle("cur", k === i); });
+      prev.disabled = i === 0; next.disabled = i === n-1;
+      paint(media, slides[i].dataset.bg);
+    }
+    var t; track.addEventListener("scroll", function(){ clearTimeout(t); t = setTimeout(sync, 60); }, {passive:true});
+    track._go = function(d){ var i = Math.max(0, Math.min(n-1, idx()+d)); track.scrollTo({left: i*(track.clientWidth+12), behavior:"smooth"}); };
+    track.addEventListener("keydown", function(e){ if (e.key === "ArrowRight"){ e.preventDefault(); track._go(1); } if (e.key === "ArrowLeft"){ e.preventDefault(); track._go(-1); } });
+  }
+  function paint(el, hex){ el.style.background = hex; var r=parseInt(hex.substr(1,2),16),g=parseInt(hex.substr(3,2),16),b=parseInt(hex.substr(5,2),16); el.classList.toggle("dark", (0.299*r+0.587*g+0.114*b) < 110); }
+  document.querySelectorAll(".post").forEach(function(a){ var m=a.querySelector(".media"); paint(m, a.querySelector(".slide").dataset.bg); });
+  document.querySelectorAll(".post.carousel").forEach(setupTrack);
+
+  /* ---------- ações ---------- */
+  app.addEventListener("click", function(e){
+    var el = e.target.closest("[data-act]"); if (!el) return;
+    var art = el.closest(".post"), p = byId[art.dataset.id], act = el.dataset.act;
+    if (act === "copy"){ copy(fullText(p), p.type === "story" ? "Texto do sticker copiado" : "Legenda copiada. Agora é só colar no Instagram."); }
+    else if (act === "tags"){ copy(p.hashtags.join(" "), "Hashtags copiadas"); }
+    else if (act === "alt"){ copy(p.alt, "Texto alternativo copiado"); }
+    else if (act === "save"){ saveImages(p.slides.map(function(s){ return s.full; }), el, p.zip); }
+    else if (act === "slide"){ var s = p.slides[+el.dataset.i]; if (isTouch && navigator.share){ getFiles([s.full]).then(function(f){ if (canShareFiles(f)) navigator.share({files:f}).catch(function(){}); else anchorDownload(s.full, fileName(s.full)); }); } else anchorDownload(s.full, fileName(s.full)); }
+    else if (act === "prev"){ art.querySelector(".track")._go(-1); }
+    else if (act === "next"){ art.querySelector(".track")._go(1); }
+    else if (act === "more"){
+      var box = art.querySelector(".caption-box"), open = box.classList.toggle("open");
+      el.textContent = open ? "Recolher legenda" : "Ler legenda inteira"; el.setAttribute("aria-expanded", open);
+      if (!open) box.scrollIntoView({block:"nearest"});
+    }
+    else if (act === "restore"){
+      delete edits[p.id]; save(KEY_EDIT, edits);
+      art.querySelector(".caption").textContent = p.caption;
+      art.querySelector(".caption-box").classList.remove("is-edited"); updateChars(art); toast("Legenda original de volta");
+    }
+  });
+  app.addEventListener("change", function(e){
+    if (e.target.dataset.act !== "done") return;
+    var art = e.target.closest(".post"), id = art.dataset.id;
+    if (e.target.checked) done[id] = Date.now(); else delete done[id];
+    save(KEY_DONE, done); art.classList.toggle("is-done", e.target.checked); updateProgress(); applyFilter();
+    if (e.target.checked) toast("Marcado como publicado");
+  });
+  document.getElementById("resetBtn").addEventListener("click", function(){
+    done = {}; save(KEY_DONE, done);
+    document.querySelectorAll('[data-act="done"]').forEach(function(c){ c.checked = false; });
+    document.querySelectorAll(".post").forEach(function(a){ a.classList.remove("is-done"); });
+    updateProgress(); applyFilter(); toast("Todos desmarcados");
+  });
+
+  /* ---------- filtros ---------- */
+  var filter = "all", hide = document.getElementById("hideDone");
+  try{ var f0 = sessionStorage.getItem("rostinho.filter"); if (f0) filter = f0; hide.checked = sessionStorage.getItem("rostinho.hide") === "1"; }catch(e){}
+  document.querySelectorAll(".chip").forEach(function(c){
+    c.addEventListener("click", function(){ filter = c.dataset.filter; try{ sessionStorage.setItem("rostinho.filter", filter); }catch(e){} applyFilter(); });
+  });
+  hide.addEventListener("change", function(){ try{ sessionStorage.setItem("rostinho.hide", hide.checked ? "1" : "0"); }catch(e){} applyFilter(); });
+  function applyFilter(){
+    document.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed", c.dataset.filter === filter); });
+    var visible = 0;
+    document.querySelectorAll(".post").forEach(function(a){
+      var show = (filter === "all" || a.dataset.type === filter) && !(hide.checked && done[a.dataset.id]);
+      a.hidden = !show; if (show) visible++;
+    });
+    document.querySelectorAll(".section").forEach(function(s){ s.classList.toggle("empty", !s.querySelector(".post:not([hidden])")); });
+    document.getElementById("emptyState").classList.toggle("show", visible === 0);
+  }
+  applyFilter();
+})();
+</script>
+</body>
+</html>
