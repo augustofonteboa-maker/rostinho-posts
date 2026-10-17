@@ -1,5 +1,5 @@
 {
- "intro": "17 posts de feed em 6 semanas, de 19/10 a 28/11, com o lançamento em 26/10. São 2 posts na semana de pré-lançamento e 3 por semana depois. O F04 Teaser sai do feed e vira story e anúncio.",
+ "intro": "26 publicações em 6 semanas, de 19/10 a 28/11, com o lançamento em 26/10: 17 posts de feed, 8 Reels e 1 carrossel novo. São 3 publicações na semana de pré-lançamento e de 4 a 5 por semana depois. O F04 Teaser sai do feed e vira story e anúncio.",
  "objectives": {
   "01-teaser": "Curiosidade e primeiros seguidores",
   "05-notas": "Identificação e marcações",
@@ -19,58 +19,39 @@
   "f05-primeiro-colo": "Salvamentos",
   "f02-o-laco": "Comentários",
   "f01-toda-familia": "Envios",
-  "f09-mil-vezes": "Clique no link da bio"
+  "f09-mil-vezes": "Clique no link da bio",
+  "r1-0307": "Teaser em vídeo para alcançar quem ainda não segue: a pergunta do 03:07 sem mostrar o app",
+  "r6-mito-ou-verdade": "Comentários e salvamentos no primeiro Reel depois do lançamento: quiz que ensina e convida a testar",
+  "r2-como-funciona": "Salvamentos: o passo a passo em vídeo para quem viu o carrossel e para quem não viu",
+  "r3-vida-inteira": "Envios para avós e família: a ideia do carrossel A vida inteira em movimento",
+  "r8-pov-familia": "Envios no grupo da família: humor que leva o Rostinho para dentro da conversa",
+  "r4-prazer-zinho": "Comentários com apelidos e vínculo com o mascote",
+  "r5-toda-familia": "Envios e comentários: inclusão em formato curto que reforça que as fotos são opcionais",
+  "r7-puxou-a-quem": "Comentários e marcações: brincadeira leve para reativar o perfil na reta final",
+  "r9-carrossel": "Salvamentos e envios: as perguntas que todo pai e toda mãe já fez, a um passo do convite para imaginar"
  },
- "reels": [
-  {
-   "id": "reel-1",
-   "title": "Reel “Em breve”",
-   "day": "Sex, 23/10",
-   "time": "20h",
-   "phase": "f1",
-   "from": "01 Teaser",
-   "idea": "O brilho do ultrassom pulsa e a frase aparece aos poucos. Termina em “26/10”. 7 a 10 segundos."
-  },
-  {
-   "id": "reel-2",
-   "title": "Reel “Do ultrassom ao rostinho”",
-   "day": "Sáb, 31/10",
-   "time": "11h",
-   "phase": "f2",
-   "from": "Carrossel 04",
-   "idea": "Os 3 passos em cortes rápidos, com o Zinho reagindo no fim. 15 segundos."
-  },
-  {
-   "id": "reel-3",
-   "title": "Reel “O Zinho envelhecendo”",
-   "day": "Dom, 08/11",
-   "time": "20h",
-   "phase": "f3",
-   "from": "Carrossel 06",
-   "idea": "Transição de 0 a 70 anos, uma idade por batida da música. Feito para envio: “manda pra quem vai ser avó”."
-  }
- ],
- "reelsNote": "Todos os 19 criativos são estáticos, e um perfil novo precisa de Reels para chegar a quem ainda não o segue. Por isso, três artes viram Reels curtos, sem nova produção de imagem. Use música da biblioteca do Instagram, que já vem licenciada.",
+ "reels": [],
+ "reelsNote": "Os 8 Reels são vídeos prontos, com áudio original e capa, e cada um tem um papel: R1 teaser, R6 quiz, R2 passo a passo, R3 envio para avó, R8 humor, R4 mascote, R5 inclusão e R7 brincadeira. Entram entre os posts de feed, sem nunca passar de 5 publicações por semana. Perfil novo precisa de Reels para ser descoberto por quem ainda não segue.",
  "why": [
   {
    "phase": "f1",
-   "text": "Criar a pergunta. O 01 Teaser e o 05 Notas falam do desejo e ainda não mostram o app. O Notas gera identificação e marcações, o que traz as primeiras seguidoras antes do dia 26."
+   "text": "Criar a pergunta. O 01 Teaser e o 05 Notas falam do desejo e ainda não mostram o app. O Reel 03:07 fecha a semana na sexta (23/10) e leva a pergunta a quem ainda não segue, com a frase “em breve” e sem data."
   },
   {
    "phase": "f2",
-   "text": "Responder a pergunta. Primeiro o anúncio (02), depois o rosto da marca (03 Zinho) e por fim o passo a passo (04). Assim a pessoa entende o que é, simpatiza e aprende a usar, nessa ordem."
+   "text": "Responder a pergunta. Primeiro o anúncio (02), depois o rosto da marca (03 Zinho), o quiz Mito ou verdade (R6, quarta) e o passo a passo (04 e, no sábado, o Reel R2). A pessoa entende o que é, simpatiza, testa o que sabe e aprende a usar."
   },
   {
    "phase": "f3",
-   "text": "Mostrar o que ela ganha. O carrossel A vida inteira é o post com mais potencial de envio e vem logo depois do Como funciona. O Vínculo dá o motivo emocional e o Marque fecha a semana puxando a família para a conversa."
+   "text": "Mostrar o que ela ganha. O carrossel A vida inteira é o post com mais potencial de envio e vem logo depois do Como funciona. O Vínculo dá o motivo emocional, o Marque puxa a família e o Reel A vida inteira (R3, domingo à noite) leva o mesmo desejo a quem só assiste vídeo."
   },
   {
    "phase": "f4",
-   "text": "Falar com a família inteira. Toda família amplia o público. O Já ama relembra o lançamento 17 dias depois, agora com foto real. O O dedo fala direto com os pais."
+   "text": "Falar com a família inteira. Toda família amplia o público. O Já ama relembra o lançamento 17 dias depois, agora com foto real, o POV do grupo da família (R8) pede envio e o Prazer, Zinho (R4) fecha a fase com comentários."
   },
   {
    "phase": "f5",
-   "text": "Manter o ritmo com fotos. As artes com fotos de bebês sustentam 3 posts por semana, alternando o objetivo: comentário, clique e salvamento. O Mil vezes fecha o ciclo retomando o 03:07 do início."
+   "text": "Manter o ritmo com fotos e vídeos. Os Reels Toda família (R5) e Puxou a quem (R7) alternam com as artes de bebês e o carrossel Todo pai e toda mãe (R9) para variar o objetivo: envio, comentário, clique e salvamento. O Mil vezes fecha o ciclo retomando o 03:07 do início."
   }
  ],
  "rules": [
@@ -89,6 +70,14 @@
   {
    "t": "Finados fica sem post",
    "d": "Segunda, 02/11, nenhum post sai. O carrossel A vida inteira foi para terça, 03/11."
+  },
+  {
+   "t": "Reels podem repetir uma ideia do feed",
+   "d": "O Reel A vida inteira (R3), o Toda família (R5) e o Como funciona (R2) retomam ideias de posts do feed com menos de 14 dias de distância. Isso é proposital: Reels chegam a quem não segue, e o feed fala com quem já segue. Os vídeos têm texto, ritmo e conclusão diferentes dos posts."
+  },
+  {
+   "t": "Dias de Reel: 20h, nunca no mesmo horário de um post",
+   "d": "Reels saem às 20h (sexta, domingo, quarta) ou às 11h no sábado, quando o público está no celular. Quando há feed no mesmo dia, o Reel vai uma hora depois do post (ex.: F04 às 19h e R1 às 20h em 23/10)."
   }
  ],
  "stories": [
@@ -99,6 +88,10 @@
   {
    "t": "Dia do lançamento (26/10)",
    "d": "Story de lançamento com link às 12h05, o post 02 repostado à tarde e uma caixa de perguntas à noite: “O que você quer saber sobre o Rostinho?”."
+  },
+  {
+   "t": "Reels",
+   "d": "Depois de publicar cada Reel, compartilhe-o nos stories com o sticker de pergunta ou enquete do texto do primeiro comentário. Responda os comentários na primeira hora e fixe o primeiro comentário de cada Reel."
   },
   {
    "t": "Depois",
@@ -156,36 +149,36 @@
  "metrics": [
   {
    "phase": "f1",
-   "m": "Seguidores novos e lembretes ativados na contagem regressiva",
+   "m": "Seguidores novos e lembretes ativados na contagem regressiva · Reel R1: alcance de contas que não seguem",
    "where": "Insights › Seguidores; o próprio sticker",
    "fix": "Mande o 01 Teaser para a lista de pessoas próximas antes do dia 26."
   },
   {
    "phase": "f2",
-   "m": "Toques no link da bio e acessos com a UTM",
+   "m": "Toques no link da bio e acessos com a UTM · Reels R6 e R2: salvamentos e comentários",
    "where": "Insights › Atividade no perfil; análise do site",
    "fix": "Repita o Story com link no dia seguinte e fixe o 02."
   },
   {
    "phase": "f3",
-   "m": "Envios por alcance (envios ÷ contas alcançadas)",
+   "m": "Envios por alcance (envios ÷ contas alcançadas) · Reel R3: envios",
    "where": "Insights de cada post",
    "fix": "Transforme o post com mais envios em anúncio."
   },
   {
    "phase": "f4",
-   "m": "Comentários e marcações",
+   "m": "Comentários e marcações · Reels R8 e R4: envios e comentários",
    "where": "Insights de cada post",
    "fix": "Responda todos os comentários na primeira hora."
   },
   {
    "phase": "f5",
-   "m": "Salvamentos e cliques no link",
+   "m": "Salvamentos e cliques no link · Reels R5 e R7 e carrossel R9: salvamentos e comentários",
    "where": "Insights de cada post",
    "fix": "Troque o horário da faixa mais fraca pelo melhor horário do seu Insights."
   }
  ],
- "metricsNote": "A média do mercado é 0,55% de engajamento para carrossel e 0,37% para imagem única (Socialinsider). O que importa é comparar os posts do Rostinho entre si.",
+ "metricsNote": "A média do mercado é 0,55% de engajamento para carrossel e 0,37% para imagem única (Socialinsider). O que importa é comparar os posts do Rostinho entre si. Para Reels, a referência é o tempo médio de visualização e os envios (Insights de cada Reel).",
  "timing": "Ajuste de horário em 01/11: abra Insights › Seguidores › Horários mais ativos. Se o pico for diferente de 18h a 20h, mova os posts das semanas seguintes para esse pico.",
  "market": [
   {

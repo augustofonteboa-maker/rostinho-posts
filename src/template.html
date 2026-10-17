@@ -90,6 +90,12 @@ main{padding-bottom:80px}
 .slide{flex:0 0 100%;scroll-snap-align:center;position:relative}
 .slide img{width:100%;height:auto;border-radius:var(--radius-lg);box-shadow:0 1px 0 rgba(43,25,34,.06),0 12px 30px -18px rgba(43,25,34,.45);background:#eee}
 .post.story .slide img{max-height:72vh;width:auto;margin:0 auto}
+.tag.reel{background:#e6dcff}
+.reel-slide{display:flex;justify-content:center}
+.vwrap{position:relative;width:min(100%,360px);aspect-ratio:9/16;border-radius:var(--radius-lg);overflow:hidden;background:#111;box-shadow:0 12px 30px -18px rgba(43,25,34,.45)}
+.vwrap img,.vwrap video{width:100%;height:100%;object-fit:cover;display:block;border-radius:0;box-shadow:none}
+.vwrap .play{position:absolute;left:50%;top:50%;width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:50%;border:0;background:rgba(255,255,255,.94);color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px -8px rgba(0,0,0,.5)}
+.post.reel .nav{display:none}
 .slide-dl{position:absolute;right:10px;top:10px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 14px -6px rgba(0,0,0,.4)}
 .slide-dl svg{width:18px;height:18px}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -265,9 +271,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
   <div class="wrap">
     <img class="hero-logo" src="assets/logo-light.png" alt="Rostinho" width="762" height="130">
     <h1>Seus posts, prontos pra publicar.</h1>
-    <p class="lead">Veja o que postar agora, salve a imagem e copie a legenda. O plano de lançamento mostra a ordem, o dia e o horário de cada post.</p>
+    <p class="lead">Veja o que postar agora, salve a imagem ou o vídeo e copie a legenda. O plano de lançamento mostra a ordem, o dia e o horário de cada publicação.</p>
     <ol class="steps" aria-label="Como publicar">
-      <li><b>1</b>Salve a imagem no celular</li>
+      <li><b>1</b>Salve a imagem ou o vídeo no celular</li>
       <li><b>2</b>Copie a legenda com hashtags</li>
       <li><b>3</b>Cole no Instagram e publique</li>
     </ol>
@@ -286,6 +292,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
     <button class="chip" data-filter="all" aria-pressed="true">Tudo<span class="n" data-n="all"></span></button>
     <button class="chip" data-filter="carousel" aria-pressed="false">Carrosséis<span class="n" data-n="carousel"></span></button>
     <button class="chip" data-filter="single" aria-pressed="false">Posts únicos<span class="n" data-n="single"></span></button>
+    <button class="chip" data-filter="reel" aria-pressed="false">Reels<span class="n" data-n="reel"></span></button>
     <button class="chip" data-filter="story" aria-pressed="false">Story<span class="n" data-n="story"></span></button>
     <span class="sep" aria-hidden="true"></span>
     <label class="toggle"><input type="checkbox" id="hideDone">Esconder publicados</label>
@@ -369,6 +376,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
   }
   function canShareFiles(files){ try{ return !!(navigator.canShare && navigator.canShare({files: files})); }catch(e){ return false; } }
 
+  function saveVideo(p, btn){
+    var path = p.video.full;
+    if (!isTouch){ anchorDownload(path, fileName(path)); toast("Baixando o vídeo (" + mb(p.video.bytes) + ")"); return; }
+    var label = btn.querySelector("span").textContent; btn.disabled = true; btn.querySelector("span").textContent = "Preparando…";
+    fetch(path).then(function(r){ if(!r.ok) throw 0; return r.blob(); }).then(function(b){
+      var f = new File([b], fileName(path), {type:"video/mp4"});
+      if (canShareFiles([f])) return navigator.share({files:[f]}).catch(function(){});
+      anchorDownload(path, fileName(path));
+    }).catch(function(){ anchorDownload(path, fileName(path)); }).then(function(){ btn.disabled = false; btn.querySelector("span").textContent = label; });
+  }
   function saveImages(paths, btn, zip){
     // Computador: baixa direto (carrossel vai em .zip)
     if (!isTouch){
@@ -435,7 +452,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
         if (!list.length) return;
         var feed = list.filter(function(p){ return p.type !== "story"; }).length;
         var st = list.length - feed;
-        var countTxt = list[0].type === "carousel" && list.length === 1 ? plural(list[0].slides.length, "imagem", "imagens") + ", 1 legenda" : plural(feed, "post", "posts") + (st ? " + " + plural(st, "story", "stories") : "");
+        var nreel = list.filter(function(p){ return p.type === "reel"; }).length;
+        var countTxt = nreel === list.length ? plural(nreel, "Reel", "Reels") + ", 1 legenda cada" : list[0].type === "carousel" && list.length === 1 ? plural(list[0].slides.length, "imagem", "imagens") + ", 1 legenda" : plural(feed, "post", "posts") + (st ? " + " + plural(st, "story", "stories") : "");
         html += '<section class="section" data-section="'+sec.id+'"><div class="section-head"><h2>'+esc(sec.title)+'</h2><span class="count">'+countTxt+'</span></div>';
         list.forEach(function(p){ html += card(p); });
         html += "</section>";
@@ -447,14 +465,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
   }
 
   function card(p){
-    var n = p.slides.length, isCar = p.type === "carousel", isStory = p.type === "story";
-    var typeTag = isCar ? '<span class="tag carousel">Carrossel · '+n+' imagens</span>' : isStory ? '<span class="tag story">Story 9:16</span>' : '<span class="tag">Post único</span>';
-    var slides = p.slides.map(function(s,i){
+    var n = p.slides.length, isCar = p.type === "carousel", isStory = p.type === "story", isReel = p.type === "reel";
+    var typeTag = isCar ? '<span class="tag carousel">Carrossel · '+n+' imagens</span>' : isStory ? '<span class="tag story">Story 9:16</span>' : isReel ? '<span class="tag reel">Reel · '+p.video.dur+' s</span>' : '<span class="tag">Post único</span>';
+    var slides = isReel ? '<div class="slide reel-slide" data-bg="'+p.slides[0].bg+'"><div class="vwrap"><img src="'+p.slides[0].web+'" width="'+p.slides[0].w+'" height="'+p.slides[0].h+'" loading="lazy" decoding="async" alt="Capa do Reel: '+esc(p.title)+'"><button class="play" data-act="play" aria-label="Ver o Reel">'+'<svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></div></div>' : p.slides.map(function(s,i){
       return '<div class="slide" data-bg="'+s.bg+'"><img src="'+s.web+'" width="'+s.w+'" height="'+s.h+'" loading="lazy" decoding="async" alt="'+(n>1? "Imagem "+(i+1)+" de "+n : esc(p.title))+'">'+
         (n>1 ? '<button class="slide-dl" data-act="slide" data-i="'+i+'" aria-label="Salvar só a imagem '+(i+1)+'">'+I.down+'</button>' : '')+'</div>';
     }).join("");
     var pager = isCar ? p.slides.map(function(_,i){ return '<i'+(i===0?' class="cur"':'')+'></i>'; }).join("") : "";
-    var saveLabel = n > 1 ? "Salvar " + n + " imagens" : "Salvar imagem";
+    var saveLabel = isReel ? "Baixar vídeo" : n > 1 ? "Salvar " + n + " imagens" : "Salvar imagem";
     var size = p.slides.reduce(function(a,s){ return a + s.bytes; }, 0);
     var editedCls = edits[p.id] != null ? " is-edited" : "";
 
@@ -474,9 +492,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
     }
 
     var copyLabel = isStory ? "Copiar texto" : "Copiar legenda";
+    var extra = "";
+    if (isReel) extra = '<div class="tip">'+esc(p.coverNote)+'</div><div class="tip">'+esc(p.audioNote)+'</div>'+
+      '<div class="caption-box open"><div class="caption-label"><span>Primeiro comentário (fixe logo após postar)</span></div><div class="caption">'+esc(p.firstComment)+'</div></div>';
     var minor = [];
     if (!isStory) minor.push('<button data-act="tags">Copiar só as hashtags</button>');
     minor.push('<button data-act="alt">Copiar texto alternativo</button>');
+    if (isReel){ minor.push('<button data-act="fc">Copiar primeiro comentário</button>'); minor.push('<a href="'+p.video.cover+'" download>Baixar capa (JPG)</a>'); }
     if (p.zip) minor.push('<a href="'+p.zip+'" download>Baixar .zip ('+mb(size)+')</a>');
 
     return '<article class="post '+p.type+(done[p.id] ? " is-done" : "")+'" id="'+p.id+'" data-id="'+p.id+'" data-type="'+p.type+'">'+
@@ -489,13 +511,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
         '<h3>'+esc(p.title)+'</h3>'+
         '<p class="goal">'+esc(p.goal)+'</p>'+
         (p.note ? '<div class="note">'+esc(p.note)+'</div>' : '')+
-        textBlock+
+        textBlock+extra+
         '<div class="actions">'+
           '<button class="btn primary" data-act="save" data-label="'+saveLabel+'">'+I.down+'<span>'+saveLabel+'</span></button>'+
           '<button class="btn accent" data-act="copy">'+I.copy+'<span>'+copyLabel+'</span></button>'+
         '</div>'+
         '<div class="minor">'+minor.join("")+'</div>'+
-        '<label class="done-row"><input type="checkbox" data-act="done"'+(done[p.id]?" checked":"")+'>Já publiquei este '+(isStory ? "story" : "post")+'</label>'+
+        '<label class="done-row"><input type="checkbox" data-act="done"'+(done[p.id]?" checked":"")+'>Já publiquei este '+(isStory ? "story" : isReel ? "reel" : "post")+'</label>'+
       '</div>'+
     '</article>';
   }
@@ -506,7 +528,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
   var dotsEl = document.getElementById("dots");
   dotsEl.innerHTML = POSTS.map(function(p){ return '<span data-dot="'+p.id+'"></span>'; }).join("");
   document.getElementById("totalCount").textContent = POSTS.length;
-  ["all","carousel","single","story"].forEach(function(t){
+  ["all","carousel","single","reel","story"].forEach(function(t){
     var c = t === "all" ? POSTS.length : POSTS.filter(function(p){ return p.type === t; }).length;
     var el = document.querySelector('[data-n="'+t+'"]'); if (el) el.textContent = c;
   });
@@ -580,6 +602,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
     if (act === "copy"){ copy(fullText(p), p.type === "story" ? "Texto do sticker copiado" : "Legenda copiada. Agora é só colar no Instagram."); }
     else if (act === "tags"){ copy(p.hashtags.join(" "), "Hashtags copiadas"); }
     else if (act === "alt"){ copy(p.alt, "Texto alternativo copiado"); }
+    else if (act === "fc"){ copy(p.firstComment, "Primeiro comentário copiado"); }
+    else if (act === "play"){
+      var vw = art.querySelector(".vwrap");
+      vw.innerHTML = '<video src="'+p.video.web+'" poster="'+p.slides[0].web+'" controls playsinline autoplay preload="auto"></video>';
+      var v = vw.querySelector("video"); v.play().catch(function(){});
+    }
+    else if (act === "save" && p.type === "reel"){ saveVideo(p, el); }
     else if (act === "save"){ saveImages(p.slides.map(function(s){ return s.full; }), el, p.zip); }
     else if (act === "slide"){ var s = p.slides[+el.dataset.i]; if (isTouch && navigator.share){ getFiles([s.full]).then(function(f){ if (canShareFiles(f)) navigator.share({files:f}).catch(function(){}); else anchorDownload(s.full, fileName(s.full)); }); } else anchorDownload(s.full, fileName(s.full)); }
     else if (act === "prev"){ art.querySelector(".track")._go(-1); }
@@ -638,7 +667,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
     var m = day.match(/(\d+)\/(\d+)/), t = time.match(/(\d+)h(\d*)/);
     return new Date(YEAR, +m[2]-1, +m[1], +t[1], t[2] ? +t[2] : 0);
   }
-  function fmtOf(p){ return p.type === "carousel" ? "Carrossel · " + p.slides.length + " imagens" : p.type === "story" ? "Story" : "Post único"; }
+  function fmtOf(p){ return p.type === "carousel" ? "Carrossel · " + p.slides.length + " imagens" : p.type === "story" ? "Story" : p.type === "reel" ? "Reel · " + p.video.dur + " s" : "Post único"; }
   function items(){
     var a = POSTS.map(function(p){ return {id:p.id, kind:"post", p:p, title:p.title, day:p.plan.day, time:p.plan.time, phase:p.plan.phase, n:p.plan.n, obj:PLAN.objectives[p.id] || p.goal, when:parseWhen(p.plan.day, p.plan.time)}; });
     PLAN.reels.forEach(function(r){ a.push({id:r.id, kind:"reel", r:r, title:r.title, day:r.day, time:r.time, phase:r.phase, n:99, obj:r.idea, when:parseWhen(r.day, r.time)}); });
@@ -666,7 +695,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
         '<h2>'+esc(p.title)+'</h2>'+
         '<div class="when">'+esc(next.day)+' às '+esc(next.time)+' · '+fmtOf(p)+'</div>'+
         '<p class="obj">Objetivo: '+esc(next.obj)+'</p>'+
-        '<div class="btns"><button class="btn accent" data-go="'+p.id+'">Abrir imagem e legenda</button><button class="btn ghost" data-pdone="'+p.id+'">Já publiquei</button></div>'+
+        '<div class="btns"><button class="btn accent" data-go="'+p.id+'">Abrir '+(p.type==="reel"?"vídeo":"imagem")+' e legenda</button><button class="btn ghost" data-pdone="'+p.id+'">Já publiquei</button></div>'+
         (after.length ? '<div class="after">Depois: '+after.map(function(a){ return '<b>'+esc(a.title)+'</b> ('+esc(a.day)+')'; }).join(" · ")+'</div>' : '')+
         '</div></section>';
     } else {
@@ -697,7 +726,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
       list.forEach(function(i){
         var isPost = i.kind === "post", on = !!done[i.id];
         var thumb = isPost ? '<div class="thumb" style="background:'+i.p.slides[0].bg+'"><img src="'+i.p.slides[0].web+'" alt="" loading="lazy"></div>' : '<div class="thumb reel" aria-hidden="true">▶</div>';
-        var tags = isPost ? '<span class="tag '+(i.p.type==="carousel"?"carousel":i.p.type==="story"?"story":"")+'">'+(i.p.type==="carousel"?"Carrossel":i.p.type==="story"?"Story":"Post")+'</span>'+(i.p.pin?'<span class="tag pin">Fixar</span>':'') : '<span class="tag" style="background:#fff">Reel · a partir do '+esc(i.r.from)+'</span>';
+        var tags = isPost ? '<span class="tag '+(i.p.type==="carousel"?"carousel":i.p.type==="story"?"story":i.p.type==="reel"?"reel":"")+'">'+(i.p.type==="carousel"?"Carrossel":i.p.type==="story"?"Story":i.p.type==="reel"?"Reel":"Post")+'</span>'+(i.p.pin?'<span class="tag pin">Fixar</span>':'') : '<span class="tag" style="background:#fff">Reel · a partir do '+esc(i.r.from)+'</span>';
         h += '<div class="row'+(isPost?"":" reel")+(on?" done":"")+(i.id===firstUndone?" is-next":"")+'"'+(isPost?' data-go="'+i.id+'" role="button" tabindex="0"':'')+'>'+thumb+
           '<div><div class="r-when">'+esc(i.day)+' · '+esc(i.time)+'</div><div class="r-title">'+esc(i.title)+tags+'</div><div class="r-obj">'+(isPost?"Objetivo: ":"")+esc(i.obj)+'</div></div>'+
           '<label class="r-chk"><input type="checkbox" data-pdone="'+i.id+'" aria-label="Marcar '+esc(i.title)+' como feito"'+(on?" checked":"")+'><span>'+(isPost?"Publicado":"Feito")+'</span></label></div>';
@@ -716,7 +745,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
     h += '</div></section>';
 
     /* stories e reels */
-    h += '<section class="blk" id="pl-stories"><h2>Stories e Reels de apoio</h2><p class="sub">'+esc(PLAN.reelsNote)+' Os três Reels já estão no calendário acima.</p><div class="grid2">';
+    h += '<section class="blk" id="pl-stories"><h2>Stories e Reels de apoio</h2><p class="sub">'+esc(PLAN.reelsNote)+' Os Reels já estão no calendário acima.</p><div class="grid2">';
     PLAN.stories.forEach(function(x){ h += '<div class="info"><h4>'+esc(x.t)+'</h4><p>'+esc(x.d)+'</p></div>'; });
     h += '</div></section>';
 
@@ -761,7 +790,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
     var L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Rostinho//Plano de posts//PT","CALSCALE:GREGORIAN","X-WR-CALNAME:Rostinho · Plano de posts"];
     items().forEach(function(i){
       var end = new Date(i.when.getTime() + 30*60000);
-      var desc = (i.kind === "post" ? "Objetivo: " + i.obj + "\nAbra a imagem e a legenda: " + base + "#" + i.id : i.obj);
+      var desc = (i.kind === "post" ? "Objetivo: " + i.obj + "\nAbra a mídia e a legenda: " + base + "#" + i.id : i.obj);
       L.push("BEGIN:VEVENT","UID:"+i.id+"@rostinho-posts","DTSTAMP:"+stamp,"DTSTART:"+loc(i.when),"DTEND:"+loc(end),
         "SUMMARY:"+icsEsc((i.kind === "post" ? "Postar: " : "Gravar e postar: ") + i.title),"DESCRIPTION:"+icsEsc(desc),
         "BEGIN:VALARM","TRIGGER:-PT30M","ACTION:DISPLAY","DESCRIPTION:Hora de postar","END:VALARM","END:VEVENT");
