@@ -1,5 +1,6 @@
 import json
-d=open('src/data.json').read()
-d=json.dumps(json.loads(d),ensure_ascii=False).replace('</','<\\/')
+d=json.load(open('src/data.json'))
+d['plan']=json.load(open('src/plan.json'))
+d=json.dumps(d,ensure_ascii=False).replace('</','<\\/')
 t=open('src/template.html').read().replace('__DATA__',d)
 open('index.html','w').write(t); print(len(t))

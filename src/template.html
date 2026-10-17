@@ -34,16 +34,16 @@ button{font:inherit;color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
 
 /* ---------- topo ---------- */
-.hero{background:var(--ink);color:#f6ece6;padding:28px 0 34px;position:relative;overflow:hidden}
+.hero{background:var(--ink);color:#f6ece6;padding:22px 0 24px;position:relative;overflow:hidden}
 .hero .wrap{position:relative}
 .hero-logo{width:min(260px,62vw);height:auto}
-.hero h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(38px,8vw,72px);line-height:.98;letter-spacing:-.01em;margin:26px 0 14px;max-width:14ch}
+.hero h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(34px,6vw,52px);line-height:1;letter-spacing:-.01em;margin:18px 0 10px;max-width:22ch}
 .hero p.lead{margin:0;max-width:52ch;color:#e3cfc7;font-size:17px}
-.steps{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:640px}
+.steps{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:640px}
 .steps li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-md);padding:12px 12px 12px;font-size:14px;line-height:1.3;color:#f1e3dc}
 .steps b{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:28px;line-height:1;color:var(--coral);margin-bottom:6px}
 
-.progress{margin-top:28px;max-width:640px}
+.progress{margin-top:18px;max-width:640px}
 .progress-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:14px;color:#e3cfc7}
 .progress-top strong{font-size:22px;color:#fff;font-weight:700}
 .dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
@@ -157,10 +157,92 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 .toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translate(-50%,30px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-weight:500;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50;max-width:calc(100% - 32px);text-align:center;box-shadow:0 12px 30px -10px rgba(0,0,0,.45)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+
+/* ---------- aba Plano ---------- */
+.filters{display:contents}.filters[hidden]{display:none}
+.post{scroll-margin-top:72px}
+.post.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%,35%{box-shadow:0 0 0 4px var(--coral)}100%{box-shadow:0 0 0 4px transparent}}
+.plan{padding-top:28px}
+.plan section{scroll-margin-top:68px}
+.plan h2{font-size:clamp(24px,4.6vw,34px);line-height:1.05;letter-spacing:-.025em;font-weight:800;margin:0 0 6px}
+.plan .sub{margin:0 0 18px;color:var(--ink-soft);max-width:62ch}
+.plan section.blk{padding-top:46px}
+.next{display:grid;grid-template-columns:minmax(0,1fr);gap:0;background:var(--ink);color:#f6ece6;border-radius:var(--radius-xl);overflow:hidden}
+@media (min-width:760px){.next{grid-template-columns:260px minmax(0,1fr)}}
+.next-img{padding:18px;display:grid;place-items:center}
+.next-img img{width:100%;max-width:230px;border-radius:14px;box-shadow:0 14px 34px -14px rgba(0,0,0,.6)}
+.next.is-story .next-img img{max-height:300px;width:auto}
+.next-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.eyebrow{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;background:var(--coral);color:#fff;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700}
+.eyebrow.late{background:#b3261e}
+.next h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(34px,6vw,50px);line-height:1;margin:2px 0 0;color:#fff}
+.next .when{font-size:17px;font-weight:700;color:#fff}
+.next .obj{color:#e3cfc7;margin:0}
+.next .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.next .btn{min-height:50px}
+.btn.ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22)}
+.btn.outline{background:var(--card);border:1.5px solid var(--line);color:var(--ink)}
+.after{font-size:14px;color:#cdb8b0;margin-top:4px}
+.after b{color:#fff;font-weight:500}
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}
+.jump a{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500;text-decoration:none;color:var(--ink)}
+.jump a:hover{border-color:var(--coral)}
+.card-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-xl);padding:8px 18px}
+.todo{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.todo:last-child{border-bottom:0}
+.todo input{width:24px;height:24px;margin:2px 0 0;accent-color:var(--ok);flex:none}
+.todo label{display:block;cursor:pointer;flex:1;min-width:0}
+.todo b{display:block;font-size:16px}
+.todo span{display:block;overflow-wrap:anywhere;color:var(--ink-soft);font-size:14.5px;line-height:1.4}
+.todo.on b{text-decoration:line-through;text-decoration-color:var(--ok);color:var(--ink-soft)}
+.todo .mini{flex:none;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:700;cursor:pointer}
+.bar-prog{height:8px;border-radius:99px;background:var(--blush);overflow:hidden;margin:2px 0 8px}
+.bar-prog i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .3s}
+.tl-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 6px}
+.tl-actions .btn{min-height:48px;font-size:15px}
+.hint{font-size:14px;color:var(--ink-soft)}
+.phase{margin-top:26px}
+.phase-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:10px}
+.phase-head h3{margin:0;font-size:22px;letter-spacing:-.02em;font-weight:800}
+.phase-head span{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--coral-deep)}
+.row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:6px 14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:10px 12px;margin-bottom:8px;cursor:pointer;position:relative}
+.row:hover{border-color:var(--coral)}
+.row.reel{background:var(--lav);border-color:transparent;cursor:default}
+.row.done{opacity:.55}
+.row.is-next{border:2px solid var(--coral);box-shadow:0 8px 22px -14px var(--coral)}
+.thumb{width:64px;height:64px;border-radius:12px;overflow:hidden;display:grid;place-items:center;background:var(--blush)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb.reel{background:#fff;font-size:24px}
+.r-when{font-size:13px;font-weight:700;color:var(--coral-deep)}
+.r-title{font-size:17px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.r-title .tag{margin-left:6px;vertical-align:2px;font-size:12px;padding:2px 9px}
+.r-obj{font-size:14px;color:var(--ink-soft);line-height:1.35}
+.r-chk{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);cursor:pointer;padding:8px 2px}
+.r-chk input{width:24px;height:24px;margin:0;accent-color:var(--ok)}
+.r-chk span{display:none}
+@media (min-width:640px){.r-chk span{display:inline}}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+@media (min-width:760px){.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.info{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px 18px}
+.info h4{margin:0 0 6px;font-size:17px;letter-spacing:-.01em}
+.info p{margin:0;font-size:15px;color:var(--ink-soft);line-height:1.5}
+.info .badge{display:inline-block;font-size:12.5px;font-weight:700;border-radius:999px;padding:3px 10px;margin-bottom:8px;color:var(--ink)}
+.info .does{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:14.5px;color:var(--ink)}
+.info .does b{color:var(--coral-deep)}
+.info a{color:var(--coral-deep);font-weight:700}
+.info .kv{font-size:14px;margin-top:8px;color:var(--ink-soft)}
+.info .kv b{color:var(--ink)}
+.callout{background:var(--blush);border-radius:var(--radius-lg);padding:14px 16px;font-size:15px;margin-top:12px}
+.srcs{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.srcs a{color:var(--ink);text-decoration-color:var(--line);text-underline-offset:4px;text-decoration-thickness:2px}
+.srcs a:hover{text-decoration-color:var(--coral)}
+.ph-f1{background:var(--lav)}.ph-f2{background:#f8d9d1}.ph-f3{background:var(--butter)}.ph-f4{background:var(--sky)}.ph-f5{background:var(--cream)}
+
 @media (max-width:600px){
   .hero{padding:22px 0 24px}
   .hero-logo{width:180px}
-  .hero h1{font-size:40px;margin:18px 0 10px}
+  .hero h1{font-size:34px;margin:14px 0 8px}
   .hero p.lead{font-size:15px}
   .steps{margin-top:18px;gap:8px}
   .steps li{font-size:13px;padding:9px 10px}
@@ -183,7 +265,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
   <div class="wrap">
     <img class="hero-logo" src="assets/logo-light.png" alt="Rostinho" width="762" height="130">
     <h1>Seus posts, prontos pra publicar.</h1>
-    <p class="lead">Cada criativo já vem com legenda, hashtags e texto alternativo, na ordem do calendário de lançamento: dia, horário e fase de cada post.</p>
+    <p class="lead">Veja o que postar agora, salve a imagem e copie a legenda. O plano de lançamento mostra a ordem, o dia e o horário de cada post.</p>
     <ol class="steps" aria-label="Como publicar">
       <li><b>1</b>Salve a imagem no celular</li>
       <li><b>2</b>Copie a legenda com hashtags</li>
@@ -198,7 +280,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 
 <nav class="bar" aria-label="Filtros">
   <div class="wrap">
-    <span class="seg" role="group" aria-label="Organizar por"><button class="view-btn" data-view="plan" aria-pressed="true">Calendário</button><button class="view-btn" data-view="folders" aria-pressed="false">Pastas</button></span>
+    <span class="seg" role="group" aria-label="Ver"><button class="view-btn" data-view="plano" aria-pressed="true">Plano</button><button class="view-btn" data-view="cal" aria-pressed="false">Posts</button><button class="view-btn" data-view="folders" aria-pressed="false">Pastas</button></span>
+    <span class="filters" id="filters" hidden>
     <span class="sep" aria-hidden="true"></span>
     <button class="chip" data-filter="all" aria-pressed="true">Tudo<span class="n" data-n="all"></span></button>
     <button class="chip" data-filter="carousel" aria-pressed="false">Carrosséis<span class="n" data-n="carousel"></span></button>
@@ -206,6 +289,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
     <button class="chip" data-filter="story" aria-pressed="false">Story<span class="n" data-n="story"></span></button>
     <span class="sep" aria-hidden="true"></span>
     <label class="toggle"><input type="checkbox" id="hideDone">Esconder publicados</label>
+    </span>
   </div>
 </nav>
 
@@ -328,11 +412,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
   /* ---------- render ---------- */
   var app = document.getElementById("app");
   var PHASES = DATA.phases || [];
-  var VIEW = "plan";
-  try{ VIEW = localStorage.getItem("rostinho.view") || "plan"; }catch(e){}
+  var VIEW = "plano";
+  try{ VIEW = localStorage.getItem("rostinho.view2") || "plano"; }catch(e){}
+  if (location.hash && /^#[\w-]+$/.test(location.hash) && POSTS.some(function(p){ return "#"+p.id === location.hash; })) VIEW = "cal";
   function render(){
     var html = "";
-    if (VIEW === "plan"){
+    document.getElementById("filters").hidden = VIEW === "plano";
+    if (VIEW === "plano"){
+      html = planHtml();
+    } else if (VIEW === "cal"){
       var ordered = POSTS.slice().sort(function(a,b){ return a.plan.n - b.plan.n; });
       PHASES.forEach(function(ph){
         var list = ordered.filter(function(p){ return p.plan.phase === ph.id; });
@@ -355,7 +443,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
     }
     app.innerHTML = html;
     document.querySelectorAll(".view-btn").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.view === VIEW); });
-    initCards();
+    if (VIEW !== "plano") initCards();
   }
 
   function card(p){
@@ -487,7 +575,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
   /* ---------- ações ---------- */
   app.addEventListener("click", function(e){
     var el = e.target.closest("[data-act]"); if (!el) return;
-    var art = el.closest(".post"), p = byId[art.dataset.id], act = el.dataset.act;
+    var art = el.closest(".post"); if (!art) return;
+    var p = byId[art.dataset.id], act = el.dataset.act;
     if (act === "copy"){ copy(fullText(p), p.type === "story" ? "Texto do sticker copiado" : "Legenda copiada. Agora é só colar no Instagram."); }
     else if (act === "tags"){ copy(p.hashtags.join(" "), "Hashtags copiadas"); }
     else if (act === "alt"){ copy(p.alt, "Texto alternativo copiado"); }
@@ -535,13 +624,183 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
       a.hidden = !show; if (show) visible++;
     });
     document.querySelectorAll(".section").forEach(function(s){ s.classList.toggle("empty", !s.querySelector(".post:not([hidden])")); });
-    document.getElementById("emptyState").classList.toggle("show", visible === 0);
+    document.getElementById("emptyState").classList.toggle("show", VIEW !== "plano" && visible === 0);
   }
   document.querySelectorAll(".view-btn").forEach(function(b){
-    b.addEventListener("click", function(){ VIEW = b.dataset.view; try{ localStorage.setItem("rostinho.view", VIEW); }catch(e){} render(); applyFilter(); });
+    b.addEventListener("click", function(){ setView(b.dataset.view); });
   });
+
+  /* ---------- aba Plano ---------- */
+  var PLAN = DATA.plan, YEAR = 2026;
+  var KEY_TODO = "rostinho.todo.v1", todo = load(KEY_TODO);
+  var PH = {}; PHASES.forEach(function(ph){ PH[ph.id] = ph; });
+  function parseWhen(day, time){
+    var m = day.match(/(\d+)\/(\d+)/), t = time.match(/(\d+)h(\d*)/);
+    return new Date(YEAR, +m[2]-1, +m[1], +t[1], t[2] ? +t[2] : 0);
+  }
+  function fmtOf(p){ return p.type === "carousel" ? "Carrossel · " + p.slides.length + " imagens" : p.type === "story" ? "Story" : "Post único"; }
+  function items(){
+    var a = POSTS.map(function(p){ return {id:p.id, kind:"post", p:p, title:p.title, day:p.plan.day, time:p.plan.time, phase:p.plan.phase, n:p.plan.n, obj:PLAN.objectives[p.id] || p.goal, when:parseWhen(p.plan.day, p.plan.time)}; });
+    PLAN.reels.forEach(function(r){ a.push({id:r.id, kind:"reel", r:r, title:r.title, day:r.day, time:r.time, phase:r.phase, n:99, obj:r.idea, when:parseWhen(r.day, r.time)}); });
+    a.sort(function(x,y){ return (x.when - y.when) || (x.n - y.n); });
+    return a;
+  }
+  function rel(d){
+    var t = new Date(), a = new Date(t.getFullYear(), t.getMonth(), t.getDate()), b = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    var n = Math.round((b - a) / 864e5);
+    return {n:n, txt: n === 0 ? "hoje" : n === 1 ? "amanhã" : n > 1 ? "em " + n + " dias" : n === -1 ? "ontem" : "há " + (-n) + " dias"};
+  }
+  function planHtml(){
+    var all = items();
+    var posts = all.filter(function(i){ return i.kind === "post"; });
+    var next = posts.filter(function(i){ return !done[i.id]; })[0];
+    var h = '<div class="plan">';
+
+    /* próximo post */
+    if (next){
+      var r = rel(next.when), late = r.n < 0, p = next.p;
+      var after = posts.filter(function(i){ return !done[i.id] && i !== next; }).slice(0,2);
+      h += '<section class="next'+(p.type==="story"?" is-story":"")+'" aria-label="Próximo post">'+
+        '<div class="next-img" style="background:'+p.slides[0].bg+'"><img src="'+p.slides[0].web+'" alt="'+esc(p.title)+'"></div>'+
+        '<div class="next-body"><span class="eyebrow'+(late?" late":"")+'">'+(late?"Atrasado · ":"Próximo post · ")+r.txt+'</span>'+
+        '<h2>'+esc(p.title)+'</h2>'+
+        '<div class="when">'+esc(next.day)+' às '+esc(next.time)+' · '+fmtOf(p)+'</div>'+
+        '<p class="obj">Objetivo: '+esc(next.obj)+'</p>'+
+        '<div class="btns"><button class="btn accent" data-go="'+p.id+'">Abrir imagem e legenda</button><button class="btn ghost" data-pdone="'+p.id+'">Já publiquei</button></div>'+
+        (after.length ? '<div class="after">Depois: '+after.map(function(a){ return '<b>'+esc(a.title)+'</b> ('+esc(a.day)+')'; }).join(" · ")+'</div>' : '')+
+        '</div></section>';
+    } else {
+      h += '<section class="next" style="padding:28px"><div class="next-body"><span class="eyebrow" style="background:var(--ok)">Plano concluído</span><h2>Todos os posts publicados.</h2><p class="obj">Agora é acompanhar os números e conversar com quem comentou.</p></div></section>';
+    }
+
+    h += '<nav class="jump" aria-label="Ir para">'+
+      '<a href="#pl-todo">Antes do dia 1</a><a href="#pl-cal">Calendário</a><a href="#pl-why">Por que essa ordem</a><a href="#pl-stories">Stories e Reels</a><a href="#pl-metrics">Como medir</a><a href="#pl-market">Mercado</a></nav>';
+
+    /* checklist */
+    var tdone = PLAN.todo.filter(function(t){ return todo[t.id]; }).length;
+    h += '<section class="blk" id="pl-todo"><h2>Antes do dia 1</h2><p class="sub">'+esc(PLAN.todoDeadline)+'.</p>'+
+      '<div class="card-box"><div class="bar-prog" aria-hidden="true"><i style="width:'+Math.round(tdone/PLAN.todo.length*100)+'%"></i></div><div class="hint" style="margin-bottom:4px">'+tdone+' de '+PLAN.todo.length+' prontos</div>';
+    PLAN.todo.forEach(function(t){
+      h += '<div class="todo'+(todo[t.id]?" on":"")+'"><input type="checkbox" id="td-'+t.id+'" data-todo="'+t.id+'"'+(todo[t.id]?" checked":"")+'><label for="td-'+t.id+'"><b>'+esc(t.t)+'</b><span>'+esc(t.d)+'</span></label>'+
+        (t.copy ? '<button class="mini" data-copy="'+esc(t.copy)+'">Copiar UTM</button>' : '')+'</div>';
+    });
+    h += '</div></section>';
+
+    /* calendário */
+    h += '<section class="blk" id="pl-cal"><h2>Calendário de publicação</h2><p class="sub">'+esc(PLAN.intro)+' Toque em um post para abrir a imagem e a legenda.</p>'+
+      '<div class="tl-actions"><button class="btn outline" data-ics="1">'+I.down+'<span>Levar para o meu calendário</span></button><span class="hint">Cria um lembrete 30 min antes de cada post.</span></div>';
+    var firstUndone = next ? next.id : null;
+    PHASES.forEach(function(ph){
+      var list = all.filter(function(i){ return i.phase === ph.id; });
+      if (!list.length) return;
+      h += '<div class="phase"><div class="phase-head"><h3>'+esc(ph.title)+'</h3><span>'+esc(ph.range)+' · '+esc(ph.goal)+'</span></div>';
+      list.forEach(function(i){
+        var isPost = i.kind === "post", on = !!done[i.id];
+        var thumb = isPost ? '<div class="thumb" style="background:'+i.p.slides[0].bg+'"><img src="'+i.p.slides[0].web+'" alt="" loading="lazy"></div>' : '<div class="thumb reel" aria-hidden="true">▶</div>';
+        var tags = isPost ? '<span class="tag '+(i.p.type==="carousel"?"carousel":i.p.type==="story"?"story":"")+'">'+(i.p.type==="carousel"?"Carrossel":i.p.type==="story"?"Story":"Post")+'</span>'+(i.p.pin?'<span class="tag pin">Fixar</span>':'') : '<span class="tag" style="background:#fff">Reel · a partir do '+esc(i.r.from)+'</span>';
+        h += '<div class="row'+(isPost?"":" reel")+(on?" done":"")+(i.id===firstUndone?" is-next":"")+'"'+(isPost?' data-go="'+i.id+'" role="button" tabindex="0"':'')+'>'+thumb+
+          '<div><div class="r-when">'+esc(i.day)+' · '+esc(i.time)+'</div><div class="r-title">'+esc(i.title)+tags+'</div><div class="r-obj">'+(isPost?"Objetivo: ":"")+esc(i.obj)+'</div></div>'+
+          '<label class="r-chk"><input type="checkbox" data-pdone="'+i.id+'" aria-label="Marcar '+esc(i.title)+' como feito"'+(on?" checked":"")+'><span>'+(isPost?"Publicado":"Feito")+'</span></label></div>';
+      });
+      h += '</div>';
+    });
+    h += '</section>';
+
+    /* por que essa ordem */
+    h += '<section class="blk" id="pl-why"><h2>Por que essa ordem</h2><p class="sub">A sequência leva a mãe de “quero ver o rosto do meu bebê” até “vou baixar e mostrar para a família”. Cada fase prepara a seguinte.</p><div class="grid2">';
+    PLAN.why.forEach(function(w){
+      var ph = PH[w.phase], i = w.text.indexOf(". ");
+      h += '<div class="info"><span class="badge ph-'+ph.id+'">'+esc(ph.title)+' · '+esc(ph.range)+'</span><h4>'+esc(w.text.slice(0,i))+'</h4><p>'+esc(w.text.slice(i+2))+'</p></div>';
+    });
+    PLAN.rules.forEach(function(r){ h += '<div class="info"><h4>'+esc(r.t)+'</h4><p>'+esc(r.d)+'</p></div>'; });
+    h += '</div></section>';
+
+    /* stories e reels */
+    h += '<section class="blk" id="pl-stories"><h2>Stories e Reels de apoio</h2><p class="sub">'+esc(PLAN.reelsNote)+' Os três Reels já estão no calendário acima.</p><div class="grid2">';
+    PLAN.stories.forEach(function(x){ h += '<div class="info"><h4>'+esc(x.t)+'</h4><p>'+esc(x.d)+'</p></div>'; });
+    h += '</div></section>';
+
+    /* métricas */
+    h += '<section class="blk" id="pl-metrics"><h2>Como medir</h2><p class="sub">Cada fase tem uma métrica principal. Curtidas não estão entre elas.</p><div class="grid2">';
+    PLAN.metrics.forEach(function(m){
+      var ph = PH[m.phase];
+      h += '<div class="info"><span class="badge ph-'+ph.id+'">'+esc(ph.title)+'</span><h4>'+esc(m.m)+'</h4><div class="kv"><b>Onde ver:</b> '+esc(m.where)+'</div><div class="does"><b>Se ficar abaixo:</b> '+esc(m.fix)+'</div></div>';
+    });
+    h += '</div><div class="callout">'+esc(PLAN.metricsNote)+'</div><div class="callout">'+esc(PLAN.timing)+'</div></section>';
+
+    /* mercado */
+    h += '<section class="blk" id="pl-market"><h2>O que o mercado mostra</h2><p class="sub">O Instagram premia o post que alguém envia para outra pessoa, e o carrossel é o formato estático que mais engaja. Por isso os dois carrosséis ficam no centro do lançamento e cada legenda pede uma ação só.</p><div class="grid2">';
+    PLAN.market.forEach(function(m){
+      h += '<div class="info"><h4>'+esc(m.fact)+'</h4><p><a href="'+m.url+'" target="_blank" rel="noopener">'+esc(m.src)+'</a></p><div class="does"><b>No plano:</b> '+esc(m.does)+'</div></div>';
+    });
+    h += '</div><div class="callout"><b>Concorrência.</b> '+esc(PLAN.competition)+'</div></section>';
+
+    /* fontes */
+    h += '<section class="blk" id="pl-src"><h2>Fontes</h2><ul class="srcs">'+PLAN.sources.map(function(x){ return '<li><a href="'+x[1]+'" target="_blank" rel="noopener">'+esc(x[0])+'</a></li>'; }).join("")+'</ul></section>';
+    return h + '</div>';
+  }
+
+  function setView(v){
+    VIEW = v; try{ localStorage.setItem("rostinho.view2", VIEW); }catch(e){}
+    render(); applyFilter();
+    var top = app.offsetTop - 56; if (window.scrollY > top) window.scrollTo(0, Math.max(0, top));
+  }
+  function openPost(id){
+    VIEW = "cal"; filter = "all"; hide.checked = false;
+    try{ localStorage.setItem("rostinho.view2", VIEW); sessionStorage.setItem("rostinho.filter","all"); sessionStorage.setItem("rostinho.hide","0"); }catch(e){}
+    render(); applyFilter();
+    var el = document.getElementById(id);
+    if (el){ el.scrollIntoView({block:"start"}); el.classList.add("flash"); setTimeout(function(){ el.classList.remove("flash"); }, 1700); }
+  }
+  function icsEsc(t){ return String(t).replace(/\\/g,"\\\\").replace(/;/g,"\;").replace(/,/g,"\\,").replace(/\n/g,"\\n"); }
+  function pad(n){ return (n<10?"0":"")+n; }
+  function loc(d){ return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+"T"+pad(d.getHours())+pad(d.getMinutes())+"00"; }
+  function downloadIcs(){
+    var base = location.href.split("#")[0], now = new Date();
+    var stamp = now.getUTCFullYear()+pad(now.getUTCMonth()+1)+pad(now.getUTCDate())+"T"+pad(now.getUTCHours())+pad(now.getUTCMinutes())+"00Z";
+    var L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Rostinho//Plano de posts//PT","CALSCALE:GREGORIAN","X-WR-CALNAME:Rostinho · Plano de posts"];
+    items().forEach(function(i){
+      var end = new Date(i.when.getTime() + 30*60000);
+      var desc = (i.kind === "post" ? "Objetivo: " + i.obj + "\nAbra a imagem e a legenda: " + base + "#" + i.id : i.obj);
+      L.push("BEGIN:VEVENT","UID:"+i.id+"@rostinho-posts","DTSTAMP:"+stamp,"DTSTART:"+loc(i.when),"DTEND:"+loc(end),
+        "SUMMARY:"+icsEsc((i.kind === "post" ? "Postar: " : "Gravar e postar: ") + i.title),"DESCRIPTION:"+icsEsc(desc),
+        "BEGIN:VALARM","TRIGGER:-PT30M","ACTION:DISPLAY","DESCRIPTION:Hora de postar","END:VALARM","END:VEVENT");
+    });
+    L.push("END:VCALENDAR");
+    var url = URL.createObjectURL(new Blob([L.join("\r\n")], {type:"text/calendar;charset=utf-8"}));
+    anchorDownload(url, "rostinho-plano-de-posts.ics");
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+    toast("Arquivo de calendário baixado. Abra para adicionar.");
+  }
+  app.addEventListener("click", function(e){
+    var t = e.target;
+    if (t.closest("[data-pdone]") || t.closest(".r-chk")) return;
+    var c;
+    if ((c = t.closest("[data-copy]"))){ copy(c.dataset.copy, "Copiado"); return; }
+    if (t.closest("[data-ics]")){ downloadIcs(); return; }
+    if ((c = t.closest("[data-go]"))){ openPost(c.dataset.go); return; }
+  });
+  app.addEventListener("keydown", function(e){
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches(".row[data-go]")){ e.preventDefault(); openPost(e.target.dataset.go); }
+  });
+  app.addEventListener("click", function(e){
+    var b = e.target.closest("button[data-pdone]"); if (!b) return;
+    toggleDone(b.dataset.pdone, true);
+  });
+  app.addEventListener("change", function(e){
+    var c = e.target;
+    if (c.dataset.pdone){ toggleDone(c.dataset.pdone, c.checked); }
+    else if (c.dataset.todo){ if (c.checked) todo[c.dataset.todo] = 1; else delete todo[c.dataset.todo]; save(KEY_TODO, todo); render(); }
+  });
+  function toggleDone(id, on){
+    if (on) done[id] = Date.now(); else delete done[id];
+    save(KEY_DONE, done); updateProgress(); render();
+    if (on) toast("Marcado como publicado");
+  }
+
   render();
   applyFilter();
+  if (VIEW === "cal" && location.hash){ var h0 = document.getElementById(location.hash.slice(1)); if (h0) setTimeout(function(){ h0.scrollIntoView({block:"start"}); }, 50); }
 })();
 </script>
 </body>

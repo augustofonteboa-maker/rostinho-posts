@@ -7,3 +7,6 @@ Página com os criativos do Rostinho prontos para o Instagram: imagem para salva
 - `img/web` — prévias leves
 - `zip` — carrosséis em .zip
 - `src/posts.json` — legendas e hashtags (edite aqui e rode `python3 src/build_html.py` depois de `src/build_assets.py`)
+
+## Aba Plano
+`src/plan.json` guarda o plano de lançamento (checklist, fases, Reels, métricas, mercado, fontes). Depois de editar, rode `python3 src/build_html.py`.

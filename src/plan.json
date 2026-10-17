@@ -1,0 +1,265 @@
+{
+ "intro": "17 posts de feed em 6 semanas, de 19/10 a 28/11, com o lançamento em 26/10. São 2 posts na semana de pré-lançamento e 3 por semana depois. O F04 Teaser sai do feed e vira story e anúncio.",
+ "objectives": {
+  "01-teaser": "Curiosidade e primeiros seguidores",
+  "05-notas": "Identificação e marcações",
+  "f04-teaser": "Contagem regressiva para o dia 26",
+  "02-lancamento": "Clique no link da bio",
+  "story-lancamento": "Clique direto no app",
+  "03-prazer-zinho": "Comentários (apelido do bebê)",
+  "04-como-funciona": "Salvamentos",
+  "06-vida-inteira": "Envios e comentários",
+  "07-vinculo": "Salvamentos e envios",
+  "09-marque": "Marcações",
+  "08-toda-familia": "Envios",
+  "f07-ja-ama": "Clique no link da bio",
+  "f08-o-dedo": "Marcações de pais",
+  "f06-sonhando": "Comentários",
+  "f03-dobrinhas": "Clique no link da bio",
+  "f05-primeiro-colo": "Salvamentos",
+  "f02-o-laco": "Comentários",
+  "f01-toda-familia": "Envios",
+  "f09-mil-vezes": "Clique no link da bio"
+ },
+ "reels": [
+  {
+   "id": "reel-1",
+   "title": "Reel “Em breve”",
+   "day": "Sex, 23/10",
+   "time": "20h",
+   "phase": "f1",
+   "from": "01 Teaser",
+   "idea": "O brilho do ultrassom pulsa e a frase aparece aos poucos. Termina em “26/10”. 7 a 10 segundos."
+  },
+  {
+   "id": "reel-2",
+   "title": "Reel “Do ultrassom ao rostinho”",
+   "day": "Sáb, 31/10",
+   "time": "11h",
+   "phase": "f2",
+   "from": "Carrossel 04",
+   "idea": "Os 3 passos em cortes rápidos, com o Zinho reagindo no fim. 15 segundos."
+  },
+  {
+   "id": "reel-3",
+   "title": "Reel “O Zinho envelhecendo”",
+   "day": "Dom, 08/11",
+   "time": "20h",
+   "phase": "f3",
+   "from": "Carrossel 06",
+   "idea": "Transição de 0 a 70 anos, uma idade por batida da música. Feito para envio: “manda pra quem vai ser avó”."
+  }
+ ],
+ "reelsNote": "Todos os 19 criativos são estáticos, e um perfil novo precisa de Reels para chegar a quem ainda não o segue. Por isso, três artes viram Reels curtos, sem nova produção de imagem. Use música da biblioteca do Instagram, que já vem licenciada.",
+ "why": [
+  {
+   "phase": "f1",
+   "text": "Criar a pergunta. O 01 Teaser e o 05 Notas falam do desejo e ainda não mostram o app. O Notas gera identificação e marcações, o que traz as primeiras seguidoras antes do dia 26."
+  },
+  {
+   "phase": "f2",
+   "text": "Responder a pergunta. Primeiro o anúncio (02), depois o rosto da marca (03 Zinho) e por fim o passo a passo (04). Assim a pessoa entende o que é, simpatiza e aprende a usar, nessa ordem."
+  },
+  {
+   "phase": "f3",
+   "text": "Mostrar o que ela ganha. O carrossel A vida inteira é o post com mais potencial de envio e vem logo depois do Como funciona. O Vínculo dá o motivo emocional e o Marque fecha a semana puxando a família para a conversa."
+  },
+  {
+   "phase": "f4",
+   "text": "Falar com a família inteira. Toda família amplia o público. O Já ama relembra o lançamento 17 dias depois, agora com foto real. O O dedo fala direto com os pais."
+  },
+  {
+   "phase": "f5",
+   "text": "Manter o ritmo com fotos. As artes com fotos de bebês sustentam 3 posts por semana, alternando o objetivo: comentário, clique e salvamento. O Mil vezes fecha o ciclo retomando o 03:07 do início."
+  }
+ ],
+ "rules": [
+  {
+   "t": "Pares repetidos a 14 dias ou mais",
+   "d": "Quatro pares de artes repetem a mensagem (02 e F07, 06 e F06, 07 e F02, 08 e F01). Ficam sempre separados por 14 a 19 dias, para quem segue o perfil não perceber a repetição."
+  },
+  {
+   "t": "O F04 Teaser não vai para o feed",
+   "d": "Ele repete a frase do 01 Teaser e diz “Em breve”, então não pode ficar no perfil depois do dia 26. Publique como story na sexta 23/10 (contagem regressiva) ou use como anúncio com foto real de gestante."
+  },
+  {
+   "t": "As cores se alternam no grid",
+   "d": "A ordem evita duas artes do mesmo tom lado a lado. A única escura do feed (01) abre o perfil, e quem abre o perfil vê o ritmo de cores da marca, não blocos de uma cor só."
+  },
+  {
+   "t": "Finados fica sem post",
+   "d": "Segunda, 02/11, nenhum post sai. O carrossel A vida inteira foi para terça, 03/11."
+  }
+ ],
+ "stories": [
+  {
+   "t": "Pré-lançamento",
+   "d": "Enquete “Quem você acha que o bebê vai puxar? Mãe / Pai” e o sticker de contagem regressiva para 26/10. Quem ativar o lembrete recebe aviso no dia."
+  },
+  {
+   "t": "Dia do lançamento (26/10)",
+   "d": "Story de lançamento com link às 12h05, o post 02 repostado à tarde e uma caixa de perguntas à noite: “O que você quer saber sobre o Rostinho?”."
+  },
+  {
+   "t": "Depois",
+   "d": "Reposte cada post do feed nos stories no mesmo dia. Responda uma dúvida da caixa de perguntas por dia. Fora da semana de lançamento, publique pelo menos um story em cada dia de post."
+  },
+  {
+   "t": "Destaques",
+   "d": "Crie “Como funciona”, “Zinho” e “Dúvidas”. Se mães mandarem o retrato que geraram, crie “De vocês”, sempre com autorização por escrito para repostar."
+  }
+ ],
+ "todoDeadline": "Até domingo, 18/10 — o primeiro post traz as primeiras visitas",
+ "todo": [
+  {
+   "id": "t1",
+   "t": "Conta profissional",
+   "d": "Tipo Criador ou Empresa, para ter Insights, Reels de teste e agendamento."
+  },
+  {
+   "id": "t2",
+   "t": "Foto de perfil",
+   "d": "A cabeça do Zinho sobre o fundo rosado da marca."
+  },
+  {
+   "id": "t3",
+   "t": "Nome do perfil",
+   "d": "Com a palavra que as pessoas buscam: “Rostinho · rosto do bebê pelo ultrassom”."
+  },
+  {
+   "id": "t4",
+   "t": "Bio em 3 linhas",
+   "d": "O que faz, para quem, ação. Ex.: “Veja o rostinho do seu bebê a partir do ultrassom ♥ / Do recém-nascido aos 70 anos / Toque no link e conheça ↓”"
+  },
+  {
+   "id": "t5",
+   "t": "Link da bio com UTM",
+   "d": "Acrescente o código abaixo ao final do link da bio, para saber quantos acessos vêm do Instagram.",
+   "copy": "?utm_source=instagram&utm_medium=bio"
+  },
+  {
+   "id": "t6",
+   "t": "Capas dos destaques",
+   "d": "Nas cores da marca: Como funciona, Zinho, Dúvidas."
+  },
+  {
+   "id": "t7",
+   "t": "Agendar os posts 1 a 5",
+   "d": "Pelo próprio Instagram (Agendar, em Configurações avançadas), usando as legendas desta página."
+  },
+  {
+   "id": "t8",
+   "t": "Lista de 20 a 30 pessoas próximas",
+   "d": "Amigas grávidas e grupos de mães, para enviar o post do dia 26 por mensagem. Isso gera os primeiros envios."
+  }
+ ],
+ "metrics": [
+  {
+   "phase": "f1",
+   "m": "Seguidores novos e lembretes ativados na contagem regressiva",
+   "where": "Insights › Seguidores; o próprio sticker",
+   "fix": "Mande o 01 Teaser para a lista de pessoas próximas antes do dia 26."
+  },
+  {
+   "phase": "f2",
+   "m": "Toques no link da bio e acessos com a UTM",
+   "where": "Insights › Atividade no perfil; análise do site",
+   "fix": "Repita o Story com link no dia seguinte e fixe o 02."
+  },
+  {
+   "phase": "f3",
+   "m": "Envios por alcance (envios ÷ contas alcançadas)",
+   "where": "Insights de cada post",
+   "fix": "Transforme o post com mais envios em anúncio."
+  },
+  {
+   "phase": "f4",
+   "m": "Comentários e marcações",
+   "where": "Insights de cada post",
+   "fix": "Responda todos os comentários na primeira hora."
+  },
+  {
+   "phase": "f5",
+   "m": "Salvamentos e cliques no link",
+   "where": "Insights de cada post",
+   "fix": "Troque o horário da faixa mais fraca pelo melhor horário do seu Insights."
+  }
+ ],
+ "metricsNote": "A média do mercado é 0,55% de engajamento para carrossel e 0,37% para imagem única (Socialinsider). O que importa é comparar os posts do Rostinho entre si.",
+ "timing": "Ajuste de horário em 01/11: abra Insights › Seguidores › Horários mais ativos. Se o pico for diferente de 18h a 20h, mova os posts das semanas seguintes para esse pico.",
+ "market": [
+  {
+   "fact": "Envios, curtidas e tempo de visualização são os 3 sinais que mais pesam. Envios pesam mais para alcançar quem ainda não segue.",
+   "src": "Mosseri, via Social Media Today",
+   "url": "https://www.socialmediatoday.com/news/instagram-shares-algorithm-insights-2025/738034/",
+   "does": "Perfil novo depende de envios: A vida inteira, Toda família e Vínculo pedem “envie para alguém”."
+  },
+  {
+   "fact": "Engajamento médio: carrossel 0,55%, Reels 0,52%, imagem única 0,37%.",
+   "src": "Socialinsider, dados de 2025",
+   "url": "https://www.socialinsider.io/instagram-engagement-rate",
+   "does": "Os 2 carrosséis entram cedo e ficam fixados."
+  },
+  {
+   "fact": "3 a 5 posts por semana dão cerca de 12% mais alcance por post do que 1 a 2.",
+   "src": "Buffer, 2,1 milhões de posts",
+   "url": "https://buffer.com/resources/how-often-to-post-on-instagram/",
+   "does": "Ritmo de 3 posts por semana, sem semana vazia, até 28/11."
+  },
+  {
+   "fact": "20h é o melhor horário na maioria dos dias. Quinta rende mais às 18h. Sábado de manhã concentra interações.",
+   "src": "Metricool, 24 milhões de posts",
+   "url": "https://metricool.com/pt/melhor-horario-para-postar-instagram/",
+   "does": "Terça 20h, quinta 18h e sábado 11h. Os posts de marcação ficam no sábado."
+  },
+  {
+   "fact": "O grid do perfil mostra as artes em 3:4, cortando as laterais de quem posta em 4:5.",
+   "src": "Planoly",
+   "url": "https://planoly.com/blog/guide-to-instagrams-new-vertical-grid",
+   "does": "As 17 artes foram conferidas: nenhum texto fica na faixa cortada."
+  },
+  {
+   "fact": "Dá para fixar até 3 posts no topo do perfil.",
+   "src": "Canaltech",
+   "url": "https://canaltech.com.br/apps/como-fixar-posts-no-perfil-do-instagram/",
+   "does": "Fixar 02 Lançamento, 04 Como funciona e 06 A vida inteira."
+  },
+  {
+   "fact": "O Brasil registrou cerca de 2,44 milhões de nascimentos em 2024.",
+   "src": "IBGE, via CNN Brasil",
+   "url": "https://www.cnnbrasil.com.br/nacional/brasil/brasil-registra-queda-no-numero-de-nascimentos-em-2024-diz-ibge/",
+   "does": "O público se renova o tempo todo: os criativos podem voltar como anúncio depois de dezembro."
+  }
+ ],
+ "competition": "A App Store brasileira tem vários geradores de rosto de bebê com IA, como CuteFaces, BabyScan e DreamBaby. A maioria é tradução de app estrangeiro e se vende pela tecnologia. O Rostinho se diferencia pelo vínculo, pelas idades até 70 anos, pelo Zinho e pela voz brasileira. Por isso o plano abre pela emoção e só depois explica a tecnologia, e deixa claro, em 3 legendas, que o retrato é uma estimativa feita por IA.",
+ "sources": [
+  [
+   "Social Media Today · Instagram shares algorithm insights",
+   "https://www.socialmediatoday.com/news/instagram-shares-algorithm-insights-2025/738034/"
+  ],
+  [
+   "Socialinsider · Instagram benchmarks",
+   "https://www.socialinsider.io/instagram-engagement-rate"
+  ],
+  [
+   "Buffer · How often to post on Instagram",
+   "https://buffer.com/resources/how-often-to-post-on-instagram/"
+  ],
+  [
+   "Metricool · Melhor horário para postar",
+   "https://metricool.com/pt/melhor-horario-para-postar-instagram/"
+  ],
+  [
+   "Planoly · Instagram's new vertical grid",
+   "https://planoly.com/blog/guide-to-instagrams-new-vertical-grid"
+  ],
+  [
+   "Canaltech · Como fixar posts no perfil",
+   "https://canaltech.com.br/apps/como-fixar-posts-no-perfil-do-instagram/"
+  ],
+  [
+   "CNN Brasil · Nascimentos em 2024 (IBGE)",
+   "https://www.cnnbrasil.com.br/nacional/brasil/brasil-registra-queda-no-numero-de-nascimentos-em-2024-diz-ibge/"
+  ]
+ ]
+}
